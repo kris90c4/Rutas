@@ -55,18 +55,36 @@ nav li a:hover {
 /* Modal Content */
 .modal-content {
     background-color: #fefefe;
-    margin: auto;
+	top:40%;
+	left:50%;
+	margin-left:-100px;
+	margin-top:-15%;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 150px;
+    position:absolute;
+}
+
+#login label{
+	width:100px;
+	display: table-caption;
+}
+#login input{
+	width:100px;
 }
 
 /* The Close Button */
 .close {
+	display:block;
     color: #aaaaaa;
-    float: right;
     font-size: 28px;
     font-weight: bold;
+    position:absolute;
+    right:10px;
+    top:10px;
+    width:16px;
+    height:16px;
+    vertical-align:middle;
 }
 
 .close:hover,
@@ -83,3 +101,4 @@ nav li a:hover {
 	right:70px;
 	background:#2196f3;
 }
+
