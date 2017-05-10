@@ -1,5 +1,4 @@
 ﻿<?php 
-	header ('Content-type: text/html; charset=utf-8');
 	//define("__RAIZ__","C:\Users\Bender\Dropbox\FP Superior\2 Curso\Aplicaciones\Rutas");
 	require 'vendor/autoload.php';
 	//require 'controller/registerController.php"';
@@ -21,14 +20,9 @@
 	</head>
 	<body>
 	
-	<!--  Menu Navegación -->
-		<nav>
-			<ul>
-				<li><a href="index.php">Inicio</a></li>
-				<li class="right"><a href="?controller=login">Login</a></li>
-				<li class="right"><a href="?controller=register">Registrar</a></li>
-			</ul>
-		</nav>
+	<?php 
+		include 'template/menu.html';
+	?>
  
 		<!-- The Modal -->
 		<div id="myModal" class="modal">
