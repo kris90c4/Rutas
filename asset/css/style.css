@@ -53,7 +53,7 @@ nav li a:hover {
 }
 
 /* Modal Content */
-.modal-content {
+#login {
     background-color: #fefefe;
 	top:40%;
 	left:50%;
@@ -100,5 +100,23 @@ nav li a:hover {
 	left:70px;
 	right:70px;
 	background:#2196f3;
+}
+#registrar{
+	background:grey;
+	padding:20px;
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin-left:-100px;
+	margin-top:-250px;
+	border:1px solid black;
+}
+#registrar form{
+	display:table-caption;
+	
+}
+#registrar h4{
+	margin:0;
+	margin-bottom:20px;
 }
 
