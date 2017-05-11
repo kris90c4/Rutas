@@ -24,10 +24,15 @@
 	</head>
 	<body>
 	
-	<?php 
+	<?php
+	if(!isset($_SESSION['usuario'])){
+		include 'template/menuUsuario.php';
+	}else{
 		include 'template/menu.html';
+	}
+		
 	?>
- 
+
 		<!-- The Modal -->
 		<div id="myModal" class="modal">
 		
@@ -45,7 +50,6 @@
 			}else if($_GET['controller']=="login"){
 				include 'template/login.html"';
 			}
-			
 		}
 		
 		?>
