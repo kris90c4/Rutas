@@ -2,7 +2,7 @@
 	session_start();
 	
 	require 'autoload.php';
-	require "config.php";
+	require "configOld.php";
 	//define("__RAIZ__","C:\Users\Bender\Dropbox\FP Superior\2 Curso\Aplicaciones\Rutas");
 	require 'vendor/autoload.php';
 	//require 'controller/registerController.php"';
