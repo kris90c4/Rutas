@@ -1,7 +1,17 @@
 body{
-	background:yellow;
+	background:white;
 	margin:0;
 }
+
+#cuerpo{
+	position:absolute;
+	top:80px;
+	bottom:50px;
+	left:70px;
+	right:70px;
+	background:rgba(0,0,0,0.2);
+}
+
 nav{
 	display:block;
 	background:gray;
@@ -21,9 +31,11 @@ nav ul {
     overflow: hidden;
     background-color: #333;
 }
+
 nav li {
     float: left;
 }
+
 nav li a {
     display: block;
     color: white;
@@ -31,9 +43,11 @@ nav li a {
     padding: 14px 16px;
     text-decoration: none;
 }
+
 nav li a:hover {
     background-color: #111;
 }
+
 .right{
 	float:right;
 }
@@ -69,6 +83,7 @@ nav li a:hover {
 	width:100px;
 	display: table-caption;
 }
+
 #login input{
 	width:100px;
 }
@@ -93,14 +108,7 @@ nav li a:hover {
     text-decoration: none;
     cursor: pointer;
 }
-#cuerpo{
-	position:absolute;
-	top:80px;
-	bottom:50px;
-	left:70px;
-	right:70px;
-	background:#2196f3;
-}
+
 #registrar{
 	background:grey;
 	padding:20px;
@@ -111,10 +119,12 @@ nav li a:hover {
 	margin-top:-250px;
 	border:1px solid black;
 }
+
 #registrar form{
 	display:table-caption;
 	
 }
+
 #registrar h4{
 	margin:0;
 	margin-bottom:20px;

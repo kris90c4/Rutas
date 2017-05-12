@@ -7,7 +7,7 @@ class menu{
 		$this->fecha_entrada=time();
 	}
 	function pintar_menu(){
-		
+		include "template/menu.php";
 	}
 }
 ?>

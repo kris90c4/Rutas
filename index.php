@@ -1,14 +1,13 @@
 ﻿<?php 
 	session_start();
-	require 'model/bd.php';
-	require 'model/usuario.php';
+	
+	require 'autoload.php';
 	require "config.php";
 	//define("__RAIZ__","C:\Users\Bender\Dropbox\FP Superior\2 Curso\Aplicaciones\Rutas");
 	require 'vendor/autoload.php';
 	//require 'controller/registerController.php"';
-	define("__RAIZ__","Aplicaciones\Rutas");
 	
-	if (isset($POST["usuario"])) {
+	if (isset($_POST["usuario"])) {
 		
 	}
 	
@@ -25,12 +24,9 @@
 	<body>
 	
 	<?php
-	if(!isset($_SESSION['usuario'])){
-		include 'template/menuUsuario.php';
-	}else{
-		include 'template/menu.html';
-	}
-		
+		//Se imprime el menu a traves de su controlador
+		$controladorMenu=new menu();
+		$menu->pintar_menu();
 	?>
 
 		<!-- The Modal -->
@@ -44,21 +40,9 @@
 		</div>
 		<div id="cuerpo">
 		<?php 
-		if (isset($_GET["controller"])){
-			if($_GET["controller"]=="register") {
-				include 'template/registrar.html"';
-			}else if($_GET['controller']=="login"){
-				include 'template/login.html"';
-			}
-		}
 		
 		?>
 		
 		</div>
 	</body>
 </html>
-
-<?php
-
-
-?>
