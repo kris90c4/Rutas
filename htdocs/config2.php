@@ -6,7 +6,7 @@ $config->set('modelsFolder', 'models/');
 $config->set('viewsFolder', 'views/');
 
 $config->set('dbhost', 'localhost');
-$config->set('dbname', 'pruebas');
+$config->set('dbname', 'gestoria');
 $config->set('dbuser', 'root');
 $config->set('dbpass', '');
 ?>

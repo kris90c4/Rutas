@@ -1,24 +1,24 @@
 <?php
-class FrontController
-{
-	static function main()
-	{
+class FrontController{
+	static function main(){
 		//Incluimos algunas clases:
 	
 		require 'libs/Config.php'; //de configuracion
 		require 'libs/SPDO.php'; //PDO con singleton
+
 		require 'libs/View.php'; //Mini motor de plantillas
 
-		require 'config.php'; //Archivo con configuraciones.
-
+		
+		require 'config2.php'; //Archivo con configuraciones.
+		
 		//Con el objetivo de no repetir nombre de clases, nuestros controladores
 		//terminarán todos en Controller. Por ej, la clase controladora Items, será ItemsController
 
 		//Formamos el nombre del Controlador o en su defecto, tomamos que es el IndexController
 		if(! empty($_GET['controlador']))
-			  $controllerName = $_GET['controlador'] . 'Controller';
+			$controllerName = $_GET['controlador'] . 'Controller';
 		else{
-			  $controllerName = "IndexController";
+			$controllerName = "IndexController";
 		}
 		//Lo mismo sucede con las acciones, si no hay acción, tomamos index como acción
 		if(! empty($_GET['accion']))
@@ -30,7 +30,7 @@ class FrontController
 
 		//Incluimos el fichero que contiene nuestra clase controladora solicitada
 		if(is_file($controllerPath))
-			  require $controllerPath;
+			 require $controllerPath;
 		else{
 			  die('El controlador no existe - 404 not found');
 		}

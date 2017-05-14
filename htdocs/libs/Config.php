@@ -1,11 +1,9 @@
 <?php
-class Config
-{
+class Config{
 	private $vars;
 	private static $instance;
 	
-	private function __construct()
-	{
+	private function __construct(){
 		$this->vars = array();
 	}
 	
@@ -33,7 +31,6 @@ class Config
 			$c = __CLASS__;
 			self::$instance = new $c;
 		}
-		
 		return self::$instance;
 	}
 }
