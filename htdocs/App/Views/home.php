@@ -5,6 +5,8 @@
 <title><?php echo $title ?></title>
     </head>
     <body>
-        Hola <?php echo $name ?>
+    	<?php foreach ($name as $n) :?>
+        	Hola <?php echo $n ?><br>
+        <?php endforeach;?>
     </body>
 </html>

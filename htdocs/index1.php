@@ -31,20 +31,12 @@
 		menu::pintar_menu();
 	?>
 
-		<!-- The Modal -->
-		<div id="myModal" class="modal">
-		
-		  <!-- Modal content -->
-			<div class="modal-content">
 
-			</div>
-		
-		</div>
 		<div id="cuerpo">
 		<?php 
 
 		//Lo iniciamos con su método estático main.
-		FrontController::main();
+		echo $content;
 		?>
 		
 		</div>

@@ -8,7 +8,7 @@ class View
 	 * @var
 	 */
 	protected static $data;
-	
+	protected static $title;
 	/**
 	 * @var
 	 */
@@ -30,13 +30,14 @@ class View
 		{
 			throw new \Exception("Error: El archivo " . self::VIEWS_PATH . $template . "." . self::EXTENSION_TEMPLATES . " no existe", 1);
 		}
-		
+		$menu=file_get_contents(self::VIEWS_PATH . "menu." . self::EXTENSION_TEMPLATES);
 		ob_start();
 		extract(self::$data);
 		include(self::VIEWS_PATH . $template . "." . self::EXTENSION_TEMPLATES);
-		$str = ob_get_contents();
+		$content = ob_get_contents();
 		ob_end_clean();
-		echo $str;
+		$asset="/localhost".$_SERVER['PHP_SELF']."/../../asset/";
+		include self::VIEWS_PATH."layout/layout.".self::EXTENSION_TEMPLATES;
 	}
 	
 	/**
