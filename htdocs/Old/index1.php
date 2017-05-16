@@ -6,7 +6,7 @@
 	//Incluimos el FrontController
 	require 'libs/FrontController.php';
 	//define("__RAIZ__","C:\Users\Bender\Dropbox\FP Superior\2 Curso\Aplicaciones\Rutas");
-	require 'vendor/autoload.php';
+	require '../vendor/autoload.php';
 	//require 'controller/registerController.php"';
 	
 	if (isset($_POST["usuario"])) {
