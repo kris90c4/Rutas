@@ -7,7 +7,7 @@ use \Core\View,
 \App\Models\Admin\User as UserAdmin;
 
 class Login{
-	public function pintar_login(){
+	public function view(){
 		
 		View::set("title", "Login");
 		View::render("login");

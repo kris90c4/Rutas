@@ -44,9 +44,9 @@ class App
 			$this->_controller = ucfirst($url[0]);
 			//eliminamos el controlador de url, así sólo nos quedaran los parámetros del método
 			unset($url[0]);
-		}
-		else
-		{
+		}else if(empty($url)){
+			include APPPATH . "/views/layout/layout.php";
+		}else{
 			include APPPATH . "/views/errors/404.php";
 			exit;
 		}
