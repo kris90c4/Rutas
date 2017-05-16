@@ -7,10 +7,9 @@ use \Core\View,
 	\App\Models\Admin\User as UserAdmin;
  
 class Home{
-	public function __construct(){
-		View::set("name", $nombre);
-		View::set("title", "Home");
-		View::render("home");
+	public function index(){
+		View::set("title","Home");
+		View::render('home');
 	}
 	public function saludo(){
 		$nombre=func_get_args();

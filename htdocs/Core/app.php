@@ -35,17 +35,13 @@ class App
 	public function __construct()
 	{
 		//obtenemos la url parseada
-		$url = $this->parseUrl();
+		//$url = $this->parseUrl();
 		
 		//comprobamos que exista el archivo en el directorio controllers
-		if(file_exists(self::CONTROLLERS_PATH.ucfirst($url[0]) . ".php"))
-		{
+		if(file_exists(self::CONTROLLERS_PATH.ucfirst(isset($_GET['controller'])?$_GET['controller']:"Home"). ".php")){
 			//nombre del archivo a llamar
-			$this->_controller = ucfirst($url[0]);
+			$this->_controller = ucfirst(isset($_GET['controller'])?$_GET['controller']:"Home");
 			//eliminamos el controlador de url, así sólo nos quedaran los parámetros del método
-			unset($url[0]);
-		}else if(empty($url)){
-			include APPPATH . "/views/layout/layout.php";
 		}else{
 			include APPPATH . "/views/errors/404.php";
 			exit;
@@ -58,23 +54,21 @@ class App
 		$this->_controller = new $fullClass;
 		
 		//si existe el segundo segmento comprobamos que el método exista en esa clase
-		if(isset($url[1]))
-		{
-			
+		if(isset($_GET['action'])?$_GET['action']:""){
 			//aquí tenemos el método
-			$this->_method = $url[1];
-			if(method_exists($this->_controller, $url[1]))
-			{
-				//eliminamos el método de url, así sólo nos quedaran los parámetros del método
-				unset($url[1]);
-			}
-			else
-			{
+			$this->_method = $_GET['action'];
+			if(!method_exists($this->_controller, $_GET['action']))	{
 				throw new \Exception("Error Processing Method {$this->_method}", 1);
 			}
 		}
+
 		//asociamos el resto de segmentos a $this->_params para pasarlos al método llamado, por defecto será un array vacío
-		$this->_params = $url ? array_values($url) : [];
+		if(isset($_GET['parametros'])){
+			$parametros=explode(",", $_GET['parametros']);
+			$this->_params = array_values($parametros);
+		}else{
+			$this->_params = [];
+		}
 	}
 	
 	/**
