@@ -7,8 +7,8 @@ body{
 	position:absolute;
 	top:80px;
 	bottom:50px;
-	left:70px;
-	right:70px;
+	left:50px;
+	right:50px;
 	background:rgba(0,0,0,0.2);
 }
 
@@ -25,27 +25,27 @@ nav{
 }
 
 nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
 }
 
 nav li {
-    float: left;
+	float: left;
 }
 
 nav li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
 }
 
 nav li a:hover {
-    background-color: #111;
+	background-color: #111;
 }
 
 .right{
@@ -53,62 +53,91 @@ nav li a:hover {
 }
 /* The Modal (background) */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-/* Modal Content */
-#login {
-    background-color: #fefefe;
+/*FORM Login y Registro*/
+#login,#registrar {
+	background-color: #fefefe;
 	top:40%;
 	left:50%;
 	margin-left:-100px;
 	margin-top:-15%;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 150px;
-    position:absolute;
+	padding: 20px;
+	border: 2px solid #4e9ac2;
+	border-radius:10px;
+	width: 180px;
+	position:absolute;
+}
+#login h2 , #registrar h2{
+	margin: 0;
+	padding: 10px;
+	text-align: center;
+	background: deepskyblue;
+	border-radius: 4px;
+}
+#login input[type="text"],#login input[type="password"], #registrar input[type="text"],#registrar input[type="password"]{
+	
+	width: 100%;
+	border-width: 0;
+	border-bottom-width: 1.6px;
+	border-bottom-color: grey;
+	padding: 5px;
+}
+#login input, #registrar input{
+	display: block;
+	margin: 5px auto;
+	box-sizing: border-box;
+}
+#login input[type="text"]:focus ,#login input[type="password"]:focus,
+#registrar input[type="text"]:focus ,#registrar input[type="password"]:focus{
+	border-color: lightskyblue;
+	outline: none;
 }
 
-#login label{
-	width:100px;
-	display: table-caption;
-}
 
-#login input{
-	width:100px;
+/*Clases para botones*/
+.btn-blue{
+	background:#488aff;
+	color:white;
+	border:none;
+	border-radius:3px;
+	padding:3px;
+	cursor: pointer;
+	padding:5px;
 }
 
 /* The Close Button */
 .close {
 	display:block;
-    color: #aaaaaa;
-    font-size: 28px;
-    font-weight: bold;
-    position:absolute;
-    right:10px;
-    top:10px;
-    width:16px;
-    height:16px;
-    vertical-align:middle;
+	color: #aaaaaa;
+	font-size: 28px;
+	font-weight: bold;
+	position:absolute;
+	right:10px;
+	top:10px;
+	width:16px;
+	height:16px;
+	vertical-align:middle;
 }
 
 .close:hover,
 .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
 }
-
+/*
 #registrar{
 	background:grey;
 	padding:20px;
@@ -128,5 +157,7 @@ nav li a:hover {
 #registrar h4{
 	margin:0;
 	margin-bottom:20px;
-}
+}*/
+/* Reglas generales */
 
+::-webkit-input-placeholder { color:#91bbbf; }
