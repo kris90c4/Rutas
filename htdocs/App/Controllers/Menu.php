@@ -6,7 +6,7 @@ class Menu{
 	function __construct(){
 		$this->fecha_entrada=time();
 	}
-	static function pintar_menu(){
+	public static function pintar_menu(){
 		include "template/menu.php";
 	}
 }
