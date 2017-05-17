@@ -43,7 +43,7 @@ class View
 		//Y se limpia el buffer
 		ob_end_clean();
 		//Obtengo la ruta donde cargar todos los archivos del cliente web
-		$asset="/localhost".$_SERVER['PHP_SELF']."/../../asset/";
+		$asset="".$_SERVER['HTTP_HOST']."/../../asset/";
 		//Por ultimo, cargo el marco decorativo donde va a cargarse las vistas que los controladores ejecuten a traves de la variable $content
 		include self::VIEWS_PATH."layout/layout.".self::EXTENSION_TEMPLATES;
 	}
