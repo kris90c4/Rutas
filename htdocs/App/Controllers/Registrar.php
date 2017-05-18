@@ -11,9 +11,13 @@ class Registrar{
 		View::set("title", "Registro");
 		View::render("registrar");
 	}
-	public function save(){
-		
+	
+	//Recoge los datos del formulario de registro. 
+	//Los valida y en caso necesario, usa el modelo admin/user para insertar un registro en la base de datos
+	public function check(){
+		//Comprueba que se llege a este controlador solo al usar el formulario de registro
 		if(isset($_POST['registrar'])){
+			//
 			echo extract($_POST);
 			$usuarios=UserAdmin::getByMail($mail);
 			if($usuarios){
@@ -23,11 +27,13 @@ class Registrar{
 				view::set("eMail",true);
 				View::render("registrar");
 			}else{
-				UserAdmin::insert($user);
+				$this->save();
 			}
-			
 		}else{
 			View::render("errors/404");
 		}
+	}
+	public function save(){
+		UserAdmin::insert($user);
 	}
 }
