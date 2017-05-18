@@ -23,7 +23,7 @@ class Registrar{
 				view::set("eMail",true);
 				View::render("registrar");
 			}else{
-				UserAdmin::insert($user)
+				UserAdmin::insert($user);
 			}
 			
 		}else{
