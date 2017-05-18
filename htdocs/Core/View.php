@@ -7,8 +7,8 @@ class View
 	/**
 	 * @var
 	 */
-	protected static $data;
-	protected static $title;
+	protected static $data=[];
+	protected static $title="404";
 	/**
 	 * @var
 	 */
@@ -36,6 +36,9 @@ class View
 		ob_start();
 		//Se extraen todos los indices y se convierten en variables
 		extract(self::$data);
+		if(!isset($title)){
+			$title=self::$title;
+		}
 		//Se incluye la vista que el controlador manda cargar
 		include(self::VIEWS_PATH . $template . "." . self::EXTENSION_TEMPLATES);
 		//Se guarda todo el contenido del buffer en una variable

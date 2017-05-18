@@ -7,6 +7,9 @@ use \App\Interfaces\Crud;
 
 class User implements Crud
 {
+	
+	const TABLA = "usuarios";
+	
 	public static function getAll()
 	{
 		try {
@@ -38,9 +41,36 @@ class User implements Crud
 		}
 	}
 	
+	/**Extrae el usuario que coincida en la base de datos
+	 *
+	 * @param String $mail
+	 * @return Array asociativo con usuario encontrado sino, no devuelve nada
+	 */
+	public static function getByMail($mail)
+	{
+		try {
+			$connection = Database::instance();
+			$sql = "SELECT * from usuarios WHERE correo = ?";
+			$query = $connection->prepare($sql);
+			$query->bindParam(1, $mail, \PDO::PARAM_STR);
+			$query->execute();
+			$query->setFetchMode(\PDO::FETCH_ASSOC);
+			return $query->fetch();
+		}
+		catch(\PDOException $e)
+		{
+			print "Error!: " . $e->getMessage();
+		}
+	}
+	
 	public static function insert($user)
 	{
-		
+		$connection = Database::instance();
+		$sql="INSERT INTO ".self::TABLA." VALUES(?)";
+		$query = $connection->prepare($sql);
+		$query->bindParam(1, implode(",", $user), \PDO::PARAM_STR);
+		$ok=$query->execute();
+		//$ok == true? ha ido bien:No ha ido bien.
 	}
 	
 	public static function update($user)

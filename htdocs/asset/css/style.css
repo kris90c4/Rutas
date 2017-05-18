@@ -76,7 +76,7 @@ nav li a:hover {
 	padding: 20px;
 	border: 2px solid #4e9ac2;
 	border-radius:10px;
-	width: 180px;
+	width: 190px;
 	position:absolute;
 }
 #login h2 , #registrar h2{
@@ -137,27 +137,15 @@ nav li a:hover {
 	text-decoration: none;
 	cursor: pointer;
 }
-/*
-#registrar{
-	background:grey;
-	padding:20px;
-	position:absolute;
-	left:50%;
-	top:50%;
-	margin-left:-100px;
-	margin-top:-250px;
-	border:1px solid black;
+
+/*Errores*/
+
+#cuerpo div form .errorInput{
+	border-bottom-color:red;
 }
 
-#registrar form{
-	display:table-caption;
-	
+input:required:valid {
+	background:lightcyan
 }
-
-#registrar h4{
-	margin:0;
-	margin-bottom:20px;
-}*/
-/* Reglas generales */
 
 ::-webkit-input-placeholder { color:#91bbbf; }
