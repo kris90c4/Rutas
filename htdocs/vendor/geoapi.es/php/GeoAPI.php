@@ -5,7 +5,7 @@ class GeoAPI {
 	private $conf = array(
 		'url' => 'http://geoapi.es/API/',
 		'type' => 'JSON',
-		'key' => '',
+		'key' => 'c952f2da3b954d4eb3380c9cd9de11b5ef01f85f1060d80172a81862c84ca91f',
 		'sandbox' => 0
 	);
 
@@ -33,11 +33,13 @@ class GeoAPI {
 	}
 	
 	private function _call($accion, $params, $deferred){
+
 		$params = array_merge($params, $this->conf);
+
 		unset($params['url']);
 		
 		$curl = curl_init();
-		
+
 		curl_setopt_array($curl, array(
 			CURLOPT_TIMEOUT => 15,
 			CURLOPT_RETURNTRANSFER => 1,
@@ -47,7 +49,7 @@ class GeoAPI {
 		));
 		
 		$resp = curl_exec($curl);
-		
+
 		if(curl_errno($curl) || curl_getinfo($curl, CURLINFO_HTTP_CODE) != 200){
 			$deferred->reject($resp);
 			echo "Error: " . curl_error($resp);
