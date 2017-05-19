@@ -3,7 +3,8 @@
      "php-di/php-di": "^5.3",
      "aura/session": "^2.0",
      "doctrine/orm": "*",
-      "google/apiclient": "^2.1"
+      "google/apiclient": "^2.1",
+      "geoapi.es/php": "~0.0.1"
    },
    "autoload": {
      "psr-4": {
