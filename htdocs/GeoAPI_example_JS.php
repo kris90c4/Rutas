@@ -16,8 +16,11 @@
 				// Cargar las comunidades
 				GeoAPI.comunidades({
 					//
-				}).then(function(data){
-					$scope.comunidades = data.data;
+				}).then(function(respuesta) {
+				    for(var i=0;i<respuesta.data.length;i++){
+				    	console.log(respuesta.data[i].COM);
+				    }
+					
 				});
 
 			});
@@ -35,12 +38,7 @@
 	<body ng-app="app">
 		<pre>
 			<div ng-controller="MainCtrl">
-			<?php $com=  "{{ comunidades | json }}" ; 
-			//echo $com;
-				var_dump((($com)));
-?>
-			
-			
+			{{ comunidades | json }}
 			</div>
 		</pre>
 	</body>
