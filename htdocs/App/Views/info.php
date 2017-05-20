@@ -1,3 +1,3 @@
 <?php
-var_dump($var);
+print_r($var);
 ?>

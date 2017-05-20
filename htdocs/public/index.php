@@ -1,5 +1,6 @@
 <?php
 require __DIR__."/../vendor/autoload.php";
+session_start();
 //directorio del proyecto
 define("PROJECTPATH", dirname(__DIR__));
 

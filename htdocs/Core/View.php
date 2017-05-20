@@ -1,5 +1,7 @@
 <?php
 namespace Core;
+use function Composer\Autoload\includeFile;
+
 defined("APPPATH") OR die("Access denied");
 
 class View
@@ -30,8 +32,12 @@ class View
 		{
 			throw new \Exception("Error: El archivo " . self::VIEWS_PATH . $template . "." . self::EXTENSION_TEMPLATES . " no existe", 1);
 		}
+		ob_start();
 		//Cargo el menu en la variable $menu
-		$menu=file_get_contents(self::VIEWS_PATH . "menu." . self::EXTENSION_TEMPLATES);
+		include self::VIEWS_PATH . "menu." . self::EXTENSION_TEMPLATES;
+		$menu= ob_get_contents();
+		
+		ob_end_clean();
 		//Se comienza a almacenar en el buffer los datos que salgan por pantalla
 		ob_start();
 		//Se extraen todos los indices y se convierten en variables

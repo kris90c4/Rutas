@@ -17,7 +17,7 @@ class Registrar{
 	public function check(){
 		//Comprueba que se llege a este controlador solo al usar el formulario de registro
 		if(isset($_POST['registrar'])){
-			//
+			//Covierte los indices de $_POST en variables
 			echo extract($_POST);
 			$usuarios=UserAdmin::getByMail($mail);
 			if($usuarios){
@@ -34,6 +34,14 @@ class Registrar{
 		}
 	}
 	public function save(){
-		UserAdmin::insert($user);
+		//Se codifica la contraseña a md5
+		$_POST['pass']=md5($_POST['pass']);
+		if(UserAdmin::insert($_POST)){
+			$index=new Home();
+			$_SESSION['usuario']=$_POST['mail'];
+			$index->saludo($_SESSION['usuario']);
+		}else{
+			View::render("errors/404");
+		}
 	}
 }

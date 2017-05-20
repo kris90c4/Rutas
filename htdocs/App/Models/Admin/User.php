@@ -66,10 +66,13 @@ class User implements Crud
 	public static function insert($user)
 	{
 		$connection = Database::instance();
-		$sql="INSERT INTO ".self::TABLA." VALUES(?)";
+		$sql="INSERT INTO ".self::TABLA." VALUES(null,?,?,?,?)";
 		$query = $connection->prepare($sql);
-		$query->bindParam(1, implode(",", $user), \PDO::PARAM_STR);
-		$ok=$query->execute();
+		$query->bindParam(1, $user['nombre'], \PDO::PARAM_STR);
+		$query->bindParam(2, $user['apellidos'], \PDO::PARAM_STR);
+		$query->bindParam(3, $user['mail'], \PDO::PARAM_STR);
+		$query->bindParam(4, $user['pass'], \PDO::PARAM_STR);
+		return $query->execute();
 		//$ok == true? ha ido bien:No ha ido bien.
 	}
 	

@@ -1,5 +1,5 @@
 <div id="registrar">
-	<form action="?controller=registrar&action=save" method="POST">
+	<form action="?controller=registrar&action=check" method="POST">
 		<h2>Registrar</h4>
 		<input type="text" name="nombre" pattern="[a-zA-Z]{3,20}" placeholder="Nombre" required value="<?= isset($nombre)?$nombre:"" ?>" >
 		<input type="text" name="apellidos" pattern="[a-zA-Z]{3,15}(\s[a-zA-Z]{3,15}){0,2}" placeholder="Apellidos" required value="<?= isset($apellidos)?$apellidos:"" ?>" >
