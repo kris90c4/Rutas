@@ -147,5 +147,24 @@ nav li a:hover {
 input:required:valid {
 	background:lightcyan
 }
+#formMatri{
+	width:350px;
+	margin:0 auto;
+}
+#formMatri form{
+	display: table;
+	margin:0 auto;
+}
+#formMatri label{
 
+	display: inline-block;
+	width:80px;
+}
+#formMatri ul{
+	padding-left:0;
+	list-style:none;
+}
+#formMatri ul li{
+	margin:5px 0;
+}
 ::-webkit-input-placeholder { color:#91bbbf; }

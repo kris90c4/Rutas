@@ -3,7 +3,7 @@ namespace App\Controllers;
 defined("APPPATH") OR die("Access denied");
 
 use \Core\View,
-	\App\Models\ItemsModel;
+	\App\Models\Ajax;
 
 
 class pruebas{
@@ -18,10 +18,5 @@ class pruebas{
 		View::set("var", $com);
 		View::render("info");
 	}
-	function provincias(){
-		$provincias= new ItemsModel();
-		$provincias=$provincias->provincias();
-		View::set("var",$provincias);
-		View::render("info");
-	}
+
 }

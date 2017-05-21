@@ -21,6 +21,7 @@ class Login{
 		if(strcmp($user['contraseña'],md5($pass))==0){
 			$home=new home();
 			$home->saludo($user['nombre']);
+			$_SESSION['usuario']=$mail;
 			exit();
 		}else{
 			view::set("title", "check");

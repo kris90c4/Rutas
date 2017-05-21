@@ -11,7 +11,7 @@ class ajax
 // 		$this->db = \PDO::singleton();
 // 	}
 	
-	public function select($tabla)
+	public static function select($tabla)
 	{
 		
 		try {
