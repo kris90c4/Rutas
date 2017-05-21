@@ -5,6 +5,7 @@
 		
 		<?php 
 		if(isset($_SESSION['usuario'])){?>
+			<li class="right"><a href="?controller=perfil&action=logout">salir</a></li>
 			<li class="right"><span><?= $_SESSION['usuario']?></span></li>
 			<li class="right"><a href="?controller=matri&action=view">Matriculaciones</a></li>
 		<?php }else{?>
