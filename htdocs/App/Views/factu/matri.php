@@ -4,7 +4,7 @@
 		<ul>
 			<li>
 				<label for="entrada">Entrada</label>
-				<input id="entrada" type="date" name="entrada" required/>
+				<input id="entrada" type="date" name="entrada" required value="<?= date("Y-m-d") ?>"/>
 			</li>
 			<li>
 				<label for="bastidor">Bastidor</label>
@@ -20,7 +20,7 @@
 			</li>
 			<li>
 				<label for="alta">Precio alta</label>
-				<input id="alta" type="number" name="alta" placeholder="precio alta" required/>
+				<input id="alta" type="number" step="0.01" name="alta" placeholder="precio alta" required/>
 			</li>
 			<li>
 				<label for="provincias">Provincias</label>

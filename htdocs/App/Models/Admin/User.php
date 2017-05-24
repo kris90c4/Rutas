@@ -2,8 +2,8 @@
 namespace App\Models\Admin;
 defined("APPPATH") OR die("Access denied");
 
-use \Core\Database;
-use \App\Interfaces\Crud;
+use \Core\Database,
+ \App\Interfaces\Crud;
 
 class User implements Crud
 {
@@ -14,7 +14,7 @@ class User implements Crud
 	{
 		try {
 			$connection = Database::instance();
-			$sql = "SELECT * from usuarios";
+			$sql = "SELECT * from ".self::TABLE;
 			$query = $connection->prepare($sql);
 			$query->execute();
 			return $query->fetchAll();
@@ -65,14 +65,20 @@ class User implements Crud
 	
 	public static function insert($user)
 	{
-		$connection = Database::instance();
-		$sql="INSERT INTO ".self::TABLA." VALUES(null,?,?,?,?)";
-		$query = $connection->prepare($sql);
-		$query->bindParam(1, $user['nombre'], \PDO::PARAM_STR);
-		$query->bindParam(2, $user['apellidos'], \PDO::PARAM_STR);
-		$query->bindParam(3, $user['mail'], \PDO::PARAM_STR);
-		$query->bindParam(4, $user['pass'], \PDO::PARAM_STR);
-		return $query->execute();
+		try{
+			$connection = Database::instance();
+			$sql="INSERT INTO ".self::TABLA." VALUES(null,?,?,?,?)";
+			$query = $connection->prepare($sql);
+			$query->bindParam(1, $user['nombre'], \PDO::PARAM_STR);
+			$query->bindParam(2, $user['apellidos'], \PDO::PARAM_STR);
+			$query->bindParam(3, $user['mail'], \PDO::PARAM_STR);
+			$query->bindParam(4, $user['pass'], \PDO::PARAM_STR);
+			return $query->execute();
+		}
+		catch(\PDOException $e)
+		{
+			print "Error!: " . $e->getMessage();
+		}
 		//$ok == true? ha ido bien:No ha ido bien.
 	}
 	

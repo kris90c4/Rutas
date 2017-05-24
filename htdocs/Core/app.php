@@ -41,7 +41,6 @@ class App
 		if(file_exists(self::CONTROLLERS_PATH.ucfirst(isset($_GET['controller'])?$_GET['controller']:"Home"). ".php")){
 			//nombre del archivo a llamar
 			$this->_controller = ucfirst(isset($_GET['controller'])?$_GET['controller']:"Home");
-			//eliminamos el controlador de url, así sólo nos quedaran los parámetros del método
 		}else{
 			include APPPATH . "/views/errors/404.php";
 			exit;

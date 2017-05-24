@@ -1,16 +1,21 @@
 <?php
 namespace App\Controllers;
+defined("APPPATH") OR die("Access denied");
 
-use Core\View,
-App\Models\Ajax;
+use \Core\View,
+\App\Models\Ajax,
+\App\Models\Admin\Matri as MatriAdmin;
 
-class matri{
+
+class Matri{
 	function view() {
 		View::set('title',"matriculaciones");
 		View::render("factu/matri");
 	}
 	function create() {
-		
+		if(MatriAdmin::insert($_POST)){
+			View::render("factu/matri");
+		}
 	}
 	function save() {
 		

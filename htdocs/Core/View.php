@@ -45,9 +45,9 @@ class View
 		if(!isset($title)){
 			$title=self::$title;
 		}
-		if(isset($_SESSION['usuario'])&&$template=="login"||$template=="registrar"){
+		/*if(isset($_SESSION['usuario'])&&$template=="login"||$template=="registrar"){
 			$template="home";
-		}
+		}*/
 		//Se incluye la vista que el controlador manda cargar
 		include(self::VIEWS_PATH . $template . "." . self::EXTENSION_TEMPLATES);
 		//Se guarda todo el contenido del buffer en una variable
