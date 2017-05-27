@@ -6,14 +6,19 @@ use \Core\Database,
 \App\Interfaces\Crud;
 
 class Matri implements Crud{
-	const TABLA = "matriculaciones";
+	const TABLE = "matriculaciones";
 	
 	public static function getAll(){
 		try {
 			$connection = Database::instance();
-			$sql = "SELECT * from ".self::TABLE;
+			$sql = "SELECT matri.id, matri.entrada, matri.bastidor, matri.matricula, matri.cliente, 
+							matri.alta, p.nombre provincia, m.nombre municipio, matri.salida  
+						FROM ".self::TABLE . " matri 
+						JOIN provincias p ON p.id =  matri.provincia 
+						JOIN municipios m ON m.id = matri.municipio";
 			$query = $connection->prepare($sql);
 			$query->execute();
+			$query->setFetchMode(\PDO::FETCH_ASSOC);
 			return $query->fetchAll();
 		}
 		catch(\PDOException $e)
@@ -22,17 +27,27 @@ class Matri implements Crud{
 		}
 	}
 	public static function getById($id){
-		
+		try {
+			$connection = Database::instance();
+			$sql = "SELECT * from ".self::TABLE . "where id = ". $id;
+			$query = $connection->prepare($sql);
+			$query->execute();
+			$query->setFetchMode(\PDO::FETCH_ASSOC);
+			return $query->fetch();
+		}
+		catch(\PDOException $e)
+		{
+			print "Error!: " . $e->getMessage();
+		}
 	}
 	public static function insert($data){
 		try{
 			$connection = Database::instance();
-			$sql="INSERT INTO ".self::TABLA." VALUES(null, :entrada, :bastidor, :matricula, :cliente, :alta, :provincia, :municipio, :poblacion, :salida)";
+			$sql="INSERT INTO ".self::TABLE." VALUES(null, :entrada, :bastidor, :matricula, :cliente, :alta, :provincia, :municipio, :poblacion, :salida)";
 			$query = $connection->prepare($sql);
 			//si no se envia la poblacion, se asigna null
 			isset($data['poblacion'])?:$data['poblacion']=null;
 			isset($data['salida'])&&!empty($data['salida'])?:$data['salida']=null;
-			exit($data['alta']);
 			$query->bindParam(":entrada", $data['entrada'], \PDO::PARAM_STR);
 			$query->bindParam(":bastidor", $data['bastidor'], \PDO::PARAM_STR);
 			$query->bindParam(":matricula", $data['matricula'], \PDO::PARAM_STR);
@@ -41,7 +56,6 @@ class Matri implements Crud{
 			$query->bindParam(":provincia", $data['provincia'], \PDO::PARAM_INT);
 			$query->bindParam(":municipio", $data['municipio'], \PDO::PARAM_INT);
 			$query->bindParam(":poblacion", $data['poblacion'], \PDO::PARAM_INT);
-			echo "<script>console.log(".$data["salida"]."Hola);</script>";
 			$query->bindParam(":salida", $data['salida'], \PDO::PARAM_STR);
 			return $query->execute();
 			//$ok == true? ha ido bien:No ha ido bien.
@@ -51,10 +65,33 @@ class Matri implements Crud{
 			print "Error!: " . $e->getMessage();
 		}
 	}
-	public static function update($data){
-		
+	
+	//
+	public static function update($sql){
+		try{
+			$connection = Database::instance();
+			$query = $connection->prepare($sql);
+			return $query->execute();
+			//$ok == true? ha ido bien:No ha ido bien.
+		}
+		catch(\PDOException $e)
+		{
+			print "Error!: " . $e->getMessage();
+		}
 	}
+	
+	//pendiente de query
 	public static function delete($id){
-		
+		try{
+			$connection = Database::instance();
+			
+			$query = $connection->prepare($sql);
+			return $query->execute();
+			//$ok == true? ha ido bien:No ha ido bien.
+		}
+		catch(\PDOException $e)
+		{
+			print "Error!: " . $e->getMessage();
+		}
 	}
 }

@@ -17,6 +17,7 @@ class User implements Crud
 			$sql = "SELECT * from ".self::TABLE;
 			$query = $connection->prepare($sql);
 			$query->execute();
+			$query->setFetchMode(\PDO::FETCH_ASSOC);
 			return $query->fetchAll();
 		}
 		catch(\PDOException $e)
@@ -33,6 +34,7 @@ class User implements Crud
 			$query = $connection->prepare($sql);
 			$query->bindParam(1, $id, \PDO::PARAM_INT);
 			$query->execute();
+			$query->setFetchMode(\PDO::FETCH_ASSOC);
 			return $query->fetch();
 		}
 		catch(\PDOException $e)

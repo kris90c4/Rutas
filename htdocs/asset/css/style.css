@@ -167,4 +167,9 @@ input:required:valid {
 #formMatri ul li{
 	margin:5px 0;
 }
+tfoot input {
+        width: 100%;
+        padding: 3px;
+        box-sizing: border-box;
+    }
 ::-webkit-input-placeholder { color:#91bbbf; }

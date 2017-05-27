@@ -8,17 +8,23 @@ use \Core\View,
 
 
 class Matri{
-	function view() {
+	//muestra el contenido de la tabla matriculaciones
+	function view(){
+		View::set("matriculaciones", MatriAdmin::getAll());
+		View::render("factu/tablaMatri");
+	}
+	//Muestra el formulario de nuevo registro de matriculaciones
+	function create() {
 		View::set('title',"matriculaciones");
 		View::render("factu/matri");
 	}
-	function create() {
-		if(MatriAdmin::insert($_POST)){
-			View::render("factu/matri");
-		}
-	}
+	//Guarda en la base de datos los datos introducidos en el formulario
 	function save() {
-		
+		if(MatriAdmin::insert($_POST)){
+			$this->view();
+		}else{
+			View::render("errors/404");
+		}
 	}
 	//Devuelve un objeto JSON con todas las provicias
 	function provincias(){

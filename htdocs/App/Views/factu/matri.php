@@ -1,6 +1,5 @@
-
 <div id="formMatri">
-	<form action="?controller=matri&action=create" method="POST">
+	<form action="?controller=matri&action=save" method="POST">
 		<ul>
 			<li>
 				<label for="entrada">Entrada</label>
@@ -38,11 +37,5 @@
 				<input type="submit">
 			</li>
 		</ul>
-		
-		
-		
-		
-		
-		
 	</form>
 </div>
