@@ -19,7 +19,7 @@ class Login{
 		$user = User::getByMail($mail);
 		//Validacion de contraseña
 		if(strcmp($user['contraseña'],md5($pass))==0){
-			$_SESSION['usuario']=$mail;
+			$_SESSION['usuario']=$user;
 			$home=new home();
 			$home->saludo($user['nombre']);
 			
@@ -31,10 +31,6 @@ class Login{
 			view::render('login');
 			exit();
 		}
-		
-		
-		
-		
 		$users[0]=$user;
 		//exit();
 		View::set("users", $users);

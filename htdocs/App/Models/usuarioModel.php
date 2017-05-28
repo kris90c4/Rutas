@@ -4,14 +4,14 @@ class usuario{
 	private $contrasena;
 	private $nombre;
 	private $apellidos;
-	private $correo;
+	private $mail;
 	
-	public function __contruct($usuario, $contrasena, $nombre, $apellidos, $correo){
+	public function __contruct($usuario, $contrasena, $nombre, $apellidos, $mail){
 		$this->usuario=$usuario;
 		$this->contrasena=$contrasena;
 		$this->nombre=$nombre;
 		$this->apellidos=$apellidos;
-		$this->correo=$correo;
+		$this->mail=$mail;
 	}
 	/*public function __contruct(array $user){
 		$this->usuario=$user[0];

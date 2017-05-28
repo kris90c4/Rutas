@@ -15,7 +15,7 @@ $(document).ready(function() {
         }
     } );
  
-    // Aplica la api de DataTable
+    // Aplica la api de DataTable a la tabla con Id matriculaciones
     var table = $('#matriculaciones').DataTable();
  
     // Aplica el buscador

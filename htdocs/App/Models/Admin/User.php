@@ -52,7 +52,7 @@ class User implements Crud
 	{
 		try {
 			$connection = Database::instance();
-			$sql = "SELECT * from usuarios WHERE correo = ?";
+			$sql = "SELECT * from usuarios WHERE mail = ?";
 			$query = $connection->prepare($sql);
 			$query->bindParam(1, $mail, \PDO::PARAM_STR);
 			$query->execute();

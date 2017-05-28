@@ -18,7 +18,7 @@
 				<tr>
 					<td><?php echo $user["nombre"] ?></td>
 					<td><?php echo $user["apellidos"] ?></td>
-					<td><?php echo $user["correo"] ?></td>
+					<td><?php echo $user["mail"] ?></td>
 					<td><?php echo $user["contraseña"] ?></td>
 				</tr>
 				<?php endforeach;?>

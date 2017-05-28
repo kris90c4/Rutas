@@ -38,8 +38,8 @@ class Registrar{
 		$_POST['pass']=md5($_POST['pass']);
 		if(UserAdmin::insert($_POST)){
 			$index=new Home();
-			$_SESSION['usuario']=$_POST['mail'];
-			$index->saludo($_SESSION['usuario']);
+			$_SESSION['usuario']['mail']=$_POST['mail'];
+			$index->saludo($_SESSION['usuario']['mail']);
 		}else{
 			View::render("errors/404");
 		}
