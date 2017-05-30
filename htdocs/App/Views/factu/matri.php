@@ -39,3 +39,20 @@
 		</ul>
 	</form>
 </div>
+
+<script>
+	//SIN HACER; HAY QUE MODIFICAR TODO
+	var rutaProvincias="?controller=matri&action=provincias"
+	var rutaMunicipios="?controller=matri&action=municipios"
+	
+	//Se vuelcan todos los paises en el select con id S1
+	loadDataDoc(rutaProvincias,"",'provincias');
+	
+	//se captura el select de los paises
+	provincias=document.getElementById('provincias');
+	municipios=document.getElementById('municipios');
+	//Coje el value de la provincia seleccionada y recupera todos sus municipios
+	provincias.onchange=function(){
+		loadDataDoc(rutaMunicipios,"id_provincia="+provincias.value,'municipios');
+	}
+</script>

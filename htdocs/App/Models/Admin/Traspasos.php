@@ -12,11 +12,11 @@ class Traspasos implements Crud{
 	public static function getAll(){
 		try {
 			$connection = Database::instance();
-			$sql = "SELECT traspaso.id, traspaso.entrada, traspaso.matricula, tipos.nombre,
-							traspaso.salida, usuarios.nombre
+			$sql = "SELECT traspasos.id, traspasos.entrada, traspasos.matricula, traspasos.cliente, tipos.nombre tipo,
+							traspasos.salida, usuarios.nombre creador
 						FROM ".self::TABLE . " 
-						JOIN tipos  ON tipos.id =  traspaso.id_tipo
-						JOIN usuarios  ON usuarios.id = traspaso.id_usuario";
+						JOIN tipos  ON tipos.id =  traspasos.id_tipo
+						JOIN usuarios  ON usuarios.id = traspasos.id_usuario";
 			$query = $connection->prepare($sql);
 			$query->execute();
 			$query->setFetchMode(\PDO::FETCH_ASSOC);
@@ -47,11 +47,11 @@ class Traspasos implements Crud{
 			$sql="INSERT INTO ".self::TABLE." VALUES(null, :entrada, :matricula, :id_tipo, :salida, :id_usuario)";
 			$query = $connection->prepare($sql);
 			//si no se envia la poblacion, se asigna null
-			isset($data['poblacion'])?:$data['poblacion']=null;
 			isset($data['salida'])&&!empty($data['salida'])?:$data['salida']=null;
 			$query->bindParam(":entrada", $data['entrada'], \PDO::PARAM_STR);
 			$query->bindParam(":matricula", $data['matricula'], \PDO::PARAM_STR);
-			$query->bindParam(":id_tipo", $data['cliente'], \PDO::PARAM_INT);
+			
+			$query->bindParam(":id_tipo", $data['tipo'], \PDO::PARAM_INT);
 			$query->bindParam(":salida", $data['salida'], \PDO::PARAM_STR);
 			$query->bindParam(":id_usuario",$_SESSION['usuario']['id'], \PDO::PARAM_INT);
 			return $query->execute();

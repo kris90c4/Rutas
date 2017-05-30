@@ -57,3 +57,6 @@ $(document).ready(function() {
 		<?php endforeach;?>
 	</table>
 </div>
+<div class="btn-redireccion">
+	<a href="?controller=matri&action=create">Nuevo Registro</a>
+</div>

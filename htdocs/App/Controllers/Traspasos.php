@@ -6,8 +6,7 @@ use \Core\View,
 \App\Models\Ajax,
 \App\Models\Admin\Traspasos as TraspasosAdmin;
 
-
-class Matri{
+class Traspasos{
 	//muestra el contenido de la tabla traspasos
 	function view(){
 		View::set("traspasos", TraspasosAdmin::getAll());
@@ -31,6 +30,4 @@ class Matri{
 		$provincias=ajax::select("tipos");
 		echo $provincias;
 	}
-	
-	
 }
