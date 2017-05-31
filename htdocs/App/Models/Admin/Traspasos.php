@@ -44,13 +44,13 @@ class Traspasos implements Crud{
 	public static function insert($data){
 		try{
 			$connection = Database::instance();
-			$sql="INSERT INTO ".self::TABLE." VALUES(null, :entrada, :matricula, :id_tipo, :salida, :id_usuario)";
+			$sql="INSERT INTO ".self::TABLE." VALUES(null, :entrada, :matricula, :cliente, :id_tipo, :salida, :id_usuario)";
 			$query = $connection->prepare($sql);
 			//si no se envia la poblacion, se asigna null
 			isset($data['salida'])&&!empty($data['salida'])?:$data['salida']=null;
 			$query->bindParam(":entrada", $data['entrada'], \PDO::PARAM_STR);
 			$query->bindParam(":matricula", $data['matricula'], \PDO::PARAM_STR);
-			
+			$query->bindParam(":cliente", $data['cliente'], \PDO::PARAM_STR);
 			$query->bindParam(":id_tipo", $data['tipo'], \PDO::PARAM_INT);
 			$query->bindParam(":salida", $data['salida'], \PDO::PARAM_STR);
 			$query->bindParam(":id_usuario",$_SESSION['usuario']['id'], \PDO::PARAM_INT);
