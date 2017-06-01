@@ -5,10 +5,11 @@ body{
 
 #cuerpo{
 	position:absolute;
-	top:80px;
-	bottom:50px;
-	left:50px;
-	right:50px;
+	top:45px;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	padding:10px;
 	background:rgba(0,0,0,0.2);
 }
 
@@ -172,4 +173,23 @@ tfoot input {
         padding: 3px;
         box-sizing: border-box;
     }
+
+/*TABLA FACTURACION*/
+.dataTables_wrapper{
+	padding:5px;
+	box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.3);
+	border-radius: 5px;
+	margin: 10px 0;
+	width: 100%;
+}
+.dataTables_wrapper table tr >:first-child{
+
+	text-align: center;
+}
+.dataTables_wrapper table tr td{
+	white-space: nowrap;
+}
+.dataTables_wrapper table tfoot tr th+th{
+	
+}
 ::-webkit-input-placeholder { color:#91bbbf; }

@@ -2,40 +2,19 @@
 namespace Core;
 defined("APPPATH") OR die("Access denied");
 
-class App
-{
-	/**
-	 * @var
-	 */
+class App{
+
 	private $_controller;
-	
-	/**
-	 * @var
-	 */
-	private $_method = "index";
-	
-	/**
-	 * @var
-	 */
+
+	private $_method = "view";
+
 	private $_params = [];
-	
-	/**
-	 * @var
-	 */
+
 	const NAMESPACE_CONTROLLERS = "\App\Controllers\\";
-	
-	/**
-	 * @var
-	 */
+
 	const CONTROLLERS_PATH = "../App/controllers/";
-	
-	/**
-	 * [__construct description]
-	 */
-	public function __construct()
-	{
-		//obtenemos la url parseada
-		//$url = $this->parseUrl();
+
+	public function __construct(){
 		
 		//comprobamos que exista el archivo en el directorio controllers
 		if(file_exists(self::CONTROLLERS_PATH.ucfirst(isset($_GET['controller'])?$_GET['controller']:"Home"). ".php")){
@@ -71,22 +50,9 @@ class App
 	}
 	
 	/**
-	 * [parseUrl Parseamos la url en trozos]
-	 * @return [type] [description]
-	 */
-	public function parseUrl()
-	{
-		if(isset($_GET["url"]))
-		{
-			return explode("/", filter_var(rtrim($_GET["url"], "/"), FILTER_SANITIZE_URL));
-		}
-	}
-	
-	/**
 	 * [render  lanzamos el controlador/método que se ha llamado con los parámetros]
 	 */
-	public function render()
-	{
+	public function render(){
 		call_user_func_array([$this->_controller, $this->_method], $this->_params);
 	}
 	
@@ -94,8 +60,7 @@ class App
 	 * [getConfig Obtenemos la configuración de la app]
 	 * @return [Array] [Array con la config]
 	 */
-	public static function getConfig()
-	{
+	public static function getConfig(){
 		return parse_ini_file(APPPATH . '/config/config.ini');
 	}
 	
@@ -103,8 +68,7 @@ class App
 	 * [getController Devolvemos el controlador actual]
 	 * @return [type] [String]
 	 */
-	public function getController()
-	{
+	public function getController(){
 		return $this->_controller;
 	}
 	
@@ -112,8 +76,7 @@ class App
 	 * [getMethod Devolvemos el método actual]
 	 * @return [type] [String]
 	 */
-	public function getMethod()
-	{
+	public function getMethod(){
 		return $this->_method;
 	}
 	
@@ -121,8 +84,7 @@ class App
 	 * [getParams description]
 	 * @return [type] [Array]
 	 */
-	public function getParams()
-	{
+	public function getParams(){
 		return $this->_params;
 	}
 }

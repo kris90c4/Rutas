@@ -10,7 +10,8 @@ class Traspasos{
 	//muestra el contenido de la tabla traspasos
 	function view(){
 		View::set("traspasos", TraspasosAdmin::getAll());
-		View::render("factu/tablaTraspasos");
+		View::set("vista","traspasos");
+		View::render("factu/tablaFactu");
 	}
 	//Muestra el formulario de nuevo registro de traspasos
 	function create() {

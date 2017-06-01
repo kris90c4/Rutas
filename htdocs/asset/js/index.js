@@ -1,4 +1,4 @@
-window.onload=function(){
+
 	/*// Get the modal
 	var modal = document.getElementById('myModal');
 	
@@ -24,4 +24,4 @@ window.onload=function(){
 			modal.style.display = "none";
 		}
 	}*/
-}
+$(".dataTables_wrapper table tr :first-child").css({ 'width':'30px'});

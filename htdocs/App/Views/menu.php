@@ -1,7 +1,7 @@
 <!--  Menu Navegación asd-->
 <nav>
 	<ul>
-		<li><a href="?controller=home&action=saludo">Inicio</a></li>
+		<li><a href="?controller=home&action=view">Inicio</a></li>
 		
 		<?php 
 		if(isset($_SESSION['usuario'])){?>

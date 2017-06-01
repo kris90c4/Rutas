@@ -11,7 +11,8 @@ class Matri{
 	//muestra el contenido de la tabla matriculaciones
 	function view(){
 		View::set("matriculaciones", MatriAdmin::getAll());
-		View::render("factu/tablaMatri");
+		View::set("vista","matriculaciones");
+		View::render("factu/tablafactu");
 	}
 	//Muestra el formulario de nuevo registro de matriculaciones
 	function create() {

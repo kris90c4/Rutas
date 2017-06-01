@@ -34,7 +34,7 @@ class View
 		}
 		ob_start();
 		//Cargo el menu en la variable $menu
-		include self::VIEWS_PATH . "menu." . self::EXTENSION_TEMPLATES;
+		include_once self::VIEWS_PATH . "menu." . self::EXTENSION_TEMPLATES;
 		$menu= ob_get_contents();
 		
 		ob_end_clean();
@@ -49,15 +49,16 @@ class View
 			$template="home";
 		}*/
 		//Se incluye la vista que el controlador manda cargar
-		include(self::VIEWS_PATH . $template . "." . self::EXTENSION_TEMPLATES);
+		include_once(self::VIEWS_PATH . $template . "." . self::EXTENSION_TEMPLATES);
 		//Se guarda todo el contenido del buffer en una variable
 		$content = ob_get_contents();
 		//Y se limpia el buffer
 		ob_end_clean();
+		
 		//Obtengo la ruta donde cargar todos los archivos del cliente web
 		$asset="".$_SERVER['HTTP_HOST']."/../../asset/";
 		//Por ultimo, cargo el marco decorativo donde va a cargarse las vistas que los controladores ejecuten a traves de la variable $content
-		include self::VIEWS_PATH."layout/layout.".self::EXTENSION_TEMPLATES;
+		include_once self::VIEWS_PATH."layout/layout.".self::EXTENSION_TEMPLATES;
 	}
 	
 	/**
