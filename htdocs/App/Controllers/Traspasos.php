@@ -26,6 +26,9 @@ class Traspasos{
 			View::render("errors/404");
 		}
 	}
+	function updateSalida(){
+		print_r($_POST);
+	}
 	//Devuelve un objeto JSON con todos los tipos
 	function tipos(){
 		$provincias=ajax::select("tipos");

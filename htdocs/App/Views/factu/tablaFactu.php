@@ -10,10 +10,24 @@ $(document).ready(function() {
         "initComplete": function () {
             var api = this.api();
             api.$('td').dblclick( function () {
-                api.search( this.innerHTML ).draw();
+                input=$(this).html("<input type='date' name='salida'/> ");
+                $("input").blur(function(){
+                	console.log($(this));
+					console.log("blur");
+					$.post("?controller=<?= $vista ?>&action=updateSalida",
+					{
+						id: input.value
+						
+					},
+					function(data,status){
+						alert("Data: " + data + "\nStatus: " + status);
+					});
+			    });
             } );
+
         }
     } );
+    
 
     // Aplica la api de DataTable a la tabla con Id $vista
     var table = $('#<?=$vista?>').DataTable();
@@ -30,6 +44,14 @@ $(document).ready(function() {
             }
         } );
     } );
+    $('button').click( function() {
+        var data = table.$('input, select').serialize();
+        alert(
+            "The following data would have been submitted to the server: \n\n"+
+            data.substr( 0, 120 )+'...'
+        );
+        return false;
+    } );
 } );
 </script>
 <div class="btn-group">
@@ -44,7 +66,7 @@ $(document).ready(function() {
 		<li class="divider"></li>
 		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'csv',escape:'false'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../media/icons/csv.png" width="24px"> CSV</a></li>
 		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'txt',escape:'false'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../media/icons/txt.png" width="24px"> TXT</a></li>
-		<li class="divider"></li>				
+		<li class="divider"></li>
 		
 		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'excel',escape:'false'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../media/icons/xls.png" width="24px"> XLS</a></li>
 		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'doc',escape:'false'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../media/icons/word.png" width="24px"> Word</a></li>
@@ -57,6 +79,7 @@ $(document).ready(function() {
 	</ul>
 </div>
 <div>
+	<button type="submit">Enviar formulario</button>
 	<table id="<?= $vista ?>" class="display" >
 	<?php if (!empty($$vista)): ?>
 		<thead>
@@ -76,6 +99,7 @@ $(document).ready(function() {
 		</tfoot>
 		<?php 	foreach ($$vista as  $value): ?>
 			<tr>
+			<input type="hidden" name="id" value="<?= $value['id']; ?>">
 			<?php foreach ($value as $key => $value):?>
 				<td><?= $value ?></td>
 			<?php endforeach;?>

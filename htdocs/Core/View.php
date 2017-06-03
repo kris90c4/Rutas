@@ -1,6 +1,5 @@
 <?php
 namespace Core;
-use function Composer\Autoload\includeFile;
 
 defined("APPPATH") OR die("Access denied");
 

@@ -21,7 +21,7 @@ class Login{
 		if(strcmp($user['contraseña'],md5($pass))==0){
 			$_SESSION['usuario']=$user;
 			$home=new home();
-			$home->saludo($user['nombre']);
+			$home->view();
 			
 			exit();
 		}else{

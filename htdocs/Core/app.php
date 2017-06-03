@@ -21,8 +21,8 @@ class App{
 			//nombre del archivo a llamar
 			$this->_controller = ucfirst(isset($_GET['controller'])?$_GET['controller']:"Home");
 		}else{
-			include APPPATH . "/views/errors/404.php";
-			exit;
+			//Si el controlador no existe se se redir
+			$this->_controller = "home";
 		}
 		
 		//obtenemos la clase con su espacio de nombres
@@ -36,11 +36,11 @@ class App{
 			//aquí tenemos el método
 			$this->_method = $_GET['action'];
 			if(!method_exists($this->_controller, $_GET['action']))	{
-				throw new \Exception("Error Processing Method {$this->_method}", 1);
+				$this->_method="error404";
 			}
 		}
 
-		//asociamos el resto de segmentos a $this->_params para pasarlos al método llamado, por defecto será un array vacío
+		//Se comprueba si existen parametros pasado por get, en caso de existir, se almacenan en un array separados por sus comas, sino se almacena un array vacio
 		if(isset($_GET['parametros'])){
 			$parametros=explode(",", $_GET['parametros']);
 			$this->_params = array_values($parametros);

@@ -11,13 +11,15 @@ class Home{
 		View::set("title","Home");
 		View::render('home');
 	}
-	public function saludo(){
-		$nombre=func_get_args();
 
-		View::set("vista", ["users","login"]);
+	//Pruebas para cargar dos vistas seguidas
+	public function multiViews(){
+
+		//Se envia un array con las vistas que se desean cargar
+		View::set("vista", ["factu/matriculaciones","factu/traspasos"]);
 		View::set("title", "Saludo");
-		View::render("home");
-		View::render("users");
+		View::render("multiViews");
+		
 	}
 
 	public function users(){
@@ -32,5 +34,8 @@ class Home{
 		View::set("users", $users);
 		View::set("title", "Usuarios");
 		View::render("users");
+	}	
+	public function error404(){
+		View::render("errors/404");
 	}	
 }

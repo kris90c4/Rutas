@@ -27,6 +27,9 @@ class Matri{
 			View::render("errors/404");
 		}
 	}
+	function updateSalida(){
+		print_r($_POST);
+	}
 	//Devuelve un objeto JSON con todas las provicias
 	function provincias(){
 		$provincias=ajax::select("provincias");

@@ -7,3 +7,7 @@ Tuto de otro MVC: http://victorroblesweb.es/2014/07/15/ejemplo-php-poo-mvc/
 Api DataTables: https://datatables.net/
 
 Exportar tabla: http://ngiriraj.com/pages/htmltable_export/demo.php
+
+Bootstrap
+
+JQuery
