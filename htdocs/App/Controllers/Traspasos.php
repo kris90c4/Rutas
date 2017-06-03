@@ -27,7 +27,12 @@ class Traspasos{
 		}
 	}
 	function updateSalida(){
-		print_r($_POST);
+		extract($_POST);
+		$date=empty($date)?"null":"\"$date\"";
+		$ok=TraspasosAdmin::update("UPDATE traspasos SET salida=$date WHERE id=$id");
+		if(!$ok){
+			var_export("UPDATE traspasos SET salida=$date WHERE id=$id");
+		}
 	}
 	//Devuelve un objeto JSON con todos los tipos
 	function tipos(){

@@ -9,22 +9,40 @@ $(document).ready(function() {
     $('#<?=$vista?>').DataTable( {
         "initComplete": function () {
             var api = this.api();
-            api.$('td').dblclick( function () {
-                input=$(this).html("<input type='date' name='salida'/> ");
-                $("input").blur(function(){
-                	console.log($(this));
-					console.log("blur");
-					$.post("?controller=<?= $vista ?>&action=updateSalida",
-					{
-						id: input.value
-						
-					},
-					function(data,status){
-						alert("Data: " + data + "\nStatus: " + status);
-					});
+            //al hacer doble click sobre alguna fecha de salida
+            api.$('.salida').dblclick( function () {
+            	actual=this.innerHTML;
+                $(this).html("<input type='date' name='salida' value='<?= date("Y-m-d") ?>'/> ");
+                $("input[type=date]").focus();
+                //Al perder el foco
+                $("td input").blur(function(){
+                	//al perder el foco se preguna si se esta seguro de querer modificar la fecha
+                	ok=confirm("Estas seguro que quieres modificar la fecha de salida por \n"+$(this).val()+"?");
+                	if(ok){
+                		controlador="<?= $vista ?>";
+                		controlador=controlador=="matriculaciones"?"matri":controlador;
+	                	//Se envia un POST via ajax
+						respuesta = $.post("?controller="+controlador+"&action=updateSalida",
+						//Con el id y la fecha nueva
+						{
+							id: $(this).closest("tr").find("input[type=hidden]")[0].value,
+							date : $(this).val()
+						},
+						function(data,status){
+							if(data){
+								alert(data+"\n"+status);
+							}
+							
+						});
+						//Se remplaza el input por la fecha seleccionada
+						$(this).replaceWith($(this).val());
+					}else{
+						//Se deja la fecha que habia
+						$(this).replaceWith(actual);
+					}
 			    });
-            } );
 
+            } );
         }
     } );
     
@@ -35,7 +53,6 @@ $(document).ready(function() {
     // Aplica el buscador
     table.columns().every( function () {
         var that = this;
-
         $( 'input', this.footer() ).on( 'keyup change', function () {
             if ( that.search() !== this.value ) {
                 that
@@ -43,14 +60,6 @@ $(document).ready(function() {
                     .draw();
             }
         } );
-    } );
-    $('button').click( function() {
-        var data = table.$('input, select').serialize();
-        alert(
-            "The following data would have been submitted to the server: \n\n"+
-            data.substr( 0, 120 )+'...'
-        );
-        return false;
     } );
 } );
 </script>
@@ -79,12 +88,14 @@ $(document).ready(function() {
 	</ul>
 </div>
 <div>
-	<button type="submit">Enviar formulario</button>
+	<!-- Se aplica el id de la vista de facturacion seleccionada -->
 	<table id="<?= $vista ?>" class="display" >
+	<!-- Se comprueba que existan registros antes de imprimir todos los datos -->
 	<?php if (!empty($$vista)): ?>
 		<thead>
 			<tr>
 				<?php $tem=$$vista ?>
+				<!-- Se recorren todos los indices y se crea una columna por cada indice -->
 				<?php foreach (array_keys($tem[0])as $value): ?>
 					<?="<th>".ucfirst ($value)."</th>"?>
 				<?php endforeach;?>
@@ -92,22 +103,26 @@ $(document).ready(function() {
 		</thead>
 		<tfoot>
 			<tr>
+				<!-- Lo mismo pero para el footer, que sera el encargado de buscar por columna -->
 				<?php foreach (array_keys($tem[0])as $value): ?>
 					<?="<th>".ucfirst ($value)."</th>"?>
 				<?php endforeach;?>
 			</tr>
 		</tfoot>
-		<?php 	foreach ($$vista as  $value): ?>
+		<!-- Se imprimen todos los datos de la base de datos y se almacena en un input hidden el id para poder identificar cada fila a la hora de atacar a la base de datos -->
+		<?php foreach ($$vista as  $value): ?>
 			<tr>
-			<input type="hidden" name="id" value="<?= $value['id']; ?>">
-			<?php foreach ($value as $key => $value):?>
-				<td><?= $value ?></td>
-			<?php endforeach;?>
+				<input type="hidden" name="id" value="<?= $value['id']; ?>">
+				<?php foreach ($value as $key => $value):?>
+					<td <?= $key=="salida"?"class='salida'":"" ?>><?= $value ?></td>
+				<?php endforeach;?>
 			</tr>
 		<?php endforeach;?>
 	<?php endif;?>
 	</table>
 </div>
+
+<!-- Se crea un boton para abrir el formulario de nuevo registro -->
 <div class="btn btn-default">
-	<a href="?controller=<?= $vista ?>&action=create">Nuevo Registro</a>
+	<a href="?controller=<?= $vista=="matriculaciones"?"matri":$vista ?>&action=create">Nuevo Registro</a>
 </div>

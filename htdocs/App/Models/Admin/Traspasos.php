@@ -74,6 +74,7 @@ class Traspasos implements Crud{
 		catch(\PDOException $e)
 		{
 			print "Error!: " . $e->getMessage();
+			return false;
 		}
 	}
 	

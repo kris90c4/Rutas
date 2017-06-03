@@ -17,7 +17,7 @@ class Matri{
 	//Muestra el formulario de nuevo registro de matriculaciones
 	function create() {
 		View::set('title',"matriculaciones");
-		View::render("factu/matri");
+		View::render("factu/matriculaciones");
 	}
 	//Guarda en la base de datos los datos introducidos en el formulario
 	function save() {
@@ -28,7 +28,12 @@ class Matri{
 		}
 	}
 	function updateSalida(){
-		print_r($_POST);
+		extract($_POST);
+		$date=empty($date)?"null":"\"$date\"";
+		$ok=MatriAdmin::update("UPDATE matriculaciones SET salida=$date WHERE id=$id");
+		if(!$ok){
+			var_export("UPDATE matriculaciones SET salida=$date WHERE id=$id");
+		}
 	}
 	//Devuelve un objeto JSON con todas las provicias
 	function provincias(){
