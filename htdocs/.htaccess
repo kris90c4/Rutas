@@ -7,4 +7,4 @@ RewriteEngine On
  
 #RewriteRule ^(.+)$ index.php?url=$1 [QSA]
 
-ErrorDocument 404 /?controller=home&action=error404
+ErrorDocument 404 /public/?controller=home&action=error404

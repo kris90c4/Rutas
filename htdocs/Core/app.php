@@ -12,7 +12,7 @@ class App{
 
 	const NAMESPACE_CONTROLLERS = "\App\Controllers\\";
 
-	const CONTROLLERS_PATH = "../App/controllers/";
+	const CONTROLLERS_PATH = "App/controllers/";
 
 	public function __construct(){
 		

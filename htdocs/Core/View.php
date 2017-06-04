@@ -13,7 +13,7 @@ class View
 	/**
 	 * @var
 	 */
-	const VIEWS_PATH = "../App/views/";
+	const VIEWS_PATH = "App/views/";
 	
 	/**
 	 * @var
@@ -55,7 +55,7 @@ class View
 		ob_end_clean();
 		
 		//Obtengo la ruta donde cargar todos los archivos del cliente web
-		$asset="".$_SERVER['HTTP_HOST']."/../../asset/";
+		$asset="".$_SERVER['HTTP_HOST']."/../asset/";
 		//Por ultimo, cargo el marco decorativo donde va a cargarse las vistas que los controladores ejecuten a traves de la variable $content
 		include_once self::VIEWS_PATH."layout/layout.".self::EXTENSION_TEMPLATES;
 	}

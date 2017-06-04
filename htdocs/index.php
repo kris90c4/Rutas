@@ -2,7 +2,7 @@
 //include __DIR__."/../vendor/autoload.php";
 session_start();
 //directorio del proyecto
-define("PROJECTPATH", dirname(__DIR__));
+define("PROJECTPATH", __DIR__);
 
 //directorio app
 define("APPPATH", PROJECTPATH . '/App');
@@ -18,7 +18,6 @@ function autoload_classes($class_name)
 }
 //registramos el autoload autoload_classes
 spl_autoload_register('autoload_classes');
-
 
 
 //instanciamos la app
