@@ -24,4 +24,8 @@
 			modal.style.display = "none";
 		}
 	}*/
-$(".dataTables_wrapper table tr :first-child").css({ 'width':'30px'});
+//Hacer mas pequeña la primera fila
+
+function cambiarPass(){
+	
+}

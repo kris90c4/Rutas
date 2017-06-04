@@ -3,12 +3,15 @@
 	<ul>
 		<li><a href="?controller=home&action=view">Inicio</a></li>
 		
-		<?php 
-		if(isset($_SESSION['usuario'])){?>
+		<?php if(isset($_SESSION['usuario'])){?>
 			<li class="right"><a href="?controller=perfil&action=logout">salir</a></li>
-			<li class="right"><a><?= $_SESSION['usuario']['nombre']?></a></li>
-			<li class=""><a href="?controller=traspasos&action=view">Traspasos</a></li>
-			<li class=""><a href="?controller=matri&action=view">Matriculaciones</a></li>
+			<li class="right"><a href="?controller=perfil&action=view"><?= $_SESSION['usuario']['nombre']?></a></li>
+			<?php if($_SESSION['usuario']['admin']): ?> 
+				<li class=""><a href="?controller=perfil&action=gestion">GestionUsuarios</a></li>
+			<?php else: ?>
+				<li class=""><a href="?controller=traspasos&action=view">Traspasos</a></li>
+				<li class=""><a href="?controller=matri&action=view">Matriculaciones</a></li>
+			<?php endif; ?>
 		<?php }else{?>
 		<li class="right"><a href="?controller=login&action=view">Login</a></li>
 		<li class="right"><a href="?controller=registrar&action=view">Registrar</a></li>

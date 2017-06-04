@@ -5,21 +5,22 @@ class usuario{
 	private $nombre;
 	private $apellidos;
 	private $mail;
+	private $fechaEntrada;
+	private $admin;
 	
-	public function __contruct($usuario, $contrasena, $nombre, $apellidos, $mail){
-		$this->usuario=$usuario;
-		$this->contrasena=$contrasena;
-		$this->nombre=$nombre;
-		$this->apellidos=$apellidos;
-		$this->mail=$mail;
+	public function __construct(){
+		if(func_num_args()){
+			$user=func_get_arg(0);
+			if(is_array($user)){
+				$this->id=$user['id'];
+				$this->nombre=$user['nombre'];
+				$this->apellidos=$user['apellidos'];
+				$this->mail=$user['mail'];
+				$this->pass=$user['pass'];
+				$this->fechaEntrada=date("h:i d-m-Y");
+			}
+		}
 	}
-	/*public function __contruct(array $user){
-		$this->usuario=$user[0];
-		$this->contrasena=$user[1];
-		$this->nombre=$user[2];
-		$this->apellidos=$user[3];
-		$this->correo=$user[4];
-	}*/
 	
 	public function getUsuario(){
 		return $this->usuario;
@@ -50,5 +51,14 @@ class usuario{
 	}
 	public function setCorreo($correo){
 		$this->correo=$correo;
+	}
+	public function getFechaEntrada(){
+		return $this->fechaEntrada;
+	}
+	public function getAdmin(){
+		return $this->admin;
+	}
+	public function setAdmin($admin){
+		$this->admin=$admin;
 	}
 }

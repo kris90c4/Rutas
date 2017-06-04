@@ -64,25 +64,25 @@ $(document).ready(function() {
 } );
 </script>
 <div class="btn-group">
-	<button class="btn btn-warning btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Table Data</button>
+	<button class="btn btn-warning btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Exportar datos</button>
 	<ul class="dropdown-menu " role="menu">
-		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'json',escape:'false'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../media/icons/json.png" width="24px"> JSON</a></li>
-		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'json',escape:'false',ignoreColumn:'[2,3]'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../media/icons/json.png" width="24px"> JSON (ignoreColumn)</a></li>
-		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'json',escape:'true'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../media/icons/json.png" width="24px"> JSON (with Escape)</a></li>
+		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'json',escape:'false'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../asset/icons/json.png" width="24px"> JSON</a></li>
+		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'json',escape:'false',ignoreColumn:'[2,3]'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../asset/icons/json.png" width="24px"> JSON (ignoreColumn)</a></li>
+		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'json',escape:'true'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../asset/icons/json.png" width="24px"> JSON (with Escape)</a></li>
 		<li class="divider"></li>
-		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'xml',escape:'false'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../media/icons/xml.png" width="24px"> XML</a></li>
-		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'sql'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../media/icons/sql.png" width="24px"> SQL</a></li>
+		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'xml',escape:'false'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../asset/icons/xml.png" width="24px"> XML</a></li>
+		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'sql'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../asset/icons/sql.png" width="24px"> SQL</a></li>
 		<li class="divider"></li>
-		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'csv',escape:'false'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../media/icons/csv.png" width="24px"> CSV</a></li>
-		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'txt',escape:'false'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../media/icons/txt.png" width="24px"> TXT</a></li>
+		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'csv',escape:'false'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../asset/icons/csv.png" width="24px"> CSV</a></li>
+		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'txt',escape:'false'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../asset/icons/txt.png" width="24px"> TXT</a></li>
 		<li class="divider"></li>
 		
-		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'excel',escape:'false'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../media/icons/xls.png" width="24px"> XLS</a></li>
-		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'doc',escape:'false'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../media/icons/word.png" width="24px"> Word</a></li>
-		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'powerpoint',escape:'false'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../media/icons/ppt.png" width="24px"> PowerPoint</a></li>
+		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'excel',escape:'false'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../asset/icons/xls.png" width="24px"> XLS</a></li>
+		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'doc',escape:'false'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../asset/icons/word.png" width="24px"> Word</a></li>
+		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'powerpoint',escape:'false'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../asset/icons/ppt.png" width="24px"> PowerPoint</a></li>
 		<li class="divider"></li>
-		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'png',escape:'false'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../media/icons/png.png" width="24px"> PNG</a></li>
-		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'pdf',pdfFontSize:'7',escape:'false'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../media/icons/pdf.png" width="24px"> PDF</a></li>
+		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'png',escape:'false'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../asset/icons/png.png" width="24px"> PNG</a></li>
+		<li><a href="#" onclick="$('#<?=$vista?>').tableExport({type:'pdf',pdfFontSize:'7',escape:'false'});"> <img src="/<?= $_SERVER['HTTP_HOST'] ?>/../../asset/icons/pdf.png" width="24px"> PDF</a></li>
 		
 		
 	</ul>

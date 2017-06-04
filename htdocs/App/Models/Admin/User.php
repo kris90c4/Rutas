@@ -8,7 +8,7 @@ use \Core\Database,
 class User implements Crud
 {
 	
-	const TABLA = "usuarios";
+	const TABLE = "usuarios";
 	
 	public static function getAll()
 	{
@@ -30,7 +30,7 @@ class User implements Crud
 	{
 		try {
 			$connection = Database::instance();
-			$sql = "SELECT * from usuarios WHERE id = ?";
+			$sql = "SELECT * from ".self::TABLE." WHERE id = ?";
 			$query = $connection->prepare($sql);
 			$query->bindParam(1, $id, \PDO::PARAM_INT);
 			$query->execute();
@@ -52,7 +52,7 @@ class User implements Crud
 	{
 		try {
 			$connection = Database::instance();
-			$sql = "SELECT * from usuarios WHERE mail = ?";
+			$sql = "SELECT * from ".self::TABLE." WHERE mail = ?";
 			$query = $connection->prepare($sql);
 			$query->bindParam(1, $mail, \PDO::PARAM_STR);
 			$query->execute();
@@ -69,7 +69,7 @@ class User implements Crud
 	{
 		try{
 			$connection = Database::instance();
-			$sql="INSERT INTO ".self::TABLA." VALUES(null,?,?,?,?)";
+			$sql="INSERT INTO ".self::TABLE." VALUES(null,?,?,?,?,0)";
 			$query = $connection->prepare($sql);
 			$query->bindParam(1, $user['nombre'], \PDO::PARAM_STR);
 			$query->bindParam(2, $user['apellidos'], \PDO::PARAM_STR);
@@ -83,10 +83,20 @@ class User implements Crud
 		}
 		//$ok == true? ha ido bien:No ha ido bien.
 	}
-	
-	public static function update($user)
+	//Se le pasa el set y el where
+	public static function update($sql)
 	{
-		
+		try{
+			$connection = Database::instance();
+			$query = $connection->prepare("UPDATE ".self::TABLE. " $sql");
+			return $query->execute();
+			//$ok == true? ha ido bien:No ha ido bien.
+		}
+		catch(\PDOException $e)
+		{
+			print "Error!: " . $e->getMessage();
+			return false;
+		}
 	}
 	
 	public static function delete($id)

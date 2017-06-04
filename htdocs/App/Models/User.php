@@ -23,6 +23,13 @@ class User
 			print "Error!: " . $e->getMessage();
 		}
 	}
+	/**
+	 * Busca en la base de datos el usuario que coincida con el id pasado
+	 *
+	 * @param int $id
+	 * @return Array asociativo con usuario encontrado sino, no devuelve nada
+	 */
+	
 	public static function getById($id)
 	{
 		try {
@@ -38,29 +45,13 @@ class User
 			print "Error!: " . $e->getMessage();
 		}
 	}
-	/**Extrae el usuario que coincida en la base de datos
-	 * 
+	/**
+	 * Extrae el usuario que coincida  en la base de datos
+	 *
 	 * @param String $mail
 	 * @return Array asociativo con usuario encontrado sino, no devuelve nada
 	 */
 	public static function getByMail($mail)
-	{
-		try {
-			$connection = Database::instance();
-			$sql = "SELECT * from usuarios WHERE mail = ?";
-			$query = $connection->prepare($sql);
-			$query->bindParam(1, $mail, \PDO::PARAM_STR);
-			$query->execute();
-			$query->setFetchMode(\PDO::FETCH_ASSOC);
-			return $query->fetch();
-		}
-		catch(\PDOException $e)
-		{
-			print "Error!: " . $e->getMessage();
-		}
-	}
-	//De momento no se usa
-	public static function getUser($mail)
 	{
 		try {
 			$connection = Database::instance();

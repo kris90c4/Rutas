@@ -20,6 +20,7 @@ class Registrar{
 			//Covierte los indices de $_POST en variables
 			extract($_POST);
 			$usuarios=UserAdmin::getByMail($mail);
+			//Solo se contempla error de mail, falta feedback
 			if($usuarios){
 				view::set("mail",$mail);
 				view::set("nombre",$nombre);

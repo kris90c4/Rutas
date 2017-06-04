@@ -1,5 +1,5 @@
 <?php
-//include __DIR__."/../vendor/autoload.php";
+//Se inicia la global $_SESSION
 session_start();
 //directorio del proyecto
 define("PROJECTPATH", __DIR__);
@@ -18,6 +18,8 @@ function autoload_classes($class_name)
 }
 //registramos el autoload autoload_classes
 spl_autoload_register('autoload_classes');
+
+// Con esa sencilla función, todos los archivos que estén dentro del proyecto y cualquier directorio serán autocargados para poder utilizarlos donde necesitemos, y lo más importante, utilizando namespaces.
 
 
 //instanciamos la app

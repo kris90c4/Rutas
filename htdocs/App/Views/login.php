@@ -3,6 +3,6 @@
 		<h2>Login</h2>
 		<input type="text" name="mail" value="<?= isset($mail)?$mail:"" ?>" required placeholder="Correo">
 		<input type="password" name="pass" required placeholder="Contraseña"><br>
-		<input class="btn-blue" type="submit" name="login" value="Iniciar Sesion">
+		<input class="btn btn-info" type="submit" name="login" value="Iniciar Sesion">
 	</form>
 </div>

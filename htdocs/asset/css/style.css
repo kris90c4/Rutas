@@ -10,8 +10,9 @@ body{
 	left:0px;
 	right:0px;
 	padding:10px;
-	background:rgba(0,0,0,0.2);
+	background:#E6E6E6;
 }
+
 
 nav{
 	display:block;
@@ -45,8 +46,10 @@ nav li a {
 	text-decoration: none;
 }
 
-nav li a:hover {
+nav li a:hover, nav li a:focus {
 	background-color: #111;
+	text-decoration: none;
+	color:white;
 }
 
 .right{
@@ -68,19 +71,16 @@ nav li a:hover {
 }
 
 /*FORM Login y Registro*/
-#login,#registrar {
+#login,#registrar, #perfil {
 	background-color: #fefefe;
-	top:40%;
-	left:50%;
-	margin-left:-100px;
-	margin-top:-15%;
+	display: block;
+	margin:50px auto;
 	padding: 20px;
 	border: 2px solid #4e9ac2;
 	border-radius:10px;
 	width: 190px;
-	position:absolute;
 }
-#login h2 , #registrar h2{
+#login h2 , #registrar h2 , #perfil h2{
 	margin: 0;
 	padding: 10px;
 	text-align: center;
@@ -95,7 +95,7 @@ nav li a:hover {
 	border-bottom-color: grey;
 	padding: 5px;
 }
-#login input, #registrar input{
+#login input, #registrar input, #perfil input{
 	display: block;
 	margin: 5px auto;
 	box-sizing: border-box;
@@ -194,4 +194,35 @@ tfoot input {
 .dataTables_wrapper table tfoot tr th+th{
 	
 }
+
+#perfil{
+	text-align: center;
+	width: 350px;
+}
+#perfil h2{
+	margin-bottom:10px;
+}
+
+#perfil div button{
+	margin-top: 20px;
+}
+#perfil #cambio br+label{
+	margin-top: 10px;
+}
+#perfil #cambio input{
+	border-width: 0;
+	border-bottom-width: 1.6px;
+	border-bottom-color: grey;
+	padding: 5px;
+}
+/* texto al modificar correctamente la contraseña */
+#modificada{
+	color:green;
+}
+#gestionUsuarios{
+	
+	background: white;
+}
+
+
 ::-webkit-input-placeholder { color:#91bbbf; }

@@ -11,3 +11,5 @@ Exportar tabla: http://ngiriraj.com/pages/htmltable_export/demo.php
 Bootstrap
 
 JQuery
+
+JQUERY UI
