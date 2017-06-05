@@ -1,12 +1,16 @@
 <?php
-class usuario{
-	private $usuario;
-	private $contrasena;
+namespace App\Models;
+
+defined("APPPATH") OR die("Access denied");
+
+class PerfilM{
+	private $id;
 	private $nombre;
 	private $apellidos;
 	private $mail;
-	private $fechaEntrada;
+	private $pass;
 	private $admin;
+	private $fechaEntrada;
 	
 	public function __construct(){
 		if(func_num_args()){
@@ -17,27 +21,21 @@ class usuario{
 				$this->apellidos=$user['apellidos'];
 				$this->mail=$user['mail'];
 				$this->pass=$user['pass'];
+				$this->admin=$user['admin'];
 				$this->fechaEntrada=date("h:i d-m-Y");
 			}
 		}
 	}
-	
-	public function getUsuario(){
-		return $this->usuario;
+	public function getId(){
+		return $this->id;
 	}
-	public function setUsuario($usuario){
-		$this->usuario=$usuario;
-	}
-	public function getContrasena(){
-		return $this->contrasena;
-	}
-	public function setcontrasena($contrasena){
-		$this->contrasena=$contrasena;
+	public function setId($id){
+		$this->id=$id;
 	}
 	public function getNombre(){
 		return $this->nombre;
 	}
-	public function setnombre($nombre){
+	public function setNombre($nombre){
 		$this->nombre=$nombre;
 	}
 	public function getApellidos(){
@@ -46,19 +44,25 @@ class usuario{
 	public function setApellidos($apellidos){
 		$this->apellidos=$apellidos;
 	}
-	public function getCorreo(){
-		return $this->correo;
+	public function getMail(){
+		return $this->mail;
 	}
-	public function setCorreo($correo){
-		$this->correo=$correo;
+	public function setMail($mail){
+		$this->mail=$mail;
 	}
-	public function getFechaEntrada(){
-		return $this->fechaEntrada;
+	public function getPass(){
+		return $this->pass;
+	}
+	public function setPass($pass){
+		$this->pass=$pass;
 	}
 	public function getAdmin(){
 		return $this->admin;
 	}
 	public function setAdmin($admin){
 		$this->admin=$admin;
+	}
+	public function getFechaEntrada(){
+		return $this->fechaEntrada;
 	}
 }

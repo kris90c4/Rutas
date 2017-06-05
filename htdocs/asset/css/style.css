@@ -78,7 +78,7 @@ nav li a:hover, nav li a:focus {
 	padding: 20px;
 	border: 2px solid #4e9ac2;
 	border-radius:10px;
-	width: 190px;
+	width: 220px;
 }
 #login h2 , #registrar h2 , #perfil h2{
 	margin: 0;
@@ -206,8 +206,10 @@ tfoot input {
 #perfil div button{
 	margin-top: 20px;
 }
-#perfil #cambio br+label{
-	margin-top: 10px;
+#cambio{
+	box-shadow: 0px 0px 20px -1px rgba(0,0,0,0.31);
+	border-radius: 10px;
+	padding: 10px;
 }
 #perfil #cambio input{
 	border-width: 0;

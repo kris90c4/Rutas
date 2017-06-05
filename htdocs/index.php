@@ -1,6 +1,4 @@
 <?php
-//Se inicia la global $_SESSION
-session_start();
 //directorio del proyecto
 define("PROJECTPATH", __DIR__);
 
@@ -25,6 +23,8 @@ spl_autoload_register('autoload_classes');
 //instanciamos la app
 $app = new \Core\App;
 
+//Se inicia la global $_SESSION
+session_start();
 //lanzamos la app
 $app->render();
 ?>

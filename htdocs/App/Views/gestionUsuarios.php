@@ -2,18 +2,25 @@
 	<table id="gestionUsuarios">
 		<thead>
 			<tr>
-			<?php foreach (array_keys($usuarios[0])as $value): ?>
-				<th><?=ucfirst ($value)?></th>
-			<?php endforeach;?>
+				<th>Nombre</th>
+				<th>Apellidos</th>
+				<th>Correo</th>
+				<th>Tipo</th>
+				<th>Fecha de la ultima visita</th>
+				<th>Fecha de registro</th>
+				<th>ID</th>
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach ($usuarios as  $value): ?>
+			<?php foreach ($usuarios as  $usuario): ?>
 			<tr>
-				<input type="hidden" name="id" value="<?= $value['id']; ?>">
-				<?php foreach ($value as $key => $value):?>
-					<td><?= $value ?></td>
-				<?php endforeach;?>
+				<td><?= $usuario[''] ?></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
 			</tr>
 		<?php endforeach;?>
 		</tbody>

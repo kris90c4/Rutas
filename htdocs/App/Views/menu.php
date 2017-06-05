@@ -5,8 +5,8 @@
 		
 		<?php if(isset($_SESSION['usuario'])){?>
 			<li class="right"><a href="?controller=perfil&action=logout">salir</a></li>
-			<li class="right"><a href="?controller=perfil&action=view"><?= $_SESSION['usuario']['nombre']?></a></li>
-			<?php if($_SESSION['usuario']['admin']): ?> 
+			<li class="right"><a href="?controller=perfil&action=view"><?= $_SESSION['usuario']->getNombre()?></a></li>
+			<?php if($_SESSION['usuario']->getAdmin()): ?> 
 				<li class=""><a href="?controller=perfil&action=gestion">GestionUsuarios</a></li>
 			<?php else: ?>
 				<li class=""><a href="?controller=traspasos&action=view">Traspasos</a></li>

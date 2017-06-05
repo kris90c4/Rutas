@@ -4,6 +4,7 @@ defined("APPPATH") OR die("Access denied");
 
 use \Core\View,
 \App\Models\User,
+\App\Models\PerfilM,
 \App\Models\Admin\User as UserAdmin;
 
 class Registrar{
@@ -42,10 +43,17 @@ class Registrar{
 			$index=new Home();
 			//Se recupera el usuario registrado y se almacena una session.
 			$user = User::getByMail($_POST['mail']);
-			$_SESSION['usuario']=$user;
+			$_SESSION['usuario']= new PerfilM($user);
 			$index->view();
 		}else{
 			View::render("errors/404");
+		}
+	}
+	function checkMail(){
+		extract($_POST);
+		$usuario=UserAdmin::getByMail($mail);
+		if($usuario==true){
+			echo "El correo ya existe";
 		}
 	}
 }
