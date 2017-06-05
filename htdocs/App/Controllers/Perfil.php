@@ -50,9 +50,28 @@ class Perfil{
 			$_SESSION['usuario']->setPass($newPass);
 		}
 	}
+	//Genera la vista de gestion de usuarios
 	public function gestion(){
-		$usuarios=UserAdmin::getAll();
-		View::set("usuarios",$usuarios);
-		VIEW::render("gestionUsuarios");
+		if($_SESSION['usuario']->getAdmin()){
+			define("ADMIN",1);
+			$queryUsers=UserAdmin::getAll();
+			$usuarios=array();
+			//Se almacena cada usuario en la clase Perfil y todos en un array
+			foreach ($queryUsers as $key => $value) {
+				$usuarios[$key]=new PerfilM($value);
+			}
+			//se envian todos los usuarios con su corresponiente clase perfil
+			View::set("usuarios",$usuarios);
+			View::render("gestionUsuarios");
+		}
+		die("Acceso Denegado");
+	}
+	public function resetPass(){
+		extract($_POST);
+		UserAdmin::update("SET pass = '".md5("Portol1") . "' where id = $id");
+	}
+	public function delUser(){
+		extract($_POST);
+		UserAdmin::delete($id);
 	}
 }

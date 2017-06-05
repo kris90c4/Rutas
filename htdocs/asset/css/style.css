@@ -222,8 +222,16 @@ tfoot input {
 	color:green;
 }
 #gestionUsuarios{
-	
 	background: white;
+}
+#gestionUsuarios td{
+	padding: 5px;
+}
+#gestionUsuarios thead{
+	background: grey;
+}
+#gestionUsuarios tbody tr:nth-child(2n){
+	background: rgb(128, 208, 245);
 }
 
 

@@ -22,7 +22,8 @@ class PerfilM{
 				$this->mail=$user['mail'];
 				$this->pass=$user['pass'];
 				$this->admin=$user['admin'];
-				$this->fechaEntrada=date("h:i d-m-Y");
+				$this->fechaRegistro=$user['fechaRegistro'];
+				$this->fechaEntrada=$user['fechaEntrada'];
 			}
 		}
 	}
@@ -61,6 +62,9 @@ class PerfilM{
 	}
 	public function setAdmin($admin){
 		$this->admin=$admin;
+	}
+	public function getFechaRegistro(){
+		return $this->fechaRegistro;
 	}
 	public function getFechaEntrada(){
 		return $this->fechaEntrada;

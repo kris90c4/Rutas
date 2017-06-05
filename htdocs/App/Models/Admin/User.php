@@ -87,8 +87,20 @@ class User implements Crud{
 			return false;
 		}
 	}
+
+	// $id = id del usuario que se desea eliminar
 	
 	public static function delete($id){
-		
+		try{
+			$connection = Database::instance();
+			$sql="DELETE FROM ".self::TABLE. " WHERE id = $id";
+			$query = $connection->prepare($sql);
+			return $query->execute();
+			//$ok == true? ha ido bien:No ha ido bien.
+		}
+		catch(\PDOException $e){
+			print "Error!: " . $e->getMessage();
+			return false;
+		}
 	}
 }

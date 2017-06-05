@@ -24,6 +24,7 @@ class Login{
 		if(strcmp($user['pass'],md5($pass))==0){
 			//Se almacena en Sesion la clase Perfil
 			$_SESSION['usuario']= new PerfilM($user);
+			UserAdmin::update("SET fechaEntrada = CURRENT_TIMESTAMP WHERE id = " . $_SESSION['usuario']->getId());
 			view::render('home');
 		}else{
 			view::set("title", "check");
