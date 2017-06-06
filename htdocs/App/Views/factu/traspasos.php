@@ -7,7 +7,7 @@
 			</li>
 			<li>
 				<label for="matricula">Matricula</label>
-				<input id="matricula" type="text" name="matricula" pattern="([A-Z]{2})?\d{4}[A-Z]{3}" placeholder="matricula" required/>
+				<input id="matricula" type="text" name="matricula" pattern="([a-Z]{2})?\d{4}[a-Z]{3}" placeholder="matricula" required/>
 			</li>
 			<li>
 				<label for="cliente">Cliente</label>

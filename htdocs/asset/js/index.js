@@ -18,3 +18,45 @@ $("#registrar input[name=mail]").blur(function(){
 $("#registrar input[name=pass]").blur(function(){
 	$("#registrar input[name=cpass]").attr("pattern",$(this).val());
 });
+
+// Gestion Usuarios
+
+$("#gestionUsuarios .reset").click(function(){
+	boton=$(this);
+	$.post(
+		"?controller=perfil&action=resetPass",
+		{
+			id: $(this).prev().val()
+		},
+		function(data){
+			if(data){
+				$('#errorGestion').html(data).dialog();
+				boton.addClass("btn-danger");
+			}else{
+				boton.addClass("btn-success");
+			}
+		}
+	);
+});
+$(".del").click(function(){
+	boton=$(this);
+	$.post(
+		"?controller=perfil&action=delUser",
+		{
+			id: $(this).prev().prev().val(),
+			admin: $(this).parents("tr").find("td:nth-child(5)").html()
+		},
+		function(data){
+			if(data=="No puedes eliminar un administrador"){
+				boton.addClass("btn-danger");
+				$('#errorGestion').html(data).dialog();
+			}else if(data){    
+				$('#errorGestion').html(data).dialog();
+			}else{
+				boton.parents("tr").remove();
+			}
+		}
+	);
+});
+
+$("#gestionUsuarios").DataTable();

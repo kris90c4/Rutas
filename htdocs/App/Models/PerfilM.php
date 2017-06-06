@@ -12,6 +12,8 @@ class PerfilM{
 	private $admin;
 	private $fechaEntrada;
 	
+	//Si se le pasa un array con todas las columnas de la tabla, se crea automaticamente el objeto,
+	//Sino hay que rellenarlo manualmente.
 	public function __construct(){
 		if(func_num_args()){
 			$user=func_get_arg(0);

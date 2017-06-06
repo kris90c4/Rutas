@@ -34,7 +34,7 @@
 			newPass: $('#new').val(),
 			cNewPass: $('#cNew').val()
 		},
-		function(data,success){
+		function(data){
 			if(data)
 				if(data=="Contraseña modificada con exito"){
 					$("#modificada").html(data).css({"color":"green"});

@@ -1,29 +1,20 @@
 body{
-	background:white;
+	background:#E6E6E6;
 	margin:0;
 }
 
 #cuerpo{
-	position:absolute;
-	top:47px;
-	bottom:0px;
-	left:0px;
-	right:0px;
-	padding:10px;
-	background:#E6E6E6;
+margin-top: 20px;
 }
-
 
 nav{
 	display:block;
 	background:gray;
 	width:100%;
 }
-
-@media screen and (max-width: 550px) {
-	nav{
-		width:100%;
-	}
+#desplegar{
+	display: none;
+	float:right;
 }
 
 nav ul {
@@ -32,6 +23,19 @@ nav ul {
 	padding: 0;
 	overflow: hidden;
 	background-color: #333;
+}
+nav div{
+	display: block;
+}
+
+@media screen and (max-width: 800px) {
+	nav div{
+		display: inline-grid;
+		visibility: hidden;
+	}
+	#desplegar{
+		display: block;
+	}
 }
 
 nav li {
@@ -169,12 +173,17 @@ input:required:valid {
 	margin:5px 0;
 }
 tfoot input {
-        width: 100%;
-        padding: 3px;
-        box-sizing: border-box;
-    }
+	width: 100%;
+	padding: 3px;
+	box-sizing: border-box;
+}
 
 /*TABLA FACTURACION*/
+
+#factu{
+	margin: 0 10px;
+}
+
 .dataTables_wrapper{
 	padding:5px;
 	box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.3);
@@ -223,15 +232,27 @@ tfoot input {
 }
 #gestionUsuarios{
 	background: white;
+	width: 100%;
 }
 #gestionUsuarios td{
 	padding: 5px;
+	white-space: nowrap;
+}
+#gestionUsuarios th{
+	text-align: center;
 }
 #gestionUsuarios thead{
-	background: grey;
+	background: #b5b5b5;
+}
+#gestionUsuarios thead th{
+	padding: 5px;
 }
 #gestionUsuarios tbody tr:nth-child(2n){
 	background: rgb(128, 208, 245);
+}
+
+#saludo{
+	text-align: center;
 }
 
 

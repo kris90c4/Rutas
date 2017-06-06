@@ -2,6 +2,7 @@
 namespace Core;
 defined("APPPATH") OR die("Access denied");
 
+
 class App{
 
 	private $_controller;
@@ -36,7 +37,7 @@ class App{
 			//aquí tenemos el método
 			$this->_method = $_GET['action'];
 			if(!method_exists($this->_controller, $_GET['action']))	{
-				$this->_controller="home";
+				$this->_controller="error";
 				$this->_method="error404";
 			}
 		}

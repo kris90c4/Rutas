@@ -1,6 +1,8 @@
 <?php
 namespace App\Controllers;
 defined("APPPATH") OR die("Access denied");
+defined("USUARIO") OR die("Access denied");
+
 
 use \Core\View,
 \App\Models\Ajax,
@@ -12,6 +14,7 @@ class Matri{
 	function view(){
 		View::set("matriculaciones", MatriAdmin::getAll());
 		View::set("vista","matriculaciones");
+		View::set("title","Matriculaciones");
 		View::render("factu/tablafactu");
 	}
 	//Muestra el formulario de nuevo registro de matriculaciones
@@ -27,6 +30,7 @@ class Matri{
 			View::render("errors/404");
 		}
 	}
+	/////////////////////////////////////////////////////----------------------
 	function updateSalida(){
 		extract($_POST);
 		$date=empty($date)?"null":"\"$date\"";

@@ -9,6 +9,7 @@ class User implements Crud{
 	
 	const TABLE = "usuarios";
 	
+	//Devuelve un array con todos los usaurios de la base de datos
 	public static function getAll(){
 		try {
 			$connection = Database::instance();
@@ -22,6 +23,9 @@ class User implements Crud{
 			print "Error!: " . $e->getMessage();
 		}
 	}
+
+	//Obtiene el registro de la base de datos corresponiente a su id
+	// Devuelve un array asociativo
 	
 	public static function getById($id){
 		try {
@@ -32,8 +36,7 @@ class User implements Crud{
 			$query->execute();
 			$query->setFetchMode(\PDO::FETCH_ASSOC);
 			return $query->fetch();
-		}
-		catch(\PDOException $e){
+		}catch(\PDOException $e){
 			print "Error!: " . $e->getMessage();
 		}
 	}
@@ -57,6 +60,8 @@ class User implements Crud{
 			print "Error!: " . $e->getMessage();
 		}
 	}
+
+	// $user  array con los datos del formulario de registro
 	
 	public static function insert($user){
 		try{
@@ -96,7 +101,6 @@ class User implements Crud{
 			$sql="DELETE FROM ".self::TABLE. " WHERE id = $id";
 			$query = $connection->prepare($sql);
 			return $query->execute();
-			//$ok == true? ha ido bien:No ha ido bien.
 		}
 		catch(\PDOException $e){
 			print "Error!: " . $e->getMessage();

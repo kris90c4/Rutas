@@ -87,7 +87,7 @@ $(document).ready(function() {
 		
 	</ul>
 </div>
-<div>
+<div id="factu">
 	<!-- Se aplica el id de la vista de facturacion seleccionada -->
 	<table id="<?= $vista ?>" class="display" >
 	<!-- Se comprueba que existan registros antes de imprimir todos los datos -->

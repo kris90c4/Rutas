@@ -8,8 +8,8 @@
 				<th>Apellidos</th>
 				<th>Correo</th>
 				<th>Tipo</th>
-				<th>Fecha de la ultima visita</th>
-				<th>Fecha de registro</th>
+				<th>Fecha ultima visita</th>
+				<th>Fecha registro</th>
 				<th>Acciones</th>
 				
 			</tr>
@@ -35,39 +35,3 @@
 	</table>
 	<div id="errorGestion"></div>
 </div>
-
-<script type="text/javascript">
-	$(".reset").click(function(){
-		boton=$(this);
-		$.post(
-			"?controller=perfil&action=resetPass",
-			{
-				id: $(this).prev().val()
-			},
-			function(data){
-				if(data){
-					$('#errorGestion').html(data).dialog();
-					boton.addClass("btn-danger");
-				}else{
-					boton.addClass("btn-success");
-				}
-			}
-		);
-	});
-	$(".del").click(function(){
-		boton=$(this);
-		$.post(
-			"?controller=perfil&action=delUser",
-			{
-				id: $(this).prev().prev().val()
-			},
-			function(data){
-				if(data){
-					$('#errorGestion').html(data).dialog();
-				}else{
-					boton.parents("tr").remove();
-				}
-			}
-		);
-	});
-</script>

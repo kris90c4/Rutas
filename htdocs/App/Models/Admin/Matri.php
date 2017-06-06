@@ -12,10 +12,11 @@ class Matri implements Crud{
 		try {
 			$connection = Database::instance();
 			$sql = "SELECT matri.id, matri.entrada, matri.bastidor, matri.matricula, matri.cliente, 
-							matri.alta, p.nombre provincia, m.nombre municipio, matri.salida  
+							matri.alta, p.nombre provincia, m.nombre municipio, matri.salida, u.nombre creador 
 						FROM ".self::TABLE . " matri 
 						JOIN provincias p ON p.id =  matri.provincia 
-						JOIN municipios m ON m.id = matri.municipio";
+						JOIN municipios m ON m.id = matri.municipio
+						LEFT JOIN usuarios u ON u.id = matri.id_usuario OR matri.id_usuario=NULL";
 			$query = $connection->prepare($sql);
 			$query->execute();
 			$query->setFetchMode(\PDO::FETCH_ASSOC);
@@ -57,7 +58,8 @@ class Matri implements Crud{
 			$query->bindParam(":municipio", $data['municipio'], \PDO::PARAM_INT);
 			$query->bindParam(":poblacion", $data['poblacion'], \PDO::PARAM_INT);
 			$query->bindParam(":salida", $data['salida'], \PDO::PARAM_STR);
-			$query->bindParam(":id_usuario",$_SESSION['usuario']->getId(), \PDO::PARAM_INT);
+			$id_user=$_SESSION['usuario']->getId();
+			$query->bindParam(":id_usuario",$id_user, \PDO::PARAM_INT);
 			return $query->execute();
 			//$ok == true? ha ido bien:No ha ido bien.
 		}
