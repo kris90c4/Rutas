@@ -29,7 +29,7 @@ nav li a:hover, nav li a:focus {
 	background: deepskyblue;
 	border-radius: 4px;
 }
-#login input[type="text"],#login input[type="password"], #registrar input[type="text"],#registrar input[type="password"]{
+#login input[type="text"],#login input[type="mail"], #registrar input[type="mail"],#login input[type="password"], #registrar input[type="text"],#registrar input[type="password"]{
 	
 	width: 100%;
 	border-width: 0;
@@ -42,7 +42,8 @@ nav li a:hover, nav li a:focus {
 	margin: 5px auto;
 	box-sizing: border-box;
 }
-#login input[type="text"]:focus ,#login input[type="password"]:focus,
+#login input[type="text"]:focus,#login input[type="mail"]:focus,
+#registrar input[type="mail"]:focus ,#login input[type="password"]:focus,
 #registrar input[type="text"]:focus ,#registrar input[type="password"]:focus{
 	border-color: lightskyblue;
 	outline: none;

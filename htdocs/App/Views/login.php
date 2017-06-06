@@ -2,7 +2,7 @@
 <div id="login">
 	<form action="?controller=login&action=validate" method="POST">
 		<h2>Login</h2>
-		<input type="text" name="mail" value="<?= isset($mail)?$mail:"" ?>" required placeholder="Correo">
+		<input type="mail" name="mail" value="<?= isset($mail)?$mail:"" ?>" required placeholder="Correo">
 		<?php if(isset($ePass)): ?>
 			<font color="red">Contraseña Incorrecta</font><br>
 		<?php endif; ?>
