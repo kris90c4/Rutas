@@ -1,3 +1,4 @@
+<?php defined("APPPATH") OR die("Access denied"); ?>
 <div id="login">
 	<form action="?controller=login&action=validate" method="POST">
 		<h2>Login</h2>

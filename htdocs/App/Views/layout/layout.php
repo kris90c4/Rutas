@@ -1,3 +1,4 @@
+<?php defined("APPPATH") OR die("Access denied"); ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -12,8 +13,6 @@
 		<!-- JQuery UI -->
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-		<!-- Hoja de estilo -->
-		<link rel="stylesheet" type="text/css" href="/<?=ASSET?>css/style.css">
 		<!-- Funciones de Ajax -->
 		<script type="text/javascript" src="/<?=ASSET?>js/Ajax.js"></script>
 		<!-- API DataTables -->
@@ -26,15 +25,17 @@
 		<script type="text/javascript"src="/<?=ASSET?>js/tableExport.jquery/jspdf/libs/sprintf.js"></script>
 		<script type="text/javascript"src="/<?=ASSET?>js/tableExport.jquery/jspdf/jspdf.js"></script>
 		<script type="text/javascript"src="/<?=ASSET?>js/tableExport.jquery/jspdf/libs/base64.js"></script>
+		<!-- Hoja de estilo -->
+		<link rel="stylesheet" type="text/css" href="/<?=ASSET?>css/style.css">
 		
 		
 	</head>
 	<body>
-	<?= $menu; ?>
+	<?= $menu; //Variable que contiene el html del menu ?>
 
 
 		<div id="cuerpo">
-		<?= $content; ?>
+		<?= $content; //Variable que contiene el html de la vista a cargar ?>
 		
 		</div>
 		<script type="text/javascript" src="/<?=ASSET?>js/index.js"></script>

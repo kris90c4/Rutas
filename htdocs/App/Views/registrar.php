@@ -1,3 +1,4 @@
+<?php defined("APPPATH") OR die("Access denied"); ?>
 <div id="registrar">
 	<form action="?controller=registrar&action=check" method="POST">
 		<h2>Registrar</h2>

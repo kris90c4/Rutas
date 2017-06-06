@@ -1,3 +1,4 @@
+<?php defined("APPPATH") OR die("Access denied"); ?>
 <div id="formMatri">
 	<form action="?controller=matri&action=save" method="POST">
 		<ul>

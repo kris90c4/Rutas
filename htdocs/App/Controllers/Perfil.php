@@ -2,7 +2,7 @@
 namespace App\Controllers;
 
 defined("APPPATH") OR die("Access denied");
-//isset($_SESSION['usuario']) OR die("Access denied2");
+defined("USUARIO") OR die("Access denied");
 
 use \Core\View,
 \App\Models\User as Users,
@@ -15,13 +15,16 @@ class Perfil{
 	public function logout(){
 		session_destroy();
 		unset($_SESSION);
+		view::set("title","Home");
 		View::render('home');
 	}
 	public function view(){
 		//Si no hay una session usuario iniciada se reenvia al login
 		if(!isset($_SESSION['usuario'])){
+			view::set("title","Login");
 			View::render('login');
 		}else{
+			view::set("title","Perfil");
 			View::render('perfil');
 		}
 	}
@@ -71,6 +74,7 @@ class Perfil{
 			}
 			//se envian todos los usuarios con su corresponiente clase perfil
 			View::set("usuarios",$usuarios);
+			view::set("title","Gestion usuarios");
 			View::render("gestionUsuarios");
 		}else{
 			//Si un usuario no administrador intenta acceder

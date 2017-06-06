@@ -36,7 +36,7 @@ class Matri{
 		$date=empty($date)?"null":"\"$date\"";
 		$ok=MatriAdmin::update("UPDATE matriculaciones SET salida=$date WHERE id=$id");
 		if(!$ok){
-			var_export("UPDATE matriculaciones SET salida=$date WHERE id=$id");
+			echo "UPDATE matriculaciones SET salida=$date WHERE id=$id";
 		}
 	}
 	//Devuelve un objeto JSON con todas las provicias

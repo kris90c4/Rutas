@@ -13,7 +13,7 @@ class Home{
 	}
 
 	//Pruebas para cargar dos vistas seguidas
-	public function multiViews(){
+	/*public function multiViews(){
 		//Se envia un array con las vistas que se desean cargar
 		View::set("vista", ["factu/matriculaciones","factu/traspasos"]);
 		View::set("title", "Saludo");
@@ -32,7 +32,7 @@ class Home{
 		View::set("users", $users);
 		View::set("title", "Usuarios");
 		View::render("users");
-	}	
+	}*/	
 	public function error404(){
 		View::render("errors/404");
 	}

@@ -27,6 +27,7 @@ class Login{
 				//Se actualiza el campo fechaEntrada de la base de datos con la hora del acceso
 				UserAdmin::update("SET fechaEntrada = CURRENT_TIMESTAMP WHERE id = " . $_SESSION['usuario']->getId());
 				view::set("saludo","Bienvenido ". $_SESSION['usuario']->getNombre());
+				view::set("title","Home");
 				view::render('home');
 			}else{
 				// si la contraseña es incorrecta

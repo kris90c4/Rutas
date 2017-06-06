@@ -40,11 +40,12 @@ class Registrar{
 		$_POST['pass']=md5($_POST['pass']);
 		//Se comprueba que se inserte en la base de datos
 		if(UserAdmin::insert($_POST)){
-			$index=new Home();
 			//Se recupera el usuario registrado y se almacena una session.
 			$user = User::getByMail($_POST['mail']);
 			$_SESSION['usuario']= new PerfilM($user);
-			$index->view();
+			view::set("saludo","Bienvenido ". $_SESSION['usuario']->getNombre());
+			View::set("title","Home");
+			View::render('home');
 		}else{
 			View::render("errors/404");
 		}

@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 defined("APPPATH") OR die("Access denied");
-
+defined("USUARIO") OR die("Access denied");
 use \Core\View,
 \App\Models\Ajax,
 \App\Models\Admin\Traspasos as TraspasosAdmin;
@@ -11,6 +11,7 @@ class Traspasos{
 	function view(){
 		View::set("traspasos", TraspasosAdmin::getAll());
 		View::set("vista","traspasos");
+		view::set("title","Traspasos");
 		View::render("factu/tablaFactu");
 	}
 	//Muestra el formulario de nuevo registro de traspasos
