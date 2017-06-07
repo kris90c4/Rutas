@@ -24,10 +24,12 @@ class Matri{
 	}
 	//Guarda en la base de datos los datos introducidos en el formulario
 	function save() {
-		if(MatriAdmin::insert($_POST)){
+		if($ok=MatriAdmin::insert($_POST)){
 			$this->view();
 		}else{
-			View::render("errors/404");
+			View::set("error","Ha ocurrido un error.");
+			View::set('title',"matriculaciones");
+			View::render("factu/matriculaciones");
 		}
 	}
 	/////////////////////////////////////////////////////----------------------

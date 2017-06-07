@@ -4,9 +4,8 @@ body{
 }
 
 #cuerpo{
-margin-top: 20px;
+	margin-top: 20px;
 }
-
 
 nav li a:hover, nav li a:focus {
 	background-color: #555 !important;
@@ -131,16 +130,12 @@ tfoot input {
 	width: 100%;
 	overflow: auto;
 }
-.dataTables_wrapper table tr >:first-child{
-
+.dataTables_wrapper table tr >:first-child, .dataTables_wrapper table input + td{
 	text-align: center;
 }
 .dataTables_wrapper table tr td{
 	/*No permite realizar un salto de linea*/
 	white-space: nowrap;
-}
-.dataTables_wrapper table tfoot tr th+th{
-	
 }
 
 #perfil{
@@ -193,6 +188,5 @@ tfoot input {
 #saludo{
 	text-align: center;
 }
-
 
 ::-webkit-input-placeholder { color:#91bbbf; }

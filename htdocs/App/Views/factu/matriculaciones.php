@@ -36,10 +36,17 @@
 			</li>
 			<li>
 				<input type="submit">
+				<?php 
+	if(isset($error)){
+		echo "<font color='red'>$error</font>";
+	}
+?>
 			</li>
 		</ul>
 	</form>
 </div>
+
+
 
 <script>
 	//SIN HACER; HAY QUE MODIFICAR TODO
