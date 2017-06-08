@@ -37,7 +37,7 @@ class Registrar{
 		}
 	}
 	// Una vez comprobado que se puede realizar el registro, se procede a insertar el registro en la base de datos
-	public function save(){
+	private function save(){
 		//Se codifica la contraseña a md5
 		$_POST['pass']=md5($_POST['pass']);
 		//Se comprueba que se inserte en la base de datos
