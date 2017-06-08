@@ -27,6 +27,7 @@ class Traspasos implements Crud{
 			print "Error!: " . $e->getMessage();
 		}
 	}
+	// Devuelve el traspasos corresponiente al id pasado como parametro
 	public static function getById($id){
 		try {
 			$connection = Database::instance();
@@ -41,38 +42,43 @@ class Traspasos implements Crud{
 			print "Error!: " . $e->getMessage();
 		}
 	}
+
+	// Inserta en la base de datos una nueva linea con los datos pasados
 	public static function insert($data){
 		try{
 			$connection = Database::instance();
 			$sql="INSERT INTO ".self::TABLE." VALUES(null, :entrada, :matricula, :cliente, :id_tipo, :salida, :id_usuario)";
 			$query = $connection->prepare($sql);
-			//si no se envia la poblacion, se asigna null
+			// si no se asigna una fecha de salida, se deja como null
 			isset($data['salida'])&&!empty($data['salida'])?:$data['salida']=null;
 			$query->bindParam(":entrada", $data['entrada'], \PDO::PARAM_STR);
 			$query->bindParam(":matricula", $data['matricula'], \PDO::PARAM_STR);
 			$query->bindParam(":cliente", $data['cliente'], \PDO::PARAM_STR);
 			$query->bindParam(":id_tipo", $data['tipo'], \PDO::PARAM_INT);
 			$query->bindParam(":salida", $data['salida'], \PDO::PARAM_STR);
-			$query->bindParam(":id_usuario",$_SESSION['usuario']->getId(), \PDO::PARAM_INT);
+			$id_user=$_SESSION['usuario']->getId();
+			$query->bindParam(":id_usuario",$id_user, \PDO::PARAM_INT);
 			return $query->execute();
 			//return == true? ha ido bien:No ha ido bien.
 		}
 		catch(\PDOException $e)
 		{
+			//se muestra el error de SQL en caso de dar fallo
 			print "Error!: " . $e->getMessage();
 		}
 	}
 	
-	//
+	// Ejecuta una sentecia en sql de update , se debe de especificar el set y el where en el parametro enviado.
 	public static function update($sql){
 		try{
 			$connection = Database::instance();
-			$query = $connection->prepare($sql);
+			$query = $connection->prepare("UPDATE " . self::TABLE . " " .$sql);
 			return $query->execute();
 			//$ok == true? ha ido bien:No ha ido bien.
 		}
 		catch(\PDOException $e)
 		{
+			//se muestra el error de SQL en caso de dar fallo
 			print "Error!: " . $e->getMessage();
 			return false;
 		}

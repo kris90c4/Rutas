@@ -37,6 +37,8 @@ class App{
 			//aquí tenemos el método
 			$this->_method = $_GET['action'];
 			if(!method_exists($this->_controller, $_GET['action']))	{
+				$fullClass = self::NAMESPACE_CONTROLLERS."home";
+				$this->_controller = new $fullClass;
 				$this->_method="error404";
 			}
 		}

@@ -24,19 +24,20 @@ class Matri{
 	}
 	//Guarda en la base de datos los datos introducidos en el formulario
 	function save() {
-		if($ok=MatriAdmin::insert($_POST)){
+		if($ok=MatriAdmin::insert($_POST)){//Si es correcto se reenvia a la tabla
 			$this->view();
-		}else{
+		}else{//si hay algun fallo se devuelve al formualrio y se muestra que ha habido un error
 			View::set("error","Ha ocurrido un error.");
 			View::set('title',"matriculaciones");
 			View::render("factu/matriculaciones");
 		}
 	}
-	/////////////////////////////////////////////////////----------------------
+	// Actualiza la fecha de salida
 	function updateSalida(){
 		extract($_POST);
 		$date=empty($date)?"null":"\"$date\"";
-		$ok=MatriAdmin::update("UPDATE matriculaciones SET salida=$date WHERE id=$id");
+		$ok=MatriAdmin::update("SET salida=$date WHERE id=$id");
+		//Si falla la actualizacion, se lanza el error de sql y se muestra tambien la sentencia sql enviada
 		if(!$ok){
 			echo "UPDATE matriculaciones SET salida=$date WHERE id=$id";
 		}

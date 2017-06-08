@@ -8,8 +8,10 @@ use \Core\Database,
 class Matri implements Crud{
 	const TABLE = "matriculaciones";
 	
+	//Se devuelve una consulta adecuada a la tabla donde se va a visualizar
 	public static function getAll(){
 		try {
+			//Se declara la instancia que se comunica con la base de datos
 			$connection = Database::instance();
 			$sql = "SELECT matri.id, matri.entrada, matri.bastidor, matri.matricula, matri.cliente, 
 							matri.alta, p.nombre provincia, m.nombre municipio, matri.salida, u.nombre creador 
@@ -72,7 +74,7 @@ class Matri implements Crud{
 	public static function update($sql){
 		try{
 			$connection = Database::instance();
-			$query = $connection->prepare($sql);
+			$query = $connection->prepare("UPDATE ". self::TABLE. " $sql");
 			return $query->execute();
 			//$ok == true? ha ido bien:No ha ido bien.
 		}

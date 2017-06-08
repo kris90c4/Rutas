@@ -21,8 +21,13 @@ spl_autoload_register('autoload_classes');
 
 //Se inicia la global $_SESSION
 session_start();
+
+//Estas constantes sirven para dar y denegar acceso segun si se esta logeado o no
 if(isset($_SESSION['usuario'])){
+	// Si ya se ha logeado el usaurio se inicializa la constante USUARIO
 	define('USUARIO',$_SESSION['usuario']->getAdmin());
+}else{//Si no se ha iniciado el usaurio se incia la constante INVITADO
+	define('INVITADO',"Invitado");
 }
 
 //instanciamos la app

@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 defined("APPPATH") OR die("Access denied");
+defined("INVITADO") OR die("Access denied");
 
 use \Core\View,
 \App\Models\User,

@@ -1,11 +1,14 @@
 <?php
 namespace App\Controllers;
 defined("APPPATH") OR die("Access denied");
+//Solo se permite el acceso si se ha inicializado la constante INVITADO
+defined("INVITADO") OR die("Access denied");
 
 use \Core\View,
 \App\Controllers\Home,
 \App\Models\User,
 \App\Models\PerfilM,
+\App\Controllers\Matri,
 \App\Models\Admin\User as UserAdmin;
 
 class Login{
@@ -17,6 +20,7 @@ class Login{
 
 	//al clicar a logear, se validan los datos
 	public function validate(){
+		// Solo se valida si se envia un post con mail
 		if(isset($_POST['mail'])){
 			extract($_POST);
 			$user = User::getByMail($mail);
@@ -26,9 +30,12 @@ class Login{
 				$_SESSION['usuario']= new PerfilM($user);
 				//Se actualiza el campo fechaEntrada de la base de datos con la hora del acceso
 				UserAdmin::update("SET fechaEntrada = CURRENT_TIMESTAMP WHERE id = " . $_SESSION['usuario']->getId());
-				view::set("saludo","Bienvenido ". $_SESSION['usuario']->getNombre());
-				view::set("title","Home");
-				view::render('home');
+				// Si logea un administrador se rediridige a la pagina de gestion
+				if($_SESSION['usuario']->getAdmin()){
+					header("location: ?controller=perfil&action=gestion");
+				}else{//Si es un usuario normal, se muestra la vista con las matriculaciones
+					header("location: ?controller=matri&action=view");
+				}
 			}else{
 				// si la contraseña es incorrecta
 				view::set("title", "check");
@@ -36,7 +43,8 @@ class Login{
 				view::set("ePass","true");
 				view::render('login');
 			}
-		}else{
+
+		}else{// Si no llega un post con mail se deniega el acceso
 			die("Acceso Denegado");
 		}
 	}

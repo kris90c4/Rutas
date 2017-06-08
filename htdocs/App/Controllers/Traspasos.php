@@ -30,7 +30,7 @@ class Traspasos{
 	function updateSalida(){
 		extract($_POST);
 		$date=empty($date)?"null":"\"$date\"";
-		$ok=TraspasosAdmin::update("UPDATE traspasos SET salida=$date WHERE id=$id");
+		$ok=TraspasosAdmin::update("SET salida=$date WHERE id=$id");
 		if(!$ok){
 			var_export("UPDATE traspasos SET salida=$date WHERE id=$id");
 		}
