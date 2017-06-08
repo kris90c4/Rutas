@@ -1,6 +1,6 @@
 <?php
 namespace App\Interfaces;
-defined("APPPATH") OR die("Access denied");
+defined("APPPATH") OR die("Acceso denegado");
 
 interface Crud
 {

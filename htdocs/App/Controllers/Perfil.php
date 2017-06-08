@@ -1,8 +1,9 @@
 <?php
 namespace App\Controllers;
 
-defined("APPPATH") OR die("Access denied");
-defined("USUARIO") OR die("Access denied");
+defined("APPPATH") OR die("Acceso denegado");
+//Solo usuarios registrados tienen acceso a esta clase
+defined("USUARIO") OR die("Acceso denegado");
 
 use \Core\View,
 \App\Models\User as Users,
@@ -11,7 +12,7 @@ use \Core\View,
 \App\Models\PerfilM;
 
 class Perfil{
-
+	// Elimina la sesión inciada
 	public function logout(){
 		session_destroy();
 		unset($_SESSION);
@@ -20,6 +21,7 @@ class Perfil{
 	}
 	public function view(){
 		//Si no hay una session usuario iniciada se reenvia al login
+		// Doble comprobación
 		if(!isset($_SESSION['usuario'])){
 			view::set("title","Login");
 			View::render('login');
@@ -29,6 +31,7 @@ class Perfil{
 		}
 	}
 	// Usado para una llamada Post de ajax
+	// Valida que los campos enviados sean correctos antes de acceder a la base de datos
 	public function modificarPass(){
 		// Se convierten los indices en variables
 		extract($_POST);
@@ -62,6 +65,7 @@ class Perfil{
 	}
 	//Genera la vista de gestion de usuarios
 	public function gestion(){
+		// Verifica que solo los administradores puedan entrar en esta vista
 		if($_SESSION['usuario']->getAdmin()){
 			//Constante para verificar que solo se pueda acceder a la vista desde aqui
 			define("ADMIN",1);
@@ -81,6 +85,7 @@ class Perfil{
 			die("Acceso Denegado");
 		}
 	}
+	// al recibir una peticion via post de ajax de un administrador, resetea la contraseña a Portol1
 	public function resetPass(){
 		if($_SESSION['usuario']->getAdmin()){
 			//Constante para verificar que solo se pueda acceder a la vista desde aqui
@@ -88,6 +93,7 @@ class Perfil{
 			UserAdmin::update("SET pass = '".md5("Portol1") . "' where id = $id");
 		}
 	}
+	// Se pasa via post la columna id y admin. Si se intenta eliminar un admin, lanza en mensaje de error
 	public function delUser(){
 		if($_SESSION['usuario']->getAdmin()){
 			extract($_POST);

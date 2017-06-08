@@ -1,6 +1,6 @@
 <?php
 namespace  App\Models\Admin;
-defined("APPPATH") OR die("Access denied");
+defined("APPPATH") OR die("Acceso denegado");
 
 use \Core\Database,
 \App\Interfaces\Crud;
@@ -84,12 +84,13 @@ class Traspasos implements Crud{
 		}
 	}
 	
-	//pendiente de query
+	// Elimina un registro de la tabla Traspasos
+	// $id int con el id del registro a eliminar
 	public static function delete($id){
 		try{
 			$connection = Database::instance();
 			
-			$query = $connection->prepare($sql);
+			$query = $connection->prepare("DELETE FROM ". self::TABLE . " WHERE id = $id");
 			return $query->execute();
 			//$ok == true? ha ido bien:No ha ido bien.
 		}

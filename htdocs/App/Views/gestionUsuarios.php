@@ -1,4 +1,4 @@
-<?php defined("ADMIN") OR die("Access denied"); ?>
+<?php defined("APPPATH") OR die("Acceso denegado"); ?>
 <div>
 	<table id="gestionUsuarios">
 		<thead>

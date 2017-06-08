@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
-defined("APPPATH") OR die("Access denied");
-defined("INVITADO") OR die("Access denied");
+defined("APPPATH") OR die("Acceso denegado");
+defined("INVITADO") OR die("Acceso denegado");
 
 use \Core\View,
 \App\Models\User,
@@ -36,6 +36,7 @@ class Registrar{
 			View::render("errors/404");
 		}
 	}
+	// Una vez comprobado que se puede realizar el registro, se procede a insertar el registro en la base de datos
 	public function save(){
 		//Se codifica la contraseña a md5
 		$_POST['pass']=md5($_POST['pass']);
@@ -51,7 +52,8 @@ class Registrar{
 			View::render("errors/404");
 		}
 	}
-	function checkMail(){
+	// Se usa en el registro para validar via ajax que el correo no exista antes de enviar el formulario entero
+	public function checkMail(){
 		extract($_POST);
 		$usuario=UserAdmin::getByMail($mail);
 		if($usuario==true){

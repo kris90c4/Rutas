@@ -1,4 +1,4 @@
-<?php defined("APPPATH") OR die("Access denied"); ?>
+<?php defined("APPPATH") OR die("Acceso denegado"); ?>
 <script type="text/javascript">
 $(document).ready(function() {
     // Añade placeholder en los imputs

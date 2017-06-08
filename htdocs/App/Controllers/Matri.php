@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
-defined("APPPATH") OR die("Access denied");
-defined("USUARIO") OR die("Access denied");
+defined("APPPATH") OR die("Acceso denegado");
+defined("USUARIO") OR die("Acceso denegado");
 
 
 use \Core\View,

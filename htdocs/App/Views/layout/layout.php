@@ -1,4 +1,4 @@
-<?php defined("APPPATH") OR die("Access denied"); ?>
+<?php defined("APPPATH") OR die("Acceso denegado"); ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -19,6 +19,7 @@
 		<link rel="stylesheet" type="text/css" href="/<?=ASSET?>css/jquery.dataTables.min.css">
 		<link rel="stylesheet" type="text/css" href="/<?=ASSET?>css/font-awesome.min.css">
 		<script type="text/javascript"src="/<?=ASSET?>js/jquery.dataTables.min.js"></script>
+		<!-- API TableExport -->
 		<script type="text/javascript"src="/<?=ASSET?>js/tableExport.jquery/tableExport.js"></script>
 		<script type="text/javascript"src="/<?=ASSET?>js/tableExport.jquery/jquery.base64.js"></script>
 		<script type="text/javascript"src="/<?=ASSET?>js/tableExport.jquery/html2canvas.js"></script>

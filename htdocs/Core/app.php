@@ -1,6 +1,6 @@
 <?php
 namespace Core;
-defined("APPPATH") OR die("Access denied");
+defined("APPPATH") OR die("Acceso denegado");
 
 
 class App{

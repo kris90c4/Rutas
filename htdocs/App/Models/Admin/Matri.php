@@ -1,6 +1,7 @@
 <?php
 namespace  App\Models\Admin;
-defined("APPPATH") OR die("Access denied");
+// Si se accede directamente al archivo se lanza un mensaje de acceso denegado
+defined("APPPATH") OR die("Acceso denegado");
 
 use \Core\Database,
 \App\Interfaces\Crud;
@@ -19,16 +20,22 @@ class Matri implements Crud{
 						JOIN provincias p ON p.id =  matri.id_provincias 
 						JOIN municipios m ON m.id = matri.id_municipios
 						LEFT JOIN usuarios u ON u.id = matri.id_usuario OR matri.id_usuario=NULL";
+			// Se preapara la sentencia SQL
 			$query = $connection->prepare($sql);
+			//Se ejecuta la sentencia
 			$query->execute();
+			//se elige como se devolvera el resultado
 			$query->setFetchMode(\PDO::FETCH_ASSOC);
+			//Se devuelven todos las filas dentro de un array
 			return $query->fetchAll();
 		}
 		catch(\PDOException $e)
-		{
+		{//En caso de error se imprime
 			print "Error!: " . $e->getMessage();
 		}
 	}
+	//Se obtiene una fila determiada segun su id y se devuelve
+	// $id int
 	public static function getById($id){
 		try {
 			$connection = Database::instance();
@@ -43,6 +50,8 @@ class Matri implements Crud{
 			print "Error!: " . $e->getMessage();
 		}
 	}
+	// Inserta en la base de datos los datos pasados por el formualrio de introduccion.
+	// $data array asociativo.
 	public static function insert($data){
 		try{
 			$connection = Database::instance();
@@ -59,6 +68,7 @@ class Matri implements Crud{
 			$query->bindParam(":municipio", $data['municipio'], \PDO::PARAM_INT);
 
 			$query->bindParam(":salida", $data['salida'], \PDO::PARAM_STR);
+			// Se alamacena en una variable para evitar un mensaje de advertencia del tipo Strict
 			$id_user=$_SESSION['usuario']->getId();
 			$query->bindParam(":id_usuario",$id_user, \PDO::PARAM_INT);
 			return $query->execute();
@@ -70,7 +80,8 @@ class Matri implements Crud{
 		}
 	}
 	
-	//
+	// Actualización un registro de la tabla matriculaciones
+	// $sql String con el set y el where
 	public static function update($sql){
 		try{
 			$connection = Database::instance();
@@ -85,12 +96,13 @@ class Matri implements Crud{
 		}
 	}
 	
-	//pendiente de query
+	// Elimina un registro de la tabla matriculaciones
+	// $id int con el id del registro a eliminar
 	public static function delete($id){
 		try{
 			$connection = Database::instance();
 			
-			$query = $connection->prepare($sql);
+			$query = $connection->prepare("DELETE FROM ". self::TABLE . " WHERE id = $id");
 			return $query->execute();
 			//$ok == true? ha ido bien:No ha ido bien.
 		}

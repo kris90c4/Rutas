@@ -1,4 +1,4 @@
-<?php defined("APPPATH") OR die("Access denied"); ?>
+<?php defined("APPPATH") OR die("Acceso denegado"); ?>
 <div id="formMatri">
 	<form action="?controller=traspasos&action=save" method="POST">
 		<ul>
@@ -29,7 +29,6 @@
 	</form>
 </div>
 <script>
-	//SIN HACER; HAY QUE MODIFICAR TODO
 	var rutaTipos="?controller=traspasos&action=tipos"
 
 	//Se vuelcan todos los paises en el select con id S1

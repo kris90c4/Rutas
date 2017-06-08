@@ -1,6 +1,6 @@
 <?php
 namespace App\Models;
-defined("APPPATH") OR die("Access denied");
+defined("APPPATH") OR die("Acceso denegado");
 use \Core\Database;
 class User
 {

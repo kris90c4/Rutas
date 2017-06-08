@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
-defined("APPPATH") OR die("Access denied");
-defined("USUARIO") OR die("Access denied");
+defined("APPPATH") OR die("Acceso denegado");
+defined("USUARIO") OR die("Acceso denegado");
 use \Core\View,
 \App\Models\Ajax,
 \App\Models\Admin\Traspasos as TraspasosAdmin;
@@ -27,6 +27,7 @@ class Traspasos{
 			View::render("errors/404");
 		}
 	}
+	//Permite atraves de una llamada ajax de JQuery, modificar la fecha de salida
 	function updateSalida(){
 		extract($_POST);
 		$date=empty($date)?"null":"\"$date\"";

@@ -1,5 +1,6 @@
 <?php
 namespace App\Models;
+defined("APPPATH") OR die("Acceso denegado");
 
 use \core\Database;
 

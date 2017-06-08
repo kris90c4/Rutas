@@ -1,4 +1,4 @@
-<?php defined("APPPATH") OR die("Access denied"); ?>
+<?php defined("APPPATH") OR die("Acceso denegado"); ?>
 <!--  Menu Navegación-->
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">

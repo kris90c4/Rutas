@@ -1,8 +1,8 @@
 <?php
 namespace App\Controllers;
-defined("APPPATH") OR die("Access denied");
+defined("APPPATH") OR die("Acceso denegado");
 //Solo se permite el acceso si se ha inicializado la constante INVITADO
-defined("INVITADO") OR die("Access denied");
+defined("INVITADO") OR die("Acceso denegado");
 
 use \Core\View,
 \App\Controllers\Home,

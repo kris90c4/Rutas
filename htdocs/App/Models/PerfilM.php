@@ -1,7 +1,7 @@
 <?php
 namespace App\Models;
 
-defined("APPPATH") OR die("Access denied");
+defined("APPPATH") OR die("Acceso denegado");
 
 class PerfilM{
 	private $id;

@@ -1,7 +1,7 @@
 
 <!-- Si se intenta acceder directamente a la vista -->
 
-<?php defined("USUARIO") OR die("Access denied"); defined("APPPATH") OR die("Access denied");?>
+<?php defined("USUARIO") OR die("Acceso denegado"); defined("APPPATH") OR die("Acceso denegado");?>
 
 <div id="perfil">
 	<H2>PERFIL</H2>
