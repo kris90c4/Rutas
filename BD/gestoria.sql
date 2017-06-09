@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-06-2017 a las 11:05:10
+-- Tiempo de generación: 09-06-2017 a las 13:50:23
 -- Versión del servidor: 5.7.14
 -- Versión de PHP: 5.6.25
 
@@ -28,12 +28,12 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `matriculaciones` (
   `id` int(11) NOT NULL,
-  `entrada` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `entrada` date DEFAULT NULL,
   `bastidor` varchar(6) NOT NULL,
   `matricula` varchar(9) NOT NULL,
   `cliente` varchar(40) NOT NULL,
   `alta` float NOT NULL,
-  `salida` datetime DEFAULT NULL,
+  `salida` date DEFAULT NULL,
   `id_usuario` int(11) DEFAULT '0',
   `id_municipios` smallint(6) UNSIGNED DEFAULT NULL,
   `id_provincias` smallint(6) DEFAULT NULL
@@ -44,12 +44,17 @@ CREATE TABLE `matriculaciones` (
 --
 
 INSERT INTO `matriculaciones` (`id`, `entrada`, `bastidor`, `matricula`, `cliente`, `alta`, `salida`, `id_usuario`, `id_municipios`, `id_provincias`) VALUES
-(1, '2017-06-07 00:00:00', '123412', '1234asd', 'qwe', 34.45, NULL, 3, 243, 2),
-(2, '2017-06-07 00:00:00', '123412', '1234asd', 'qwe', 34.45, NULL, 3, 243, 2),
-(3, '2017-06-07 00:00:00', '123456', 'as1234asd', 'asd', 45.25, NULL, 3, 342, 4),
-(4, '2017-06-07 00:00:00', '123456', 'as1234asd', 'asd', 45.25, NULL, 3, 342, 4),
-(5, '2017-06-07 00:00:00', '123456', 'as1234asd', 'asd', 45.25, NULL, 3, 342, 4),
-(6, '2017-06-07 00:00:00', '123456', 'as1234asd', 'asd', 45.25, NULL, 3, 342, 4);
+(1, '2017-06-07', '123412', '1234asd', 'qwe', 34.45, '2017-06-09', 3, 243, 2),
+(2, '2017-06-07', '123412', '1234asd', 'qwe', 34.45, '2017-06-09', 3, 243, 2),
+(3, '2017-06-07', '123456', 'as1234asd', 'asd', 45.25, '2017-06-09', 3, 342, 4),
+(4, '2017-06-07', '123456', 'as1234asd', 'asd', 45.25, NULL, 3, 342, 4),
+(5, '2017-06-07', '123456', 'as1234asd', 'asd', 45.25, NULL, 3, 342, 4),
+(6, '2017-06-07', '123456', 'as1234asd', 'asd', 45.25, NULL, 3, 342, 4),
+(7, '2017-06-09', 'jklasd', '1234asd', 'Alex', 34.67, NULL, 3, 2, 2),
+(8, '2017-06-09', 'jklasd', '1234asd', 'Alex', 34.67, NULL, 3, 2, 2),
+(9, '2017-06-09', 'asdasd', '1234asd', 'Sara', 12.12, NULL, 3, 1, 1),
+(10, '2017-06-09', '980798', '6786sdf', 'Sebas', 45.6, NULL, 3, 345, 7),
+(11, '2017-06-09', 'asdasd', 'ad1234qwe', 'asd asdasd asd', -45.54, NULL, 3, 339, 1);
 
 -- --------------------------------------------------------
 
@@ -8304,7 +8309,12 @@ CREATE TABLE `traspasos` (
 INSERT INTO `traspasos` (`id`, `entrada`, `matricula`, `cliente`, `id_tipo`, `salida`, `id_usuario`) VALUES
 (2, '2017-05-23', '2547asd', 'Cristian', 1, '2017-06-03', 1),
 (3, '2017-05-31', '1234ASD', 'Luisao', 2, '2017-06-03', 1),
-(4, '2017-05-31', '1234ASD', 'Luisao', 2, '2017-06-03', 1);
+(4, '2017-05-31', '1234ASD', 'Luisao', 2, '2017-06-03', 1),
+(5, '2017-06-07', 'as1234asd', 'Xisko', 3, NULL, 3),
+(6, '2017-06-07', 'as1234asd', 'Xisko', 2, '2017-06-07', 3),
+(7, '2017-06-07', 'as1234asd', 'asd', 3, NULL, 3),
+(8, '2017-06-07', '7626-HAX', 'Carlos Sogorb', 3, NULL, 20),
+(9, '2017-06-07', '1234ADS', 'Pedro', 3, NULL, 3);
 
 -- --------------------------------------------------------
 
@@ -8328,12 +8338,11 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `apellidos`, `mail`, `pass`, `admin`, `fechaRegistro`, `fechaEntrada`) VALUES
-(0, 'Admin', 'admin', 'admin@gestoriaportol.com', 'e15ef354398c054caf9bb6fdf425acab', 1, '2017-06-06 17:26:30', '2017-06-06 22:17:37'),
-(1, 'CRISTIAN', 'DIAZ PORTERO', 'cristiandiazportero@gmail.com', '4b713bbbefb605d8c7a67feef7921ba4', 1, '2017-06-05 10:48:58', '2017-06-06 20:50:10'),
-(3, 'cristian', 'diaz', 'cristian@gmail.com', '4b713bbbefb605d8c7a67feef7921ba4', 0, '2017-06-05 10:48:58', '2017-06-07 12:32:04'),
-(17, 'Pollas', 'Negras', '', '4885fb4a5401b8afbad8ef37c986dab8', 0, '2017-06-06 22:50:43', '2017-06-06 22:50:43'),
-(18, 'asd', 'asd', 'ca', '6b704a5c5cecc2a772834cf9ad0681ae', 0, '2017-06-06 22:53:21', '2017-06-06 22:53:21'),
-(19, 'asd', 'asd', 'asd', '6b704a5c5cecc2a772834cf9ad0681ae', 0, '2017-06-06 22:54:13', '2017-06-06 22:54:13');
+(0, 'Admin', 'admin', 'admin@gestoriaportol.com', 'e15ef354398c054caf9bb6fdf425acab', 1, '2017-06-06 17:26:30', '2017-06-07 18:10:20'),
+(1, 'CRISTIAN', 'DIAZ PORTERO', 'cristiandiazportero@gmail.com', '4b713bbbefb605d8c7a67feef7921ba4', 1, '2017-06-05 10:48:58', '2017-06-09 06:09:22'),
+(3, 'cristian', 'diaz', 'cristian@gmail.com', '4b713bbbefb605d8c7a67feef7921ba4', 0, '2017-06-05 10:48:58', '2017-06-09 06:16:12'),
+(20, 'Carlos', 'Sogorb', 'carlossogorb@gmail.com', 'a11d0f20a162cf933b1211359f86f4a8', 0, '2017-06-07 18:12:21', '2017-06-07 20:50:31'),
+(21, 'prueba', 'prueba', 'asd@asd.asd', '5a3a5a37cd1c581244eeb5d053d73e40', 0, '2017-06-09 06:09:08', '2017-06-09 06:09:08');
 
 --
 -- Índices para tablas volcadas
@@ -8389,7 +8398,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `matriculaciones`
 --
 ALTER TABLE `matriculaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `municipios`
 --
@@ -8404,12 +8413,12 @@ ALTER TABLE `tipos`
 -- AUTO_INCREMENT de la tabla `traspasos`
 --
 ALTER TABLE `traspasos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- Restricciones para tablas volcadas
 --
