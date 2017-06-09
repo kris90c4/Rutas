@@ -20,7 +20,7 @@
 			<label for="new">Nueva contraseña</label><br>
 			<input id="new" type="password" required pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
 			<label for="cNew">Confirmar nueva contraseña</label><br>
-			<input id="cNew" type="password" placeholder="Confirmar nueva contraseña"><br>
+			<input id="cNew" type="password" ><br>
 			<button class="btn btn-info modificar">Modificar contraseña</button>
 		</div>
 	</div>
