@@ -12,7 +12,7 @@ class Traspasos implements Crud{
 	public static function getAll(){
 		try {
 			$connection = Database::instance();
-			$sql = "SELECT traspasos.id, traspasos.entrada, traspasos.matricula, traspasos.cliente, tipos.nombre tipo,
+			$sql = "SELECT traspasos.id, traspasos.entrada, traspasos.matricula, traspasos.cliente, tipos.nombre tipo, `traspasos`.`cambio servicio` , `traspasos`.`cancelacion reserva`,
 							traspasos.salida, usuarios.nombre creador
 						FROM ".self::TABLE . " 
 						JOIN tipos  ON tipos.id =  traspasos.id_tipo
@@ -47,7 +47,7 @@ class Traspasos implements Crud{
 	public static function insert($data){
 		try{
 			$connection = Database::instance();
-			$sql="INSERT INTO ".self::TABLE." VALUES(null, :entrada, :matricula, :cliente, :id_tipo, :salida, :id_usuario)";
+			$sql="INSERT INTO ".self::TABLE." (id, entrada, matricula, cliente, id_tipo, salida, id_usuario, `cambio servicio`, `cancelacion reserva`) VALUES(null, :entrada, :matricula, :cliente, :id_tipo, :salida, :id_usuario, :cambio_servicio, :cancelacion_reserva)";
 			$query = $connection->prepare($sql);
 			// si no se asigna una fecha de salida, se deja como null
 			isset($data['salida'])&&!empty($data['salida'])?:$data['salida']=null;
@@ -58,6 +58,8 @@ class Traspasos implements Crud{
 			$query->bindParam(":salida", $data['salida'], \PDO::PARAM_STR);
 			$id_user=$_SESSION['usuario']->getId();
 			$query->bindParam(":id_usuario",$id_user, \PDO::PARAM_INT);
+			$query->bindParam(":cambio_servicio", isset($data['cambio_servicio'])?$data['cambio_servicio']:0, \PDO::PARAM_INT);
+			$query->bindParam(":cancelacion_reserva", isset($data['cancelacion_reserva'])?$data['cancelacion_reserva']:0, \PDO::PARAM_INT);
 			return $query->execute();
 			//return == true? ha ido bien:No ha ido bien.
 		}

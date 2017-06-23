@@ -115,7 +115,22 @@ $(document).ready(function() {
 			<tr>
 				<input type="hidden" name="id" value="<?= $value['id']; ?>">
 				<?php foreach ($value as $key => $value):?>
-					<td <?= $key=="salida"?"class='salida'":"" ?>><?= $value ?></td>
+					<td <?= $key=="salida"?"class='salida'":"" ?>>
+					<?php
+					switch ($key) {
+					    case "exento":
+					    case "cambio servicio":
+					    case "cancelacion reserva":
+					    	if($value){
+								echo "Si";
+							}else{
+
+							}
+					        break;
+					    default:
+					       echo $value;
+					}
+					?></td>
 				<?php endforeach;?>
 			</tr>
 		<?php endforeach;?>

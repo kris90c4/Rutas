@@ -15,7 +15,7 @@ class Matri implements Crud{
 			//Se declara la instancia que se comunica con la base de datos
 			$connection = Database::instance();
 			$sql = "SELECT matri.id, matri.entrada, matri.bastidor, matri.matricula, matri.cliente, 
-							matri.alta, p.nombre provincia, m.nombre municipio, matri.salida, u.nombre creador 
+							matri.alta, matri.suplido, matri.exento, p.nombre provincia, m.nombre municipio, matri.salida, u.nombre creador 
 						FROM ".self::TABLE . " matri 
 						JOIN provincias p ON p.id =  matri.id_provincias 
 						JOIN municipios m ON m.id = matri.id_municipios
@@ -55,7 +55,7 @@ class Matri implements Crud{
 	public static function insert($data){
 		try{
 			$connection = Database::instance();
-			$sql="INSERT INTO ".self::TABLE."(entrada, bastidor, matricula, cliente, alta, id_provincias, id_municipios, salida, id_usuario) VALUES(:entrada, :bastidor, :matricula, :cliente, :alta, :provincia, :municipio, :salida, :id_usuario)";
+			$sql="INSERT INTO ".self::TABLE."(entrada, bastidor, matricula, cliente, alta, id_provincias, id_municipios, salida, id_usuario, suplido, exento) VALUES(:entrada, :bastidor, :matricula, :cliente, :alta, :provincia, :municipio, :salida, :id_usuario, :suplido, :exento)";
 			$query = $connection->prepare($sql);
 			//si no se envia la poblacion, se asigna null
 			isset($data['salida'])&&!empty($data['salida'])?:$data['salida']=null;
@@ -66,7 +66,8 @@ class Matri implements Crud{
 			$query->bindParam(":alta", $data['alta'], \PDO::PARAM_STR);
 			$query->bindParam(":provincia", $data['provincia'], \PDO::PARAM_INT);
 			$query->bindParam(":municipio", $data['municipio'], \PDO::PARAM_INT);
-
+			$query->bindParam(":suplido", $data['suplido'], \PDO::PARAM_STR);
+			$query->bindParam(":exento", isset($data['exento'])?$data['exento']:"0", \PDO::PARAM_STR);
 			$query->bindParam(":salida", $data['salida'], \PDO::PARAM_STR);
 			// Se alamacena en una variable para evitar un mensaje de advertencia del tipo Strict
 			$id_user=$_SESSION['usuario']->getId();
@@ -77,6 +78,7 @@ class Matri implements Crud{
 		catch(\PDOException $e)
 		{
 			print "Error!: " . $e->getMessage();
+			var_export($data);
 		}
 	}
 	

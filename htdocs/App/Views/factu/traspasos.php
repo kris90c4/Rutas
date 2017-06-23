@@ -8,7 +8,7 @@
 			</li>
 			<li>
 				<label for="matricula">Matricula</label>
-				<input id="matricula" type="text" name="matricula" pattern="([a-Z]{2})?\d{4}[a-Z]{3}" placeholder="matricula" required/>
+				<input id="matricula" type="text" name="matricula" pattern="([a-zA-Z]{2})?\d{4}[a-zA-Z]{3}" placeholder="matricula" required/>
 			</li>
 			<li>
 				<label for="cliente">Cliente</label>
@@ -21,6 +21,14 @@
 			<li>
 				<label for="salida">Salida</label>
 				<input id="salida" type="date" name="salida"/>
+			</li>
+			<li>
+				<label for="cambio_servicio">Cambio servicio</label>
+				<input id="cambio_servicio" type="checkbox" value="1" name="cambio_servicio"/>
+			</li>
+			<li>
+				<label for="cancelacion_reserva">Cancelacion reserva</label>
+				<input id="cancelacion_reserva" type="checkbox" value="1" name="cancelacion_reserva"/>
 			</li>
 			<li>
 				<input type="submit">
