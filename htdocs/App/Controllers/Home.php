@@ -39,4 +39,8 @@ class Home{
 	public function error404(){
 		View::render("errors/404");
 	}
+	public function excel(){
+		View::set('title','Importar desde excel');
+		View::render('excel');
+	}
 }

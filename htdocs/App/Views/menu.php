@@ -14,11 +14,14 @@
       <ul class="nav navbar-nav">
         <li class=""><a href="?controller=home&action=view">Home</a></li>
         <?php if(isset($_SESSION['usuario'])):?>
+            <li><a href="?controller=agenda&action=view">Agenda</a></li>
 	        <?php if($_SESSION['usuario']->getAdmin()): ?> 
 		        <li><a href="?controller=perfil&action=gestion">GestionUsuarios</a></li>
+            <li><a href="?controller=reportes&action=view">Reportes</a></li>
 			<?php else: ?>
 		        <li><a href="?controller=traspasos&action=view">Traspasos</a></li>
 		        <li><a href="?controller=matri&action=view">Matriculaciones</a></li>
+            <li class=""><a href="?controller=home&action=excel">Excel</a></li>
 	        <?php endif; ?>
         <?php endif; ?>
       </ul>
@@ -27,6 +30,7 @@
         <li><a href="?controller=registrar&action=view"><span class="glyphicon glyphicon-user"></span> Registrar</a></li>
         <li><a href="?controller=login&action=view"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
      	<?php else: ?>
+    <li class="report"><a href="?controller=reportes&action=create">Sugerencias</a></li>
 		<li><a href="?controller=perfil&action=view"><?= $_SESSION['usuario']->getNombre()?></a></li>
  		<li><a href="?controller=perfil&action=logout">salir</a></li>
 		 <?php endif; ?>

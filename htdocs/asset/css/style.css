@@ -12,7 +12,7 @@ nav li a:hover, nav li a:focus {
 }
 
 /*FORM Login y Registro*/
-#login,#registrar, #perfil {
+#login,#registrar, #perfil, #plantilla{
 	background-color: #fefefe;
 	display: block;
 	margin:50px auto;
@@ -21,7 +21,14 @@ nav li a:hover, nav li a:focus {
 	border-radius:10px;
 	width: 220px;
 }
-#login h2 , #registrar h2 , #perfil h2{
+#plantilla{
+	width: 330px;
+}
+#plantilla input[type="submit"]{
+	margin: 0 auto;
+	display: block;
+}
+#login h2 , #registrar h2 , #perfil h2, #plantilla h3{
 	margin: 0;
 	padding: 10px;
 	text-align: center;
@@ -48,6 +55,20 @@ nav li a:hover, nav li a:focus {
 	outline: none;
 }
 
+#reportar{
+	background-color: #fefefe;
+	display: block;
+	margin:50px auto;
+	padding: 20px;
+	border: 2px solid #4e9ac2;
+	border-radius:10px;
+	width: 400px;
+	text-align: center;
+}
+#reportar textarea{
+	width: 100%;
+	height: 200px;
+}
 
 /*Clases para botones*/
 .btn-blue{
@@ -187,6 +208,70 @@ tfoot input {
 
 #saludo{
 	text-align: center;
+}
+/*#matricula, #bastidor{
+	text-transform: uppercase;
+	}*/
+
+.report{
+	font-size: 20px;
+	background: #5bc0de;
+	border-radius: 10px;
+}
+.report a{
+	color:white !important;
+}
+.reportes ul{
+	list-style: none;
+}
+.reportes li{
+	height: 250px;
+	margin: 50px;
+	padding:5px;
+	border:1px solid red;
+}
+
+.reportes li div *{
+	/*margin: 5px;
+	border: 1px solid;
+	padding:5px;*/
+}
+
+.reportes div{
+	
+}
+.reportes .estado{
+	display:block;
+	width: 20px;
+	height:20px;
+}
+.reportes .si{
+	background: green;
+}
+.reportes .no{
+	background: red;
+}
+.reportes div.meta{
+	padding: 8px;
+	border: 1px solid green;
+	float:left;
+	height: 100%;
+}
+.reportes div.titulo{
+	background: rgb();
+	border: 1px solid black;
+	height: 50px;
+	display: grid;
+	text-align: center;
+}
+.reportes div.titulo h3{
+	margin:auto;
+}
+.reportes div.contenido{
+	border: 1px solid blue;
+	height: 188px;
+	display: grid;
+	padding:10px;
 }
 
 ::-webkit-input-placeholder { color:#91bbbf; }

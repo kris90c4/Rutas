@@ -8,11 +8,11 @@
 			</li>
 			<li>
 				<label for="bastidor">Bastidor<font color="red">*</font></label>
-				<input id="bastidor" type="text" name="bastidor" pattern="[a-zA-Z0-9]{6}" placeholder="bastidor" required/>
+				<input id="bastidor" onkeyup="aMays(event,this)" type="text" name="bastidor" pattern="[a-zA-Z0-9]{6}" placeholder="bastidor" required/>
 			</li>
 			<li>
 				<label for="matricula">Matricula<font color="red">*</font></label>
-				<input id="matricula" type="text" name="matricula" pattern="([a-zA-Z]{2})?\d{4}[a-zA-Z]{3}" placeholder="matricula" required/>
+				<input id="matricula" onkeyup="aMays(event,this)" type="text" name="matricula" pattern="([a-zA-Z]{2})?\d{4}[a-zA-Z]{3}" placeholder="matricula" required/>
 			</li>
 			<li>
 				<label for="cliente">Cliente<font color="red">*</font></label>

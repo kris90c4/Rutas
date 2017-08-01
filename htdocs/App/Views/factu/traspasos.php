@@ -8,7 +8,7 @@
 			</li>
 			<li>
 				<label for="matricula">Matricula</label>
-				<input id="matricula" type="text" name="matricula" pattern="([a-zA-Z]{2})?\d{4}[a-zA-Z]{3}" placeholder="matricula" required/>
+				<input id="matricula" onkeyup="aMays(event,this)" type="text" name="matricula" pattern="([a-zA-Z]{2})?\d{4}[a-zA-Z]{3}" placeholder="matricula" required/>
 			</li>
 			<li>
 				<label for="cliente">Cliente</label>
@@ -41,4 +41,6 @@
 
 	//Se vuelcan todos los paises en el select con id S1
 	loadDataDoc(rutaTipos,"",'tipos');
+
+	
 </script>

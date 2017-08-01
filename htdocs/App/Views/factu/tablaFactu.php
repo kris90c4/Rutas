@@ -128,7 +128,11 @@ $(document).ready(function() {
 							}
 					        break;
 					    default:
-					       echo $value;
+							if($value){
+								echo $value;
+							}else{
+
+							}
 					}
 					?></td>
 				<?php endforeach;?>

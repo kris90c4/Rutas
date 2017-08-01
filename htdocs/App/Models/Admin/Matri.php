@@ -66,7 +66,7 @@ class Matri implements Crud{
 			$query->bindParam(":alta", $data['alta'], \PDO::PARAM_STR);
 			$query->bindParam(":provincia", $data['provincia'], \PDO::PARAM_INT);
 			$query->bindParam(":municipio", $data['municipio'], \PDO::PARAM_INT);
-			$query->bindParam(":suplido", $data['suplido'], \PDO::PARAM_STR);
+			$query->bindParam(":suplido", $data['suplido']!=""?$data['suplido']:"0", \PDO::PARAM_STR);
 			$query->bindParam(":exento", isset($data['exento'])?$data['exento']:"0", \PDO::PARAM_STR);
 			$query->bindParam(":salida", $data['salida'], \PDO::PARAM_STR);
 			// Se alamacena en una variable para evitar un mensaje de advertencia del tipo Strict

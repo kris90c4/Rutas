@@ -60,3 +60,13 @@ $(".del").click(function(){
 });
 
 $("#gestionUsuarios").DataTable();
+
+//Agenda
+
+$("#agenda").DataTable();
+
+//HOTFIX: Se posiciona el puntero al final del texto(ARREGLAR)
+function aMays(e, elemento) {
+	tecla=(document.all) ? e.keyCode : e.which; 
+	elemento.value = elemento.value.toUpperCase();
+}
