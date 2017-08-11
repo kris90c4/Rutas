@@ -38,7 +38,7 @@ $("#gestionUsuarios .reset").click(function(){
 		}
 	);
 });
-$(".del").click(function(){
+$("#gestionUsuarios .del").click(function(){
 	boton=$(this);
 	$.post(
 		"?controller=perfil&action=delUser",

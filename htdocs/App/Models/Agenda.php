@@ -34,7 +34,7 @@ class Agenda implements Crud{
 	public static function getById($id){
 		try {
 			$connection = Database::instance();
-			$sql = "SELECT * from ".self::TABLE . "where id = ". $id;
+			$sql = "SELECT * from ".self::TABLE . " where id = ". $id;
 			$query = $connection->prepare($sql);
 			$query->execute();
 			$query->setFetchMode(\PDO::FETCH_ASSOC);
@@ -45,28 +45,34 @@ class Agenda implements Crud{
 			print "Error!: " . $e->getMessage();
 		}
 	}
+	public static function getByName($cv){
+		try {
+			$connection = Database::instance();
+			$sql = "SELECT * from ".self::TABLE . " where nombre LIKE '%". $cv."%'";
+			$query = $connection->prepare($sql);
+			$query->execute();
+			$query->setFetchMode(\PDO::FETCH_ASSOC);
+			return $query->fetchAll();
+		}
+		catch(\PDOException $e)
+		{
+			print "Error!: " . $e->getMessage();
+			var_export($sql);
+		}
+	}
 	// Inserta en la base de datos los datos pasados por el formualrio de introduccion.
 	// $data array asociativo.
 	public static function insert($data){
 		try{
 			$connection = Database::instance();
-			$sql="INSERT INTO ".self::TABLE."(entrada, bastidor, matricula, cliente, alta, id_provincias, id_municipios, salida, id_usuario, suplido, exento) VALUES(:entrada, :bastidor, :matricula, :cliente, :alta, :provincia, :municipio, :salida, :id_usuario, :suplido, :exento)";
+			$sql="INSERT INTO ".self::TABLE."(nombre, gestion, mail, telefono) VALUES(:nombre, :gestion, :mail, :telefono)";
 			$query = $connection->prepare($sql);
 			//si no se envia la poblacion, se asigna null
-			isset($data['salida'])&&!empty($data['salida'])?:$data['salida']=null;
-			$query->bindParam(":entrada", $data['entrada'], \PDO::PARAM_STR);
-			$query->bindParam(":bastidor", $data['bastidor'], \PDO::PARAM_STR);
-			$query->bindParam(":matricula", $data['matricula'], \PDO::PARAM_STR);
-			$query->bindParam(":cliente", $data['cliente'], \PDO::PARAM_STR);
-			$query->bindParam(":alta", $data['alta'], \PDO::PARAM_STR);
-			$query->bindParam(":provincia", $data['provincia'], \PDO::PARAM_INT);
-			$query->bindParam(":municipio", $data['municipio'], \PDO::PARAM_INT);
-			$query->bindParam(":suplido", $data['suplido']!=""?$data['suplido']:"0", \PDO::PARAM_STR);
-			$query->bindParam(":exento", isset($data['exento'])?$data['exento']:"0", \PDO::PARAM_STR);
-			$query->bindParam(":salida", $data['salida'], \PDO::PARAM_STR);
-			// Se alamacena en una variable para evitar un mensaje de advertencia del tipo Strict
-			$id_user=$_SESSION['usuario']->getId();
-			$query->bindParam(":id_usuario",$id_user, \PDO::PARAM_INT);
+			//isset($data['mail'])&&!empty($data['mail'])?:$data['mail']=null;
+			$query->bindParam(":mail", $data['mail'], \PDO::PARAM_STR);
+			$query->bindParam(":nombre", $data['nombre'], \PDO::PARAM_STR);
+			$query->bindParam(":gestion", $data['gestion'], \PDO::PARAM_INT);
+			$query->bindParam(":telefono", $data['telefono'], \PDO::PARAM_INT);
 			return $query->execute();
 			//$ok == true? ha ido bien:No ha ido bien.
 		}
@@ -79,10 +85,17 @@ class Agenda implements Crud{
 	
 	// Actualización un registro de la tabla matriculaciones
 	// $sql String con el set y el where
-	public static function update($sql){
+	public static function update($data){
 		try{
 			$connection = Database::instance();
-			$query = $connection->prepare("UPDATE ". self::TABLE. " $sql");
+			$sql = "UPDATE ". self::TABLE. " SET nombre = :nombre, gestion = :gestion, mail = :mail, telefono = :telefono where id = :id";
+			$query = $connection->prepare($sql);
+			$query->bindParam(":id", $data['id'], \PDO::PARAM_INT);
+			$query->bindParam(":mail", $data['mail'], \PDO::PARAM_STR);
+			$query->bindParam(":nombre", $data['nombre'], \PDO::PARAM_STR);
+			$query->bindParam(":gestion", $data['gestion'], \PDO::PARAM_INT);
+			$query->bindParam(":telefono", $data['telefono'], \PDO::PARAM_INT);
+
 			return $query->execute();
 			//$ok == true? ha ido bien:No ha ido bien.
 		}
@@ -98,8 +111,8 @@ class Agenda implements Crud{
 	public static function delete($id){
 		try{
 			$connection = Database::instance();
-			
-			$query = $connection->prepare("DELETE FROM ". self::TABLE . " WHERE id = $id");
+			$sql="DELETE FROM ". self::TABLE . " WHERE id = $id";
+			$query = $connection->prepare($sql);
 			return $query->execute();
 			//$ok == true? ha ido bien:No ha ido bien.
 		}

@@ -13,15 +13,17 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class=""><a href="?controller=home&action=view">Home</a></li>
-        <?php if(isset($_SESSION['usuario'])):?>
+        <?php if(isset($_SESSION['usuario'])):?> <!--Menu para registrados-->
+          <!--Seccion Comun-->
             <li><a href="?controller=agenda&action=view">Agenda</a></li>
-	        <?php if($_SESSION['usuario']->getAdmin()): ?> 
+          <!--Fin Seccion Comun-->
+	        <?php if($_SESSION['usuario']->getAdmin()): ?> <!--Sección usuario Admin-->
 		        <li><a href="?controller=perfil&action=gestion">GestionUsuarios</a></li>
             <li><a href="?controller=reportes&action=view">Reportes</a></li>
-			<?php else: ?>
+			    <?php else: ?><!--Seccion Usuario normal-->
 		        <li><a href="?controller=traspasos&action=view">Traspasos</a></li>
 		        <li><a href="?controller=matri&action=view">Matriculaciones</a></li>
-            <li class=""><a href="?controller=home&action=excel">Excel</a></li>
+            <li class=""><a href="?controller=entrada&action=view">Entrada</a></li>
 	        <?php endif; ?>
         <?php endif; ?>
       </ul>
