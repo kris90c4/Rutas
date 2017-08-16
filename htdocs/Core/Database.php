@@ -99,6 +99,11 @@ class Database
 		}
 		return self::$_instance;
 	}
+
+	public function ultimaId()
+	{
+		return $this->_connection->lastInsertId();
+	}
 	
 	/**
 	 * [__clone Evita que el objeto se pueda clonar]

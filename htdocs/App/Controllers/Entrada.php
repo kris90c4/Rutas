@@ -4,7 +4,8 @@ defined("APPPATH") OR die("Acceso denegado");
 defined("USUARIO") OR die("Acceso denegado");
  
 use \Core\View,
-	\App\Models\Entrada as EntradaM;
+	\App\Models\Entrada as EntradaM,
+	\App\models\Cliente;
 
 
 class Entrada{
@@ -13,10 +14,11 @@ class Entrada{
 		View::set("entradas",EntradaM::getAll());
 		View::render('Entradas');
 	}
-	public function create($id=0) {
+	public function create($id=0,$edit=array()) {
 		View::set('title',"Nueva entrada");
 		if($id>0){
-			view::set('compraventa',EntradaM::getById($id));
+			$edit['id']=$id;
+			view::set('edit',$edit);
 		}
 		View::render("entrada");
 	}
@@ -25,6 +27,30 @@ class Entrada{
 		if (isset($_POST['enviar'])){
 
 			extract($_POST);
+
+			$datosVendedor=array('nombre'=> $vendedor, 'mail'=> $vMail, 'telefono'=> $vTlf);
+			$datosComprador=array('nombre'=> $comprador, 'mail'=> $cMail, 'telefono'=> $cTlf);
+
+			$datos['matricula']=$matricula;
+			$datos['base_imponible']=$base_imponible;
+			$datos['tipo_de_gravamen']=$tipo_de_gravamen;
+			if($tipo=="part"){
+				$datos['id_vendedor']=Cliente::insert($datosVendedor);
+			}else{
+				$datos['id_compraventa']=Cliente::insert($datosVendedor);
+			}
+			$datos['id_comprador']=Cliente::insert($datosComrpador);
+			$datos['id_tipo']=$tipo_traspaso;
+			$datos['provison']=$provison;
+			$datos['cobrado']=isset($pago)?date('d-m-Y'):"Pendiente";
+
+
+
+
+
+
+
+
 
 			/** Clases necesarias */
 
@@ -65,10 +91,12 @@ class Entrada{
 			$objPHPExcel->getActiveSheet()->SetCellValue('X4', date('d-m-Y'));
 			$objPHPExcel->getActiveSheet()->SetCellValue('X6', $_SESSION['usuario']->getNombre());
 			$objPHPExcel->getActiveSheet()->SetCellValue('X8', isset($pago)?$provision:"");
-			
 			$objPHPExcel->getActiveSheet()->SetCellValue('X9', isset($pago)?date('d-m-Y'):"Pendiente");
+			
 			$objPHPExcel->getActiveSheet()->SetCellValue('s13', $valor);
-			$objPHPExcel->getActiveSheet()->SetCellValue('F14', $vendedor);
+			$objPHPExcel->getActiveSheet()->SetCellValue('V13', $tipo_de_gravamen);
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('G14', $vendedor);
 			$objPHPExcel->getActiveSheet()->SetCellValue('D16', $vTlf);
 			$objPHPExcel->getActiveSheet()->SetCellValue('D18', $vMail);
 			$objPHPExcel->getActiveSheet()->SetCellValue('F21', $comprador);
@@ -127,6 +155,47 @@ class Entrada{
 
 			}
 		}*/
+	}
+
+	public function editar() {
+
+		extract($_POST);
+
+		/** Clases necesarias */
+
+		require_once('Classes/PHPExcel.php');
+
+		require_once('Classes/PHPExcel/Reader/Excel2007.php');
+
+		require_once('Classes/PHPExcel/Writer/Excel2007.php');
+		
+		// Cargando la hoja de cálculo
+
+		$objReader = new \PHPExcel_Reader_Excel2007();
+
+		$objPHPExcel = $objReader->load(__DIR__."\Traspasos\\$matricula.xlsx");
+
+		$objFecha = new \PHPExcel_Shared_Date();
+
+		// Asignar hoja de excel activa
+
+		$objPHPExcel->setActiveSheetIndex(0);
+
+
+
+		if($objPHPExcel->getActiveSheet()->getCell('X2')->getFormattedValue()==$matricula){
+			$edit['matricula']=$matricula;
+			$edit['valor']=$objPHPExcel->getActiveSheet()->getCell('s13')->getFormattedValue();
+			$edit['vendedor']=$objPHPExcel->getActiveSheet()->getCell('F14')->getFormattedValue();
+			$edit['vTlf']=$objPHPExcel->getActiveSheet()->getCell('D16')->getFormattedValue();
+			$edit['vMail']=$objPHPExcel->getActiveSheet()->getCell('D18')->getFormattedValue();
+			$edit['comprador']=$objPHPExcel->getActiveSheet()->getCell('F21')->getFormattedValue();
+			$edit['cTlf']=$objPHPExcel->getActiveSheet()->getCell('D23')->getFormattedValue();
+			$edit['cMail']=$objPHPExcel->getActiveSheet()->getCell('D25')->getFormattedValue();
+		}
+
+		echo json_encode($edit);
+
 	}
 
 	public function error404(){

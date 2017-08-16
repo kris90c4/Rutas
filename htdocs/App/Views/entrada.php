@@ -10,15 +10,24 @@
 	</select>
 
 	<br><br>
+	<h3>Datos Traspaso</h3><br>
+	<label>Tipo</label>
+	<select name="tipo_traspaso" id="tipo_traspaso">
+		<option value="3">Traspaso</option>
+		<option value="1">Caucional</option>
+		<option value="2">Notificacion Venta</option>
+		<option value="4">Notificacion Venta + Traspaso</option>
+	</select>
+	<br><br>
 	<h3>Datos Vehiculo</h3><br>
 	<label for="matricula">Matricula <font color="red">*</font></label>
-	<input id="matricula" type="text" name="matricula" value="<?= isset($editar)?$editar['matricula'] ?>" />
+	<input id="matricula" type="text" name="matricula" value="<?= isset($editar)?$editar['matricula']:"" ?>" />
 	<br>
-	<label for="valor">Valoración <font color="red">*</font></label>
-	<input id="valor" type="text" name="valor" value="<?= isset($editar)?$editar['valor'] ?>" />
+	<label for="base_imponible">Base imponible <font color="red">*</font></label>
+	<input id="base_imponible" type="text" name="base_imponible" value="<?= isset($editar)?$editar['base_imponible']:"" ?>" />
 	<br>
-	<label for="620">% 620</label>
-	<select id="620" name="620">
+	<label for="tipo_de_gravamen">Tipo de gravamen</label>
+	<select id="tipo_de_gravamen" name="tipo_de_gravamen">
 		<option value="4">4%</option>
 		<option value="8">8%</option>
 	</select>
@@ -27,28 +36,28 @@
 	<a id="nuevo" class="btn btn-default" style="padding: 3px; margin: 5px 0; display: none; " href="?controller=agenda&action=create">Nuevo Compraventa</a>
 	<div class="wrap">
 		<label for="vendedor">Nombre <font color="red">*</font></label>
-		<input list="cv" id="vendedor" type="text" name="vendedor" required  value="<?= isset($editar)?$editar['vendedor'] ?>" />
+		<input list="cv" id="vendedor" type="text" name="vendedor" required  value="<?= isset($editar)?$editar['vendedor']:"" ?>" />
 		<datalist id="cv"></datalist>
 	</div>
 	<div class="wrap">
 		<label for="vMail">Mail <font color="red">*</font></label>
-		<input list="autoMail" id="vMail" type="text" name="vMail" required  value="<?= isset($editar)?$editar['vmail'] ?>" />
+		<input list="autoMail" id="vMail" type="text" name="vMail" required  value="<?= isset($editar)?$editar['vmail']:"" ?>" />
 		<datalist id="autoMail"></datalist>
 	</div>
 	<label for="vTlf">Telefono <font color="red">*</font></label>
-	<input id="vTlf" type="number" name="vTlf" required  value="<?= isset($editar)?$editar['vTld'] ?>" />
+	<input id="vTlf" type="number" name="vTlf" required  value="<?= isset($editar)?$editar['vTlf']:"" ?>" />
 	<br><br>
 	<h3>Comprador</h3><br>
 	<label for="comprador">Nombre <font color="red">*</font></label>
-	<input id="comprador" type="text" name="comprador" required  value="<?= isset($editar)?$editar['comprador'] ?>" />
+	<input id="comprador" type="text" name="comprador" required  value="<?= isset($editar)?$editar['comprador']:"" ?>" />
 	<br>
 	<div class="wrap">
 		<label for="cMail">Mail <font color="red">*</font></label>
-		<input list="autoMail2" id="cMail" type="text" name="cMail" required  value="<?= isset($editar)?$editar['cMail'] ?>" />
+		<input list="autoMail2" id="cMail" type="text" name="cMail" required  value="<?= isset($editar)?$editar['cMail']:"" ?>" />
 		<datalist id="autoMail2"></datalist>
 	</div>
 	<label for="cTlf">Telefono <font color="red">*</font></label>
-	<input id="cTlf" type="number" name="cTlf" required value="<?= isset($editar)?$editar['cTlf'] ?>" />
+	<input id="cTlf" type="number" name="cTlf" required value="<?= isset($editar)?$editar['cTlf']:"" ?>" />
 	<br><br>
 	<h3>Cobro</h3>
 	<br>
@@ -60,10 +69,10 @@
 	</select>
 	<br>
 	<label for="pago">pagado hoy</font></label>
-	<input id="pago" type="checkbox" name="pago" value="<?= isset($editar)?$editar['pago'] ?>" />
+	<input id="pago" type="checkbox" name="pago" value="<?= isset($editar)?$editar['pago']:"" ?>" />
 	<br><br>
 	<input type="hidden" name="gestion" id="gestion">
-	<input class="btn btn-success" type='submit' name='enviar'  value="Crear Entrada" />
+	<input class="btn btn-success" type='submit' name='<?= isset($editar)?"editar":"enviar" ?>'  value="<?= isset($editar)?"Modificar":"Crear" ?> Entrada" />
 </form>
 
 <script>

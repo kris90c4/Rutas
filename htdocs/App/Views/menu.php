@@ -15,7 +15,8 @@
         <li class=""><a href="?controller=home&action=view">Home</a></li>
         <?php if(isset($_SESSION['usuario'])):?> <!--Menu para registrados-->
           <!--Seccion Comun-->
-            <li><a href="?controller=agenda&action=view">Agenda</a></li>
+            <li><a href="?controller=compraventa&action=view">Compraventas</a></li>
+            <li><a href="?controller=cliente&action=view">clientes</a></li>
           <!--Fin Seccion Comun-->
 	        <?php if($_SESSION['usuario']->getAdmin()): ?> <!--Sección usuario Admin-->
 		        <li><a href="?controller=perfil&action=gestion">GestionUsuarios</a></li>

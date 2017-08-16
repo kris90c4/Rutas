@@ -4,34 +4,34 @@ defined("APPPATH") OR die("Acceso denegado");
 defined("USUARIO") OR die("Acceso denegado");
  
 use \Core\View,
-	\App\Models\Agenda as AgendaM;
+	\App\Models\Compraventa as CompraventaM;
 
 
-class Agenda{
+class Compraventa{
 	public function view(){
-		View::set("title","Agenda");
-		View::set("clientes",AgendaM::getAll());
-		View::render('agenda');
+		View::set("title","Compraventas");
+		View::set("clientes",CompraventaM::getAll());
+		View::render('compraventas');
 	}
 	public function create($id=0) {
-		View::set('title',"Nuevo Cliente");
+		View::set('title',"Nuevo Compraventa");
 		if($id>0){
-			view::set('compraventa',AgendaM::getById($id));
+			view::set('compraventa',CompraventaM::getById($id));
 		}
-		View::render("nuevoCliente");
+		View::render("nuevoCompraventa");
 	}
 	//Guarda en la base de datos los datos introducidos en el formulario
 	public function save() {
 		if(isset($_POST['nuevo'])){
-			if($ok=AgendaM::insert($_POST)){//Si es correcto se reenvia a la tabla
+			if($ok=CompraventaM::insert($_POST)){//Si es correcto se reenvia a la tabla
 				$this->view();
 			}else{//si hay algun fallo se devuelve al formulario y se muestra que ha habido un error
 				View::set("error","Ha ocurrido un error.");
-				View::set('title',"Nuevo Cliente");
-				View::render("nuevoCliente");
+				View::set('title',"Nuevo Compraventa");
+				View::render("nuevoCompraventa");
 			}
 		}else{
-			if($ok=AgendaM::update($_POST)){//Si es correcto se reenvia a la tabla
+			if($ok=CompraventaM::update($_POST)){//Si es correcto se reenvia a la tabla
 				$this->view();
 			}else{//si hay algun fallo se devuelve al formulario y se muestra que ha habido un error
 
@@ -45,7 +45,7 @@ class Agenda{
 	
 	public function del(){
 		extract($_POST);
-		if($resultado=AgendaM::delete($id)){
+		if($resultado=CompraventaM::delete($id)){
 			echo "eliminado";
 		}else{
 			echo $resultado;
@@ -53,7 +53,7 @@ class Agenda{
 	}
 	public function find(){
 		extract($_POST);
-		$resultados=json_encode(AgendaM::getByName($cv));
+		$resultados=json_encode(CompraventaM::getByName($cv));
 		echo $resultados;
 	}
 }

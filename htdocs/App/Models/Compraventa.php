@@ -6,8 +6,8 @@ defined("APPPATH") OR die("Acceso denegado");
 use \Core\Database,
 \App\Interfaces\Crud;
 
-class Agenda implements Crud{
-	const TABLE = "cliente";
+class Compraventa implements Crud{
+	const TABLE = "compraventa";
 	
 	//Se devuelve una consulta adecuada a la tabla donde se va a visualizar
 	public static function getAll(){
