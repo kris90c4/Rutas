@@ -5,7 +5,8 @@ defined("USUARIO") OR die("Acceso denegado");
  
 use \Core\View,
 	\App\Models\Entrada as EntradaM,
-	\App\models\Cliente;
+	\App\Models\Entrada2 as Entrada2M,
+	\App\models\Cliente as ClienteM;
 
 
 class Entrada{
@@ -19,14 +20,30 @@ class Entrada{
 		if($id>0){
 			$edit['id']=$id;
 			view::set('edit',$edit);
+			//Enviar los indices que toca
 		}
 		View::render("entrada");
 	}
+	
+	public function id_cliente($datos){
+		if(empty($cliente=ClienteM::getByTlf($datos['telefono']))){
+			return ClienteM::insert($datos);
+		}else{
+			return $cliente['id'];
+		}
+	}
+
 	//Guarda en la base de datos los datos introducidos en el formulario
 	public function save() {
 		if (isset($_POST['enviar'])){
 
 			extract($_POST);
+
+			$matricula=strtoupper($matricula);
+			$vendedor=strtoupper($vendedor);
+			$comprador=strtoupper($comprador);
+			//$vMail=strtolower($vMail);
+			//$cMail=strtolower($cMail);
 
 			$datosVendedor=array('nombre'=> $vendedor, 'mail'=> $vMail, 'telefono'=> $vTlf);
 			$datosComprador=array('nombre'=> $comprador, 'mail'=> $cMail, 'telefono'=> $cTlf);
@@ -35,18 +52,18 @@ class Entrada{
 			$datos['base_imponible']=$base_imponible;
 			$datos['tipo_de_gravamen']=$tipo_de_gravamen;
 			if($tipo=="part"){
-				$datos['id_vendedor']=Cliente::insert($datosVendedor);
+				$datos['id_vendedor']=$this->id_cliente($datosVendedor);
 			}else{
-				$datos['id_compraventa']=Cliente::insert($datosVendedor);
+				$datos['id_compraventa']=$id_compraventa;
 			}
-			$datos['id_comprador']=Cliente::insert($datosComrpador);
+			$datos['id_comprador']=$this->id_cliente($datosComprador);
+			
 			$datos['id_tipo']=$tipo_traspaso;
-			$datos['provison']=$provison;
-			$datos['cobrado']=isset($pago)?date('d-m-Y'):"Pendiente";
+			$datos['provision']=$provision;
+			$datos['cobrado']=isset($pago)?date('Y-m-d'):NULL;
+			$datos['id_usuario']=$_SESSION['usuario']->getId();
 
-
-
-
+			Entrada2M::insert($datos);
 
 
 
@@ -93,7 +110,7 @@ class Entrada{
 			$objPHPExcel->getActiveSheet()->SetCellValue('X8', isset($pago)?$provision:"");
 			$objPHPExcel->getActiveSheet()->SetCellValue('X9', isset($pago)?date('d-m-Y'):"Pendiente");
 			
-			$objPHPExcel->getActiveSheet()->SetCellValue('s13', $valor);
+			$objPHPExcel->getActiveSheet()->SetCellValue('S13', $base_imponible);
 			$objPHPExcel->getActiveSheet()->SetCellValue('V13', $tipo_de_gravamen);
 			
 			$objPHPExcel->getActiveSheet()->SetCellValue('G14', $vendedor);
@@ -116,31 +133,27 @@ class Entrada{
 
 			$fileName=$matricula.".xlsx";
 
-			var_export($fileName);
 			// Guarda el archivo
 
 			$objWriter = new \PHPExcel_Writer_Excel2007($objPHPExcel);
 
 			$objWriter->save(__DIR__.'\Traspasos\\'.$fileName);
 
-			echo "<script> if (window.confirm('If you click \"ok\" you would be redirected . Cancel will load this website ')){
+			/*echo "<script> if (window.confirm('Si presionas en \"ok\" se creara la plantilla de entrada . Estan todos los datos correctos? ')){
 
 				window.location.href='App/Controllers/Traspasos/$fileName';
 				window.location.href='?controller=entrada&action=view';
 
 			};
-			</script>";
+			</script>";*/
 
 		}else{//si por algo no cargo el archivo bak_
 			echo "Rellena el formulario";
 		}
 		if($ok=EntradaM::insert($entrada)){//Si es correcto se reenvia a la tabla
 			
-			echo "<script> if (window.confirm('If you click \"ok\" you would be redirected . Cancel will load this website ')){
+			echo "<script> if (window.confirm('Si presionas en \"ok\" se creara la plantilla de entrada . Estan todos los datos correctos? ')){
 				window.location.href='?controller=entrada&action=view';
-				window.location.href='App/Controllers/Traspasos/$fileName';
-				
-
 			};
 			</script>";
 		}else{//si hay algun fallo se devuelve al formulario y se muestra que ha habido un error

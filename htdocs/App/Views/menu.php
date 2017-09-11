@@ -22,9 +22,10 @@
 		        <li><a href="?controller=perfil&action=gestion">GestionUsuarios</a></li>
             <li><a href="?controller=reportes&action=view">Reportes</a></li>
 			    <?php else: ?><!--Seccion Usuario normal-->
-		        <li><a href="?controller=traspasos&action=view">Traspasos</a></li>
-		        <li><a href="?controller=matri&action=view">Matriculaciones</a></li>
-            <li class=""><a href="?controller=entrada&action=view">Entrada</a></li>
+		        <!--li><a href="?controller=traspasos&action=view">Traspasos</a></li>
+		        <li><a href="?controller=matri&action=view">Matriculaciones</a></li-->
+            <li class=""><a href="?controller=entrada&action=view">Test</a></li>
+            <li class=""><a href="?controller=entrada2&action=view">Entradas</a></li>
 	        <?php endif; ?>
         <?php endif; ?>
       </ul>
@@ -34,7 +35,7 @@
         <li><a href="?controller=login&action=view"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
      	<?php else: ?>
     <li class="report"><a href="?controller=reportes&action=create">Sugerencias</a></li>
-		<li><a href="?controller=perfil&action=view"><?= $_SESSION['usuario']->getNombre()?></a></li>
+		<li><a id="username" href="?controller=perfil&action=view"><?= $_SESSION['usuario']->getNombre()?></a></li>
  		<li><a href="?controller=perfil&action=logout">salir</a></li>
 		 <?php endif; ?>
       </ul>

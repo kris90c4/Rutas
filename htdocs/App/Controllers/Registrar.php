@@ -17,6 +17,14 @@ class Registrar{
 	//Recoge los datos del formulario de registro. 
 	//Los valida y en caso necesario, usa el modelo admin/user para insertar un registro en la base de datos
 	public function check(){
+		////// Desabilitado registro ///////
+
+		
+		view::set("error","El sistema de registro esta desabilitado. Contacta con el administrador para cualquier duda");
+		View::render("Home");
+		exit();
+		
+
 		//Comprueba que se llege a este controlador solo al usar el formulario de registro
 		if(isset($_POST['registrar'])){
 			//Covierte los indices de $_POST en variables

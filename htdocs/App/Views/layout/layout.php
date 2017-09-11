@@ -29,6 +29,15 @@
 		<!-- Hoja de estilo -->
 		<link rel="stylesheet" type="text/css" href="/<?=ASSET?>css/style.css">
 		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+		
+		<meta http-equiv="Expires" content="0">
+		<meta http-equiv="Last-Modified" content="0">
+		<meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+		<meta http-equiv="Pragma" content="no-cache">
+		
 		
 	</head>
 	<body>

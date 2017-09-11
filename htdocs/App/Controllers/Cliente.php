@@ -40,6 +40,18 @@ class Cliente{
 			}
 		}
 	}
+	//funcion para ajax
+	public function actualizar(){
+		extract($_POST);
+		$datos['telefono']=$telefono;
+		$datos['mail']=$mail;
+		$datos['nombre']=$nombre;
+		if(ClienteM::update2($datos)){
+			echo true;
+		}else{
+			echo false;
+		}
+	}
 
 	/*public function usersAdmin(){
 		$users = UserAdmin::getAll();

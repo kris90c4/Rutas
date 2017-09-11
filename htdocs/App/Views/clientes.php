@@ -19,11 +19,11 @@
 				<td><?= $cliente['mail'] ?></td>
 				<td><?= $cliente['telefono'] ?></td>
 				<td>
-					<a href="?controller=agenda&action=create&parametros=<?= $cliente['id'] ?>" class="btn btn-success" id="edit">Editar</a>
+					<a href="?controller=cliente&action=create&parametros=<?= $cliente['id'] ?>" class="btn btn-success" id="edit">Editar</a>
 					<button class="del btn btn-danger">Eliminar</button>
 				</td>
 			</tr>
-		<?php endforeach;?>
+			<?php endforeach;?>
 		</tbody>
 	</table>
 	<div style="display: none" id="dialog-confirm" title="Eliminar Compraventa?">

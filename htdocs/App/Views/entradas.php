@@ -36,7 +36,7 @@
 			<?php foreach ($entradas as  $entrada): ?>
 			<tr>
 				<td><?= $entrada['id'] ?></td>
-				<td><?= $entrada['matricula'] ?></td>
+				<td><?= strtoupper($entrada['matricula']) ?></td>
 				<td><?= $entrada['nombre']?></td>
 				<td><?= $entrada['mail'] ?></td>
 				<td><?= $entrada['telefono'] ?></td>

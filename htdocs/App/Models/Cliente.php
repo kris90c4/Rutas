@@ -29,6 +29,27 @@ class Cliente implements Crud{
 			print "Error!: " . $e->getMessage();
 		}
 	}
+	public static function getLastId(){
+		try {
+			//Se declara la instancia que se comunica con la base de datos
+			$connection = Database::instance();
+			$sql = "SELECT * FROM ".self::TABLE. " ORDER BY ID DESC LIMIT 1";
+			// Se preapara la sentencia SQL
+			$query = $connection->prepare($sql);
+			//Se ejecuta la sentencia
+			$query->execute();
+			//se elige como se devolvera el resultado
+			$query->setFetchMode(\PDO::FETCH_ASSOC);
+			//Se devuelven todos las filas dentro de un array
+			
+			$cliente=$query->fetch();
+			return $cliente["id"]+1;
+		}
+		catch(\PDOException $e)
+		{//En caso de error se imprime
+			print "Error!: " . $e->getMessage();
+		}
+	}
 	//Se obtiene una fila determiada segun su id y se devuelve
 	// $id int
 	public static function getById($id){
@@ -53,6 +74,21 @@ class Cliente implements Crud{
 			$query->execute();
 			$query->setFetchMode(\PDO::FETCH_ASSOC);
 			return $query->fetchAll();
+		}
+		catch(\PDOException $e)
+		{
+			print "Error!: " . $e->getMessage();
+			var_export($sql);
+		}
+	}
+	public static function getBytlf($tlf){
+		try {
+			$connection = Database::instance();
+			$sql = "SELECT * from ".self::TABLE . " where telefono LIKE '" . $tlf . "'";
+			$query = $connection->prepare($sql);
+			$query->execute();
+			$query->setFetchMode(\PDO::FETCH_ASSOC);
+			return $query->fetch();
 		}
 		catch(\PDOException $e)
 		{
@@ -92,12 +128,45 @@ class Cliente implements Crud{
 	public static function update($data){
 		try{
 			$connection = Database::instance();
-			$sql = "UPDATE ". self::TABLE. " SET nombre = :nombre, gestion = :gestion, mail = :mail, telefono = :telefono where id = :id";
+			$sql = "UPDATE ". self::TABLE. " SET nombre = :nombre, mail = :mail, telefono = :telefono where id = :id";
 			$query = $connection->prepare($sql);
 			$query->bindParam(":id", $data['id'], \PDO::PARAM_INT);
 			$query->bindParam(":mail", $data['mail'], \PDO::PARAM_STR);
 			$query->bindParam(":nombre", $data['nombre'], \PDO::PARAM_STR);
-			$query->bindParam(":gestion", $data['gestion'], \PDO::PARAM_INT);
+			$query->bindParam(":telefono", $data['telefono'], \PDO::PARAM_INT);
+
+			return $query->execute();
+			//$ok == true? ha ido bien:No ha ido bien.
+		}
+		catch(\PDOException $e)
+		{
+			print "Error!: " . $e->getMessage();
+			return false;
+		}
+	}
+	public static function updateManual($data){
+		try{
+			$connection = Database::instance();
+			$sql = "UPDATE ". self::TABLE . " " . $data;
+			$query = $connection->prepare($sql);
+			
+
+			return $query->execute();
+			//$ok == true? ha ido bien:No ha ido bien.
+		}
+		catch(\PDOException $e)
+		{
+			print "Error!: " . $e->getMessage();
+			return false;
+		}
+	}
+	public static function update2($data){
+		try{
+			$connection = Database::instance();
+			$sql = "UPDATE ". self::TABLE. " SET nombre = :nombre, mail = :mail where telefono = :telefono";
+			$query = $connection->prepare($sql);
+			$query->bindParam(":mail", $data['mail'], \PDO::PARAM_STR);
+			$query->bindParam(":nombre", $data['nombre'], \PDO::PARAM_STR);
 			$query->bindParam(":telefono", $data['telefono'], \PDO::PARAM_INT);
 
 			return $query->execute();

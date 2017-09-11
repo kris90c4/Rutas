@@ -16,6 +16,8 @@ class App{
 	const CONTROLLERS_PATH = "App/controllers/";
 
 	public function __construct(){
+
+		
 		
 		//comprobamos que exista el archivo en el directorio controllers
 		if(file_exists(self::CONTROLLERS_PATH.ucfirst(isset($_GET['controller'])?$_GET['controller']:"Home"). ".php")){

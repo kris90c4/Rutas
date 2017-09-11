@@ -67,8 +67,15 @@ class Entrada implements Crud{
 		}
 		catch(\PDOException $e)
 		{
+			ob_start();
 			print "Error!: " . $e->getMessage();
+			echo "\n$sql\n";
 			var_export($data);
+			$error= ob_get_contents();
+			ob_end_clean();
+			ob_start();
+
+			return $error;
 		}
 	}
 	
