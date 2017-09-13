@@ -124,7 +124,7 @@ $('#entradas').ready(function() {
 	})
 
 	//Añadir a lista para enviar telefonos por correo
-	$('.opciones button:nth-child(3)').on('click',function(){
+	$('.seleccionar, .seleccionado').on('click',function(){
 		boton=$(this);
 		id=$(this).closest('tr').find('td:nth-child(1)').html();
 		console.log($(this).hasClass('seleccionar'))
@@ -200,7 +200,7 @@ $('#entradas').ready(function() {
 	});
 
 	//Se descarga la plantilla de salida
-	$('.descargarSalida').on('click',function(){
+	$('.descargarsalida').on('click',function(){
 		id=$(this).closest('tr').find('td:nth-child(1)').html();
 		$.post('?controller=entrada2&action=descargarsalida',{
 			'id' : id
