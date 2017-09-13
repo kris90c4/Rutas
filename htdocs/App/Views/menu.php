@@ -20,7 +20,7 @@
           <!--Fin Seccion Comun-->
 	        <?php if($_SESSION['usuario']->getAdmin()): ?> <!--Sección usuario Admin-->
 		        <li><a href="?controller=perfil&action=gestion">GestionUsuarios</a></li>
-            <li><a href="?controller=reportes&action=view">Reportes</a></li>
+            <li><a href="?controller=reportes&action=view">Reportes<span class="badge" id="pen"></span></a></li>
 			    <?php else: ?><!--Seccion Usuario normal-->
 		        <!--li><a href="?controller=traspasos&action=view">Traspasos</a></li>
 		        <li><a href="?controller=matri&action=view">Matriculaciones</a></li-->
@@ -43,8 +43,15 @@
   </div>
 </nav>
 <script type="text/javascript">
-$("#desplegar").click(function(){
-	$("#menu div").slideToggle();
-});
+  $("#desplegar").click(function(){
+  	$("#menu div").slideToggle();
+  });
+
+  $.post('?controller=reportes&action=pendientes',{
+
+  },function(data){
+    $('#pen').html(data);
+  });
+
 
 </script>

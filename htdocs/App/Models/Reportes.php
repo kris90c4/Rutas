@@ -13,7 +13,22 @@ class Reportes implements Crud{
 		try {
 			$connection = Database::instance();
 			$sql = "SELECT reporte.id, titulo, descripcion, fecha, hecho, usuarios.nombre usuario  FROM ".self::TABLE . " 
-						JOIN usuarios  ON usuarios.id = reporte.id_usuario";
+						JOIN usuarios  ON usuarios.id = reporte.id_usuario ORDER BY reporte.id DESC";
+			$query = $connection->prepare($sql);
+			$query->execute();
+			$query->setFetchMode(\PDO::FETCH_ASSOC);
+			return $query->fetchAll();
+		}
+		catch(\PDOException $e)
+		{
+			print "Error!: " . $e->getMessage();
+		}
+	}
+	public static function getPendientes(){
+		try {
+			$connection = Database::instance();
+			$sql = "SELECT count(id) pendientes FROM ".self::TABLE . " where hecho = 0";
+						
 			$query = $connection->prepare($sql);
 			$query->execute();
 			$query->setFetchMode(\PDO::FETCH_ASSOC);
@@ -65,7 +80,7 @@ class Reportes implements Crud{
 	public static function update($sql){
 		try{
 			$connection = Database::instance();
-			$query = $connection->prepare("UPDATE " . self::TABLE . " " .$sql);
+			$query = $connection->prepare("UPDATE " . self::TABLE . " $sql");
 			return $query->execute();
 			//$ok == true? ha ido bien:No ha ido bien.
 		}

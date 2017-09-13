@@ -13,6 +13,9 @@ body{
 #cuerpo{
 	margin-top: 20px;
 }
+#entrada2_wrapper{
+	background-color: #E6E6E6;
+}
 
 nav li a:hover, nav li a:focus {
 	background-color: #555 !important;
@@ -242,9 +245,10 @@ tfoot input {
 }
 .reportes li{
 	height: 250px;
-	margin: 50px;
-	padding:5px;
-	border:1px solid red;
+    margin: 50px;
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 10px;
 }
 
 .reportes li div *{
@@ -328,6 +332,16 @@ input[type=number]#vTlf {
 	margin: 0 4px;
 }
 
+
+.msn{
+    background-color: red;
+    border-radius: 10px;
+    width: 22px;
+    border: white 1px solid;
+    display: inline-block;
+    text-align: center;
+    color: white;
+}
 
 /*#plantilla input {
   width: 300px;

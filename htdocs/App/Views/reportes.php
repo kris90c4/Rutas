@@ -8,7 +8,8 @@
 					<div class="meta">
 						<h4>Fecha:</h4>
 						<p><?= $value['fecha'] ?></p>
-						<h4>Estado:</h4><font style="background: red"><?php echo $value['hecho']?"Resuelto":"Pendiente"; ?></font>
+						<h4 style="display: inline-block;">Estado:</h4><font class=<?= $value['hecho']?"\"label label-success\">Resuelto":"\"label label-danger\" >Pendiente" ; ?></font>
+						<br><button class="cerrar btn btn-default" data="<?= $value['id'] ?>">Cerrar</button>
 						
 					</div>
 					<div class="titulo">
@@ -26,3 +27,16 @@
 		<?php endif; ?>
 	</ul>
 </div>
+<script>
+	
+$('.cerrar').on('click',function(){
+	cerrar=$(this);
+	id=$(this).attr('data');
+	$.post('?controller=reportes&action=ready',{
+		'id' : id
+	},function(data){
+		console.log(data);
+	})
+});
+
+</script>

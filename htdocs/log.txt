@@ -127,3 +127,75 @@
 11 18:08:37 --> entrada OK
 11 18:27:55 --> Creando entrada... Matricula: IB9759DG - Gestionado por CRISTINA
 11 18:27:55 --> entrada OK
+12 11:23:44 --> Creando entrada... Matricula: 5436BKP - Gestionado por CRISTINA
+12 11:23:44 --> entrada OK
+12 12:22:48 --> Creando entrada... Matricula: 8097BHR - Gestionado por CRISTINA
+12 12:22:48 --> entrada OK
+12 13:48:14 --> Creando entrada... Matricula: 1239DJC - Gestionado por CRISTINA
+12 13:48:14 --> entrada OK
+12 14:56:16 --> CRISTINA ha enviado los siguientes telefonos 600286341, 606740395, 659826538, 663580355, 609356015, 660296910, 671925590, 673955431, 646419790, 664131698
+12 15:02:18 --> CRISTINA ha enviado los siguientes telefonos 625196487, 625135637, 673761201, 663580355, 639012572, 636881785, 628124682, 610314690
+12 16:27:08 --> Creando entrada... Matricula: 7318BNZ - Gestionado por Jaume
+12 16:27:08 --> entrada OK
+12 17:09:32 --> Creando entrada... Matricula: 8893CGG - Gestionado por Jaume
+12 17:09:33 --> entrada OK
+12 17:43:49 --> Creando entrada... Matricula: 8498GDV - Gestionado por CRISTINA
+12 17:43:49 --> entrada OK
+12 18:19:41 --> Creando entrada... Matricula: 5144FBV - Gestionado por CRISTINA
+12 18:19:41 --> entrada OK
+13 11:58:13 --> Creando entrada... Matricula: 4347CFF - Gestionado por CRISTINA
+13 11:58:13 --> entrada OK
+13 17:15:37 --> Creando entrada... Matricula: IB9491DM - Gestionado por CRISTINA
+13 17:15:37 --> entrada OK
+13 17:46:01 --> Creando entrada... Matricula: 4255HYJ - Gestionado por CRISTINA
+13 17:46:01 --> Entrada: Error!: SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'nombre2' at row 1
+INSERT INTO entrada(matricula, nombre, mail, telefono, nombre2, mail2, telefono2, entrada) VALUES(:matricula, :nombre, :mail, :telefono, :nombre2, :mail2, :telefono2, :entrada)
+array (
+  'tipo' => 'cv',
+  'tipo_traspaso' => '3',
+  'matricula' => '4255HYJ',
+  'base_imponible' => '0',
+  'tipo_de_gravamen' => '4',
+  'vendedor' => 'Luis Maurice',
+  'vTlf' => '605111908',
+  'vMail' => 'Sin confirmar',
+  'comprador' => 'PROYECTOS E INSTALACIONES JONMAR',
+  'cTlf' => '0',
+  'cMail' => 'No disponible',
+  'provision' => 'efectivo',
+  'pago' => 'on',
+  'id_compraventa' => '3',
+  'id_vendedor' => NULL,
+  'id_comprador' => '394',
+  'gestion' => '32',
+  'id' => '',
+  'enviar' => 'Crear Entrada',
+  'id_tipo' => '3',
+  'cobrado' => '2017-09-13',
+  'id_usuario' => '6',
+)
+Formulario: 
+array (
+  'tipo' => 'cv',
+  'tipo_traspaso' => '3',
+  'matricula' => '4255HYJ',
+  'base_imponible' => '0',
+  'tipo_de_gravamen' => '4',
+  'vendedor' => 'Luis Maurice',
+  'vTlf' => '605111908',
+  'vMail' => 'Sin confirmar',
+  'comprador' => 'PROYECTOS E INSTALACIONES JONMAR',
+  'cTlf' => '0',
+  'cMail' => 'No disponible',
+  'provision' => 'efectivo',
+  'pago' => 'on',
+  'id_compraventa' => '3',
+  'id_vendedor' => NULL,
+  'id_comprador' => '394',
+  'gestion' => '32',
+  'id' => '',
+  'enviar' => 'Crear Entrada',
+  'id_tipo' => '3',
+  'cobrado' => '2017-09-13',
+  'id_usuario' => '6',
+)

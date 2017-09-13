@@ -33,6 +33,10 @@ class Entrada2{
 		}
 		View::render("entrada");
 	}
+
+	public function getPrecio($tipo){
+		return Ajax::sql("SELECT precio FROM tipos where id = $tipo");
+	}
 	
 	public function id_cliente($datos){
 		if($datos['telefono']==0){
@@ -271,9 +275,16 @@ class Entrada2{
 		$objPHPExcel->getActiveSheet()->SetCellValue('X6', $usuario['nombre']);
 		$objPHPExcel->getActiveSheet()->SetCellValue('X8', $provision);
 		$objPHPExcel->getActiveSheet()->SetCellValue('X9', $cobrado);
+
+
 		
 		$objPHPExcel->getActiveSheet()->SetCellValue('S13', $base_imponible);
 		$objPHPExcel->getActiveSheet()->SetCellValue('V13', $tipo_de_gravamen);
+
+		$resultado=$this->getPrecio($id_tipo);
+		$precio=$resultado[0]['precio'];
+		$objPHPExcel->getActiveSheet()->SetCellValue('Y16', $precio);
+		
 		if($id_vendedor){
 			$objPHPExcel->getActiveSheet()->SetCellValue('F14', $datosVendedor['nombre']);
 			$objPHPExcel->getActiveSheet()->SetCellValue('D16', $datosVendedor['telefono']);

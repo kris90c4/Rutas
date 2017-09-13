@@ -28,6 +28,17 @@ class Reportes{
 		}
 	}
 
+	public function ready(){
+		extract($_POST);
+		ReportesM::update("set hecho = 1 where id = $id");
+	}
+
+	public function pendientes(){
+		$num = ReportesM::getPendientes();
+		//echo $num['pendientes'];
+		echo ($num[0]['pendientes']);
+	}
+
 	public function error404(){
 		View::render("errors/404");
 	}

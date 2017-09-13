@@ -11,7 +11,7 @@
 			<option value="cv" <?= isset($editar)&&$editar['tipo']=="cv"?"selected":"" ?> >CompraVenta</option>
 		</select><br>
 		<label>Tipo</label>
-		<select name="tipo_traspaso" id="tipo_traspaso" value="<?= isset($editar['id_tipo']) ?>" tabindex="1">
+		<select name="tipo_traspaso" id="tipo_traspaso" tabindex="1">
 			<option value="3" <?= isset($editar)&&$editar['id_tipo']==2?"selected":"" ?>>Traspaso</option>
 			<option value="1" <?= isset($editar)&&$editar['id_tipo']==1?"selected":"" ?>>Caucional</option>
 			<option value="2" <?= isset($editar)&&$editar['id_tipo']==2?"selected":"" ?>>Notificacion Venta</option>
@@ -70,7 +70,7 @@
 <?php if(!isset($editar)): ?>
 	<div class="separador">
 		<h3>Cobro</h3>
-		<br>
+		<label style="font-size: 15px" class="pull-right label label-danger"><span id="precio" ></span>€</label>
 		<label for="provision">Provision</label>
 		<select name="provision" id="provision" tabindex="1">
 			<option value="visa">Visa</option>
@@ -118,6 +118,47 @@
 		}
 
 	});
+
+	$('#base_imponible, #tipo_de_gravamen').blur(function(){
+		if($.isNumeric($(this).val())){
+			gravamen=$('#tipo_de_gravamen').val();
+			m620=$(this).val()*gravamen/100;
+		}
+	})
+
+	gestion=63;
+	m620=0;
+	tipo=[]
+	tipo[1]=58;
+	tipo[2]=12.4;
+	tipo[3]=58;
+	tipo[4]=70.4;
+
+	$(document).on('change',function(){
+		setTimeout(function(){
+			if($.isNumeric($('#base_imponible').val())){
+				gravamen=$('#tipo_de_gravamen').val();
+				m620=$('#base_imponible').val()*gravamen/100;
+			}
+			if($('#tipo').val()=='cv'){
+				if($.isNumeric($('#gestion').val())){
+					gestion=parseInt($('#gestion').val());
+				}else{
+					gestion=0;
+				}
+			}else{
+				gestion=63
+			}
+
+
+			i=$('#tipo_traspaso').val();
+
+			$('#precio').html(gestion+tipo[i]+m620).css('margin-right','10px');
+			console.log(gestion,tipo[i],m620)
+		},1000)
+		
+	});
+
 
 	//Muestra un swal() en caso de devolver un error
 	if("<?= isset($error)?$error:"" ?>"){
