@@ -134,6 +134,8 @@
 	tipo[3]=58;
 	tipo[4]=70.4;
 
+	$('#precio').html(gestion+tipo[3]+m620);
+
 	$(document).on('change',function(){
 		setTimeout(function(){
 			if($.isNumeric($('#base_imponible').val())){
@@ -153,7 +155,7 @@
 
 			i=$('#tipo_traspaso').val();
 
-			$('#precio').html(gestion+tipo[i]+m620).css('margin-right','10px');
+			$('#precio').html(gestion+tipo[i]+m620);
 			console.log(gestion,tipo[i],m620)
 		},1000)
 		
@@ -300,6 +302,7 @@
 								$('#gestion').val(content[i]['gestion']);
 								$('#info').html(content[i]['gestion']);
 								$('#id_compraventa').val(content[i]['id']);
+								$('#comprador').focus();
 							}
 						}
 					});

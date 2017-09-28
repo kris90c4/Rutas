@@ -13,7 +13,7 @@ class View
 	/**
 	 * @var
 	 */
-	const VIEWS_PATH = "App/views/";
+	const VIEWS_PATH = "App/Views/";
 	
 	/**
 	 * @var

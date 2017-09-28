@@ -54,6 +54,7 @@ class Entrada implements Crud{
 			$query = $connection->prepare($sql);
 			//si no se envia la poblacion, se asigna null
 			//isset($data['mail'])&&!empty($data['mail'])?:$data['mail']=null;
+			$now=date("Y-m-d H:i:s");
 			$query->bindParam(":matricula", $data['matricula'], \PDO::PARAM_STR);
 			$query->bindParam(":nombre", $data['vendedor'], \PDO::PARAM_STR);
 			$query->bindParam(":mail", $data['vMail'], \PDO::PARAM_STR);
@@ -61,7 +62,7 @@ class Entrada implements Crud{
 			$query->bindParam(":nombre2", $data['comprador'], \PDO::PARAM_STR);
 			$query->bindParam(":mail2", $data['cMail'], \PDO::PARAM_STR);
 			$query->bindParam(":telefono2", $data['cTlf'], \PDO::PARAM_INT);
-			$query->bindParam(":entrada", date("Y-m-d H:i:s"), \PDO::PARAM_STR);
+			$query->bindParam(":entrada", $now, \PDO::PARAM_STR);
 			return $query->execute();
 			//$ok == true? ha ido bien:No ha ido bien.
 		}

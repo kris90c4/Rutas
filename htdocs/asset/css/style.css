@@ -1,3 +1,8 @@
+#portada h2,#portada{
+	text-align: center;
+	font-size: 3em;
+}
+
 body{
 	background:#E6E6E6;
 	margin:0;
@@ -341,6 +346,17 @@ input[type=number]#vTlf {
     display: inline-block;
     text-align: center;
     color: white;
+}
+
+#novedades{
+	text-align: center;
+	display: flex;
+}
+#novedades div{
+	margin:10px;
+}
+#precio{
+	margin-right:10px;
 }
 
 /*#plantilla input {

@@ -10,10 +10,10 @@ use \Core\View,
 	\App\Models\User as UserM,
 	\App\Models\Enviado as EnviadoM,
 	\App\Models\Ajax,
-	\App\models\Cliente as ClienteM;
+	\App\Models\Cliente as ClienteM;
 
 
-class Entrada2{
+class Entrada2 extends ControllerBase{
 	public function view(){
 		View::set("title","Entradas");
 		$entradas=Entrada2M::getView();
@@ -24,7 +24,7 @@ class Entrada2{
 		}
 		
 		View::set("entradas",$entradas);
-		View::render('Entradas2');
+		View::render('entradas2');
 	}
 	public function create($id=0,$editar=array()) {
 		View::set('title',"Nueva entrada");
@@ -234,18 +234,33 @@ class Entrada2{
 
 		require_once('Classes/PHPExcel/Reader/Excel2007.php');
 
-		require_once('Classes/PHPExcel/Writer/Excel2007.php');
+		require_once ('Classes/PHPExcel/IOFactory.php');
+
+		include_once ('Classes/PHPExcel/Writer/Excel2007.php');
+
+		include_once ('Classes/PHPExcel/Writer/PDF.php');
+
+		
+		//$rendererName = \PHPExcel_Settings::PDF_RENDERER_TCPDF;
+
+		// tcpdf folder
+		
+		//$rendererLibraryPath = dirname(__FILE__).'\Classes\PHPExcel\Writer\PDF'; 
+
+		//include_once ('Classes/PHPExcel/Writer/PDF/tcPDF.php');
 		
 		// Cargando la hoja de cálculo
 
 		$objReader = new \PHPExcel_Reader_Excel2007();
 
+		//exit(__DIR__."/HojaEntradaParticulares2017.xlsx");
+
 		if($id_vendedor){
 			$datosVendedor=ClienteM::getById($entrada['id_vendedor']);
-			$objPHPExcel = $objReader->load(__DIR__."\HojaEntradaParticulares2017.xlsx");
+			$objPHPExcel = $objReader->load(__DIR__."/HojaEntradaParticulares2017.xlsx");
 		}else{
 			$datoscompraventa=CompraventaM::getById($entrada['id_compraventa']);
-			$objPHPExcel = $objReader->load(__DIR__."\HojaEntradaCompraventas2017.xlsx");
+			$objPHPExcel = $objReader->load(__DIR__."/HojaEntradaCompraventas2017.xlsx");
 		}
 		$datosComprador=ClienteM::getById($entrada['id_comprador']);
 
@@ -309,11 +324,25 @@ class Entrada2{
 
 		// Guarda el archivo
 
+		//\PHPExcel_Settings::setPdfRenderer($rendererName, $rendererLibraryPath);
+
 		$objWriter = new \PHPExcel_Writer_Excel2007($objPHPExcel);
+		//$objWriter = new \PHPExcel_Writer_PDF($objPHPExcel);
+		//$objWriter->writeAllSheets();
 
-		$objWriter->save(__DIR__.'\Traspasos\\'.$fileName);
+		// Redirect output to a client’s web browser (Excel2007)
 
-		echo "App\Controllers\Traspasos\\$matricula.xlsx";
+		header('Content-Type: application/Excel');
+
+		header("Content-Disposition: attachment;filename=\"$fileName\"");
+
+		header('Cache-Control: max-age=0');
+
+		//$objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'PDF');
+
+		$objWriter->save(__DIR__.'/Traspasos/'.$fileName);
+
+		echo "App/Controllers/Traspasos/$fileName";
 		
 
 	}
@@ -327,12 +356,14 @@ class Entrada2{
 		require_once('Classes/PHPExcel/Reader/Excel2007.php');
 
 		require_once('Classes/PHPExcel/Writer/Excel2007.php');
+
+		require_once('Classes/PHPExcel/Writer/PDF.php');
 		
 		// Cargando la hoja de cálculo
 
 		$objReader = new \PHPExcel_Reader_Excel2007();
 
-		$objPHPExcel = $objReader->load(__DIR__."\HojaSalida.xlsx");
+		$objPHPExcel = $objReader->load(__DIR__."/HojaSalida.xlsx");
 
 		/** Clases necesarias */
 
@@ -360,9 +391,9 @@ class Entrada2{
 
 		$objWriter = new \PHPExcel_Writer_Excel2007($objPHPExcel);
 
-		$objWriter->save(__DIR__.'\Traspasos\Salidas\\'.$fileName);
+		$objWriter->save(__DIR__.'/Traspasos/Salidas/'.$fileName);
 
-		echo "App\Controllers\Traspasos\Salidas\\$fileName";
+		echo "App/Controllers/Traspasos/Salidas/$fileName";
 		
 
 	}
@@ -433,12 +464,44 @@ class Entrada2{
 	//Se actualiza la fecha de salida en la tabla entrada2
 	//Se elimina los registros de la tabla enviado
 	public function confirmar(){
-		$sql="SELECT cliente.telefono FROM entrada2 JOIN cliente ON entrada2.id_comprador = cliente.id JOIN enviado ON entrada2.id = enviado.id_entrada";
 
-		$telefonos=Ajax::sql($sql);
-		if(count($telefonos)==0){
-			exit(count($telefonos));
+		$sql="SELECT entrada2.matricula, c.telefono comprador, c.mail cMail, cv.telefono compraventa, cv.mail cvMail, v.telefono vendedor, v.mail vMail FROM entrada2 left JOIN compraventa cv on cv.id = entrada2.id_compraventa JOIN enviado ON entrada2.id = enviado.id_entrada left JOIN cliente c ON c.id = entrada2.id_comprador left JOIN cliente v ON v.id = entrada2.id_vendedor";
+
+		$salida=Ajax::sql($sql);
+
+		
+		//Se elimina el array intermedio
+		for ($i=0; $i < count($salida); $i++) { 
+
+
+			//Si encuentra un telefono de comprador menor a 6 digitos, busca el del vendedor o el del comrpaventa
+			if(strlen($salida[$i]['comprador'])>6){
+				$mail=$salida[$i]['cMail'];
+			}else{
+				if($salida[$i]['vendedor']==null){
+					$mail=$salida[$i]['cvMail'];
+				}else{
+					$mail=$salida[$i]['vMail'];
+				}
+			}
+			if(strpos($mail,"@")){
+				//Tiene correo
+				if($this->mandar_mail($mail,"Documentación de la matrícula ".$salida[$i]['matricula']." tramitada","Le informamos que la documentación referente al vehículo con matrícula ".$salida[$i]['matricula']." ya está tramitada.<br>Podrá recogerla en Gestoría Pòrtol, C/ Gran Vía Asima, 15, 1º Izquierda.<br>Para cualquier consulta estamos disponibles en el siguiente teléfono 971908095.<br>Nuestro horario de atención al público es de 8:00 a 20:00 de lunes a viernes y de 9:00 a 13:00 los sabados.<br>Para la recogida de la documentación será necesario presentar el DNI para dejar constancia de quien la recoge","comercial@gestoriaportol.com")) {
+				}
+			}
+
 		}
+
+		/*
+		// Se identifican los clientes que tengan pendiente el envio de SMS
+		$sql="SELECT cliente.telefono, cliente.mail, entrada2.matricula FROM entrada2 JOIN cliente ON entrada2.id_comprador = cliente.id JOIN enviado ON entrada2.id = enviado.id_entrada";
+
+		$telefonos=Ajax::sql($sql);*/
+		if(count($salida)==0){
+			exit(count($salida));
+		}
+
+
 
 		Entrada2M::updateSalida();
 		EnviadoM::deleteAll();

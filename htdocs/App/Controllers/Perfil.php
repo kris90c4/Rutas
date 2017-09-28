@@ -30,6 +30,11 @@ class Perfil{
 			View::render('perfil');
 		}
 	}
+
+	public function buzon(){
+		
+	}
+
 	// Usado para una llamada Post de ajax
 	// Valida que los campos enviados sean correctos antes de acceder a la base de datos
 	public function modificarPass(){

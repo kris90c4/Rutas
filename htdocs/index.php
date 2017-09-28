@@ -4,7 +4,7 @@ define("PROJECTPATH", __DIR__);
 
 //directorio app
 define("APPPATH", PROJECTPATH . '/App');
-
+ini_set('date.timezone' , 'Europe/Madrid');
 //autoload con namespaces
 function autoload_classes($class_name)
 {

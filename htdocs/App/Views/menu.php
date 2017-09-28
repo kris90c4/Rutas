@@ -15,6 +15,7 @@
         <li class=""><a href="?controller=home&action=view">Home</a></li>
         <?php if(isset($_SESSION['usuario'])):?> <!--Menu para registrados-->
           <!--Seccion Comun-->
+            <li><a href="?controller=home&action=novedades">Novedades</a></li>
             <li><a href="?controller=compraventa&action=view">Compraventas</a></li>
             <li><a href="?controller=cliente&action=view">clientes</a></li>
           <!--Fin Seccion Comun-->
@@ -36,6 +37,7 @@
      	<?php else: ?>
     <li class="report"><a href="?controller=reportes&action=create">Sugerencias</a></li>
 		<li><a id="username" href="?controller=perfil&action=view"><?= $_SESSION['usuario']->getNombre()?></a></li>
+    <!--li><a id="buzon" href="?controller=perfil&action=buzon"><i class="glyphicon glyphicon-envelope"></i></a></li-->
  		<li><a href="?controller=perfil&action=logout">salir</a></li>
 		 <?php endif; ?>
       </ul>

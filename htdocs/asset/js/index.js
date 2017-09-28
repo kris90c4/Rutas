@@ -195,6 +195,7 @@ $('#entradas').ready(function() {
 		$.post('?controller=entrada2&action=descargar',{
 			'id' : id
 		},function(data){
+			console.log(data);
 			window.location.href=data;
 		})
 	});
@@ -249,9 +250,9 @@ $('#entradas').ready(function() {
 		        }
 		    });
 		});
-		$('.opciones button:nth-child(3)').on('click',function(){
+		/*$('.opciones button:nth-child(3)').on('click',function(){
 			table2.reload();
-		});
+		});*/
 		
 	},100);
 });
