@@ -34,7 +34,7 @@ class Login{
 				if($_SESSION['usuario']->getAdmin()){
 					header("location: ?controller=perfil&action=gestion");
 				}else{//Si es un usuario normal, se muestra la vista con las matriculaciones
-					header("location: ?controller=entrada2&action=view");
+					header("location: ?controller=entrada&action=view");
 				}
 			}else{
 				// si la contraseña es incorrecta

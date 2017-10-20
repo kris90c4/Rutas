@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 defined("APPPATH") OR die("Acceso denegado");
-define("PASS", "Orionagb29...");
+
  
 use \Core\View,
 	\App\Models\User,
@@ -61,8 +61,9 @@ class Home extends ControllerBase{
 
 	public function test2(){
 		$para="cristiansmx2a@gmail.com";
-		$para.=",comercial@gestoriaportol.com";
-		if($this->mandar_mail($para,"Documentación de la matrícula 1111AAA tramitada","Le informamos que la documentación referente al vehículo con matrícula 1111AAA ya está tramitada.<br>Podrá recogerla en Gestoría Pòrtol, C/ Gran Vía Asima, 15, 1º Izquierda.<br>Para cualquier consulta estamos disponibles en el siguiente teléfono 971908095.<br>Nuestro horario de atención al público es de 8:00 a 20:00 de lunes a viernes y de 9:00 a 13:00 los sabados.","comercial@gestoriaportol.com")) {
+		$para.=",myrna@gestoriaportol.com";
+		if($this->mandar_mail($para,"Documentación de la matrícula 1111AAA tramitada",
+			"Le informamos que la documentación referente al vehículo con matrícula 1111AAA ya está tramitada.<br>Podrá recogerla en Gestoría Pòrtol, C/ Gran Vía Asima, 15, 1º Izquierda.<br>Para cualquier consulta estamos disponibles en el siguiente teléfono 971908095.<br>Nuestro horario de atención al público es de 8:00 a 20:00 de lunes a viernes y de 9:00 a 13:00 los sabados.<br>Para la recogida de la documentación será necesario presentar el DNI para dejar constancia de quien la recoge","comercial@gestoriaportol.com")) {
 			$error = "Correo masivo enviado correctamente";
 		} else {
 			$error = "Error al enviar mensaje";

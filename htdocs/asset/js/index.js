@@ -91,7 +91,7 @@ function keyOff(){
 $('#entradas').ready(function() {
 
 	// Al recargar la pagina, se vuelven a seleccionar los registros seleccionados previamente
-	$.post("?controller=entrada2&action=check",{
+	$.post("?controller=entrada&action=check",{
 
 	},function(data){
 		if(data){
@@ -108,7 +108,7 @@ $('#entradas').ready(function() {
 				console.log('No hay resultados');
 			}
 		}else{
-			console.log('Error al ver la tabla enviados. Revisar controlador entrada2 y funcion check');
+			console.log('Error al ver la tabla enviados. Revisar controlador entrada y funcion check');
 		}
 	});
 	////////////////////Nuevo, pendiente de probar
@@ -120,7 +120,7 @@ $('#entradas').ready(function() {
 	$('.editar').on('click', function(){
 		console.log("Editando");
 		id=$(this).parents("tr").find("td:nth-child(1)").html();
-		window.location.href='?controller=entrada2&action=editar&parametros='+id;
+		window.location.href='?controller=entrada&action=editar&parametros='+id;
 	})
 
 	//Añadir a lista para enviar telefonos por correo
@@ -129,7 +129,7 @@ $('#entradas').ready(function() {
 		id=$(this).closest('tr').find('td:nth-child(1)').html();
 		console.log($(this).hasClass('seleccionar'))
 		if($(this).hasClass('seleccionar')){
-			$.post("?controller=entrada2&action=seleccionar",{
+			$.post("?controller=entrada&action=seleccionar",{
 				'id_entrada' : id
 			},function(data){
 				if(data){//En caso de error
@@ -141,7 +141,7 @@ $('#entradas').ready(function() {
 				}
 			});
 		}else{
-			$.post("?controller=entrada2&action=deseleccionar",{
+			$.post("?controller=entrada&action=deseleccionar",{
 				'id' : id
 			},function(data){
 				if(data){//En caso de error
@@ -157,7 +157,7 @@ $('#entradas').ready(function() {
 
 	//Confirma las entradas seleccionadas y graba la fecha de salida de todas ellas
 	$('#confirmar').on('click',function(){
-		$.post('?controller=entrada2&action=confirmar',{
+		$.post('?controller=entrada&action=confirmar',{
 			
 		},function(data){
 			if(data=="ok"){
@@ -173,7 +173,7 @@ $('#entradas').ready(function() {
 
 	//Envia un correo con todos los telefonos seleccionados a comercial@gestoriaportol.com
 	$('#enviar').on('click',function(){
-		$.post('?controller=entrada2&action=enviar',{
+		$.post('?controller=entrada&action=enviar',{
 			
 		},function(data){
 			if(data>0&&data<100){
@@ -192,7 +192,7 @@ $('#entradas').ready(function() {
 	// Se descarga la plantilla de entrada
 	$('.descarga').on('click',function(){
 		id=$(this).closest('tr').find('td:nth-child(1)').html();
-		$.post('?controller=entrada2&action=descargar',{
+		$.post('?controller=entrada&action=descargar',{
 			'id' : id
 		},function(data){
 			console.log(data);
@@ -203,7 +203,7 @@ $('#entradas').ready(function() {
 	//Se descarga la plantilla de salida
 	$('.descargarsalida').on('click',function(){
 		id=$(this).closest('tr').find('td:nth-child(1)').html();
-		$.post('?controller=entrada2&action=descargarsalida',{
+		$.post('?controller=entrada&action=descargarsalida',{
 			'id' : id
 		},function(data){
 			window.location.href=data;
@@ -216,7 +216,7 @@ $('#entradas').ready(function() {
 		$('tbody tr').each(function(){
 			
 				id=$(this).find('td:nth-child(1)').html();
-				$.post('?controller=entrada2&action=descargarsalida',{
+				$.post('?controller=entrada&action=descargarsalida',{
 					'id' : id
 				},function(data){
 					//setTimeout(function(){
@@ -228,14 +228,14 @@ $('#entradas').ready(function() {
 		});
 	});
 
-	$('#entrada2 tfoot th').each( function () {
+	$('#entrada tfoot th').each( function () {
 	    var title = $(this).text();
 	    $(this).html( '<input type="text" placeholder="'+title+'" />' );
 	} );
 	// Aplica la api de DataTable a la tabla con Id $vista
 	//se aplica un retardo para asugurar la aplicacion del seleccionado
 	setTimeout(function(){
-		var table2 = $('#entrada2').DataTable({
+		var table2 = $('#entrada').DataTable({
 		    "order": [[ 0, "desc" ]],
 		});
 			

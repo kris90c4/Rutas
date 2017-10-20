@@ -2,7 +2,7 @@
 
 <!-- FORMULARIO PARA SOICITAR LA CARGA DEL EXCEL -->
 
-<form id="plantilla" method="post" action="?controller=entrada2&action=<?= isset($editar)?"editado":"save" ?>">
+<form id="plantilla" method="post" action="?controller=entrada&action=<?= isset($editar)?"editado":"save" ?>">
 	<div class="separador">
 		<h3>Datos Traspaso</h3>
 		<label>Solicitante</label><label style="float:right; color: lightblue;" id="info"></label>
@@ -16,7 +16,7 @@
 			<option value="1" <?= isset($editar)&&$editar['id_tipo']==1?"selected":"" ?>>Caucional</option>
 			<option value="2" <?= isset($editar)&&$editar['id_tipo']==2?"selected":"" ?>>Notificacion Venta</option>
 			<option value="4" <?= isset($editar)&&$editar['id_tipo']==4?"selected":"" ?>>Notificacion Venta + Traspaso</option>
-		</select>
+		</select><br>
 	</div>
 	<div class="separador">
 		<h3>Datos Vehiculo</h3>
@@ -34,7 +34,7 @@
 	</div>
 	<div class="separador">
 		<h3 id="vcv">Vendedor</h3>
-		<a id="nuevo" class="btn btn-default" style="padding: 3px; margin: 5px 0; display: none; " href="?controller=agenda&action=create">Nuevo Compraventa</a>
+		<button id="nuevo" class="btn btn-default" style="padding: 3px; margin: 5px 0; display: none; " >Nuevo Compraventa</button>
 		<div class="wrap">
 			<label for="vendedor">Nombre <font color="red">*</font></label>
 			<input class="nombre" list="cv" id="vendedor" tabindex="1" type="text" name="vendedor" required  value="<?= isset($editar)?$editar['vendedor']:"" ?>" />
@@ -79,13 +79,21 @@
 		</select>
 		<br>
 		<label for="pago">pagado hoy</font></label>
-		<input id="pago" type="checkbox" tabindex="1" name="pago" <?= isset($editar)?"checked":"" ?> />
+		<input id="pago" type="checkbox" tabindex="1" name="pago" <?= isset($editar)?"checked":"" ?> /><br>
 	</div>
 <?php endif; ?>
+	<div class="separador">
+		<label for="">Correo Ordinario</label>
+		<select name="correo_ordinario" id="correo_ordinario">
+			<option value="0">No</option>
+			<option <?= isset($editar)&&$editar['correo_ordinario']==1?"selected":"" ?> value="1">Normal(+15€)</option>
+			<option <?= isset($editar)&&$editar['correo_ordinario']==2?"selected":"" ?> value="2">Contrarembolso</option>
+		</select>
+	</div>
 	<input type="hidden" name="id_compraventa" id="id_compraventa" value="<?= isset($editar)?$editar['id_compraventa']:"" ?>">
 	<input type="hidden" name="id_vendedor" id="id_vendedor" value="<?= isset($editar)?$editar['id_vendedor']:"" ?>">
 	<input type="hidden" name="id_comprador" id="id_comprador" value="<?= isset($editar)?$editar['id_comprador']:"" ?>">
-
+	<input type="hidden" name="tiempo" value="<?= date('Y-m-d H:i:s') ?>">
 	<input type="hidden" name="gestion" id="gestion">
 	<input type="hidden" name="id" value="<?= isset($editar)?$editar['id']:"" ?>">
 	<input class="btn btn-success" type='submit' tabindex="1" name='<?= isset($editar)?"editar":"enviar" ?>' value="<?= isset($editar)?"Modificar":"Crear" ?> Entrada" />
@@ -111,6 +119,16 @@
 		return false;
 		
 	})*/
+
+	$('#nuevo').on('click',function(){
+		swal({
+			html:'<form class="form" action="?controller=compraventa&action=save" method="POST"><h3>Compraventa</h3><br><label for="nombre">Nombre</label><input id="nombre" type="text" name="nombre" required><br><label for="gestion">Gestión</label><i id="info_gestion" class="glyphicon glyphicon-info-sign" title="Como calcular el precio"></i><input id="gestion" type="number" step="0.1" name="gestion"  required><br><label for="mail">Mail</label><input id="mail" type="mail" name="mail" required><br><label for="telefono">Teléfono</label><input id="telefono" type="text" name="telefono" required ><br><br><input type="hidden" name="id"><input type="submit" name="nuevo" value="Nuevo"><span><?= isset($error)?$error:"" ?></span></form>',
+			title: 'Nuevo Compraventa',
+			showCloseButton: false,
+			showCancelButton: false,
+		})
+	});
+
 	// Maximo 9 digitos por telefono y solo numeros
 	$('.tlf, #base_imponible').on('keypress',function(event){
 		if(event.keyCode<48 || event.keyCode>57 || $(this).val().length>8){
@@ -119,12 +137,16 @@
 
 	});
 
+	//Calculo presupuesto dinamico
+
 	$('#base_imponible, #tipo_de_gravamen').blur(function(){
 		if($.isNumeric($(this).val())){
 			gravamen=$('#tipo_de_gravamen').val();
 			m620=$(this).val()*gravamen/100;
 		}
 	})
+
+
 
 	gestion=63;
 	m620=0;
@@ -133,6 +155,7 @@
 	tipo[2]=12.4;
 	tipo[3]=58;
 	tipo[4]=70.4;
+	correo=15;
 
 	$('#precio').html(gestion+tipo[3]+m620);
 
@@ -149,15 +172,18 @@
 					gestion=0;
 				}
 			}else{
-				gestion=63
+				gestion=63;
+			}
+			if($('#correo_ordinario').val()==1){
+				gestion+=correo;
 			}
 
 
 			i=$('#tipo_traspaso').val();
 
 			$('#precio').html(gestion+tipo[i]+m620);
-			console.log(gestion,tipo[i],m620)
-		},1000)
+			console.log(gestion,tipo[i],m620);
+		},300)
 		
 	});
 
@@ -175,7 +201,7 @@
 		
 
 		if($(this).val()!=""){
-			$.post('?controller=entrada2&action=no_duplicar&parametros='+ $(this).val(),{
+			$.post('?controller=entrada&action=no_duplicar&parametros='+ $(this).val(),{
 
 			},
 			function(data){
@@ -310,7 +336,7 @@
 				});
 			});
 		}else{
-			$('#vTlf, #vMail').off('keypress',keyOff());
+			$('#vTlf, #vMail').off('keydown',keyOff);
 			$('#vcv').html('Vendedor');
 			$('#nuevo').css('display','none');
 			$('#vMND, #vTND').show();

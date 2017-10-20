@@ -4,7 +4,7 @@ defined("APPPATH") OR die("Acceso denegado");
 
 use \core\Database;
 
-class ajax{
+class Ajax{
 
 	public static function sql($sql){
 		try {

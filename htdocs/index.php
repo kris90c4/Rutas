@@ -26,7 +26,7 @@ session_start();
 if(isset($_SESSION['usuario'])){
 	// Si ya se ha logeado el usaurio se inicializa la constante USUARIO
 	define('USUARIO',$_SESSION['usuario']->getAdmin());
-}else{//Si no se ha iniciado el usaurio se incia la constante INVITADO
+}else{//Si no se ha iniciado el usuario se incia la constante INVITADO
 	define('INVITADO',"Invitado");
 }
 

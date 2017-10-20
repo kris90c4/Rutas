@@ -32,6 +32,11 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js"></script>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
 		
 		<meta http-equiv="Expires" content="0">
 		<meta http-equiv="Last-Modified" content="0">
@@ -49,6 +54,7 @@
 		
 		</div>
 		<script type="text/javascript" src="/<?=ASSET?>js/index.js"></script>
+		<?= isset($_SESSION['error'])&&$_SESSION['usuario']->getNombre()=="cristian"?var_dump($_SESSION['error']):"" ?>
 	</body>
 
 </html>

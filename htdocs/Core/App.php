@@ -11,13 +11,18 @@ class App{
 
 	private $_params = [];
 
+	private $access;
+
+
+
 	const NAMESPACE_CONTROLLERS = "\App\Controllers\\";
 
 	const CONTROLLERS_PATH = "App/Controllers/";
 
 	public function __construct(){
 
-		
+		$this->access=$_SERVER["SERVER_NAME"]=="portol.ddns.net"?"ext":"int";
+
 		
 		//comprobamos que exista el archivo en el directorio controllers
 		if(file_exists(self::CONTROLLERS_PATH.ucfirst(isset($_GET['controller'])?$_GET['controller']:"Home"). ".php")){
@@ -59,7 +64,20 @@ class App{
 	 * [render  lanzamos el controlador/método que se ha llamado con los parámetros]
 	 */
 	public function render(){
-		call_user_func_array([$this->_controller, $this->_method], $this->_params);
+		if($this->access=="ext"){
+			$controller=self::NAMESPACE_CONTROLLERS."Tramites";
+			$controller=new $controller;
+			define("ACCESS","ext");
+			if(isset($_GET['url'])){
+				$url=explode(",", $_GET['url']);
+				$this->_params = array_values($url);
+			}else{
+				$this->_params = [];
+			}
+			call_user_func_array([$controller, "estado"],  $this->_params);
+		}else{
+			call_user_func_array([$this->_controller, $this->_method], $this->_params);
+		}
 	}
 	
 	/**

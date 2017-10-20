@@ -18,7 +18,7 @@ body{
 #cuerpo{
 	margin-top: 20px;
 }
-#entrada2_wrapper{
+#entrada_wrapper{
 	background-color: #E6E6E6;
 }
 
@@ -220,13 +220,13 @@ tfoot input {
 #gestionUsuarios tbody tr:nth-child(2n){
 	background: rgb(128, 208, 245);
 }
-#entrada2 tbody tr:nth-child(2n), #entrada tbody tr:nth-child(2n){
+#entrada tbody tr:nth-child(2n), #entrada tbody tr:nth-child(2n){
 	background-color: #e6e6e6;
 }
-#entrada2 tbody tr.cv:nth-child(2n) , #entrada tbody tr.cv:nth-child(2n){
+#entrada tbody tr.cv:nth-child(2n) , #entrada tbody tr.cv:nth-child(2n){
 	background-color: #d2dee6 !important;
 }
-#entrada2 tbody tr.cv:nth-child(2n+1) , #entrada tbody tr.cv:nth-child(2n+1){
+#entrada tbody tr.cv:nth-child(2n+1) , #entrada tbody tr.cv:nth-child(2n+1){
 	background-color: #e7f5ff !important;
 }
 
@@ -357,6 +357,28 @@ input[type=number]#vTlf {
 }
 #precio{
 	margin-right:10px;
+}
+
+#estado{
+	display: table;
+	/*text-align: center;*/
+	margin:0 auto;
+}
+#estado label{
+	margin-right: 7px;
+}
+#estadisticas th,#estadisticas td{
+	padding: 3px;
+	border: 1px solid black;
+}
+#estadisticas table{
+	/*border: 1px solid black;*/
+	border-top: none;
+}
+#estadisticas{
+	display: table;
+	margin: 0 auto;
+	border-collapse: collapse;
 }
 
 /*#plantilla input {
