@@ -39,6 +39,9 @@ nav li a:hover, nav li a:focus {
 #plantilla{
 	width: 345px;
 }
+#plantilla label{
+	
+}
 #plantilla input[type="submit"]{
 	margin: 0 auto;
 	display: block;
@@ -377,9 +380,21 @@ input[type=number]#vTlf {
 }
 #estadisticas{
 	display: table;
-	margin: 0 auto;
 	border-collapse: collapse;
+	margin:0 20px;
 }
+#estadisticas div{
+	float: left;
+}
+#estadisticas ul{
+	list-style: none;
+	padding-left: 10px; 
+}
+#estadisticas input[type=radio]{
+	margin-left:3px;
+	margin-right: 6px;
+}
+
 
 /*#plantilla input {
   width: 300px;

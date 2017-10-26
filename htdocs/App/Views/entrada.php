@@ -1,11 +1,10 @@
 <!-- http://ProgramarEnPHP.wordpress.com -->
 
 <!-- FORMULARIO PARA SOICITAR LA CARGA DEL EXCEL -->
-
 <form id="plantilla" method="post" action="?controller=entrada&action=<?= isset($editar)?"editado":"save" ?>">
 	<div class="separador">
 		<h3>Datos Traspaso</h3>
-		<label>Solicitante</label><label style="float:right; color: lightblue;" id="info"></label>
+		<label>Solicitante</label>
 		<select name="tipo" id="tipo" tabindex="1">
 			<option value="part">Particular</option>
 			<option value="cv" <?= isset($editar)&&$editar['tipo']=="cv"?"selected":"" ?> >CompraVenta</option>
