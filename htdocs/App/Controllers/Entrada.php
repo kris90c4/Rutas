@@ -12,6 +12,8 @@ use \Core\View,
 	\App\Models\Cliente as ClienteM;
 
 
+
+
 class Entrada extends ControllerBase{
 	public function view(){
 		View::set("title","Entradas");
@@ -31,6 +33,10 @@ class Entrada extends ControllerBase{
 			view::set('editar',$editar);
 		}
 		View::render("entrada");
+	}
+
+	public function modalCreate(){
+		echo file_get_contents(__DIR__."/App/Views/entrada.php");
 	}
 
 	public function getPrecio($tipo){
@@ -120,80 +126,7 @@ class Entrada extends ControllerBase{
 				$datos['cobrado']=isset($pago)?date('Y-m-d'):NULL;
 				$datos['id_usuario']=$_SESSION['usuario']->getId();
 				$datos['correo_ordinario']=isset($correo_ordinario)?$correo_ordinario:0;
-/*
-				// Clases necesarias 
 
-				require_once('Classes/PHPExcel.php');
-
-				require_once('Classes/PHPExcel/Reader/Excel2007.php');
-
-				require_once('Classes/PHPExcel/Writer/Excel2007.php');
-				
-				// Cargando la hoja de cálculo
-
-				$objReader = new \PHPExcel_Reader_Excel2007();
-
-				if($tipo=="part")
-					$objPHPExcel = $objReader->load(__DIR__."\HojaEntradaParticulares2017.xlsx");
-				else{
-					$objPHPExcel = $objReader->load(__DIR__."\HojaEntradaCompraventas2017.xlsx");
-				}
-
-				$objFecha = new \PHPExcel_Shared_Date();
-
-				// Asignar hoja de excel activa
-
-				$objPHPExcel->setActiveSheetIndex(0);
-
-
-				//conectamos con la base de datos
-
-				///////////////////////////////////////////////////////////
-
-
-				///////////////////////////////////////////////////////////
-
-
-				// Llenamos el arreglo con los datos  del archivo xlsx
-
-				$objPHPExcel->getActiveSheet()->SetCellValue('X2', $matricula);
-				$objPHPExcel->getActiveSheet()->SetCellValue('X4', date('d-m-Y'));
-				$objPHPExcel->getActiveSheet()->SetCellValue('X6', $_SESSION['usuario']->getNombre());
-				$objPHPExcel->getActiveSheet()->SetCellValue('X8', isset($pago)?$provision:"");
-				$objPHPExcel->getActiveSheet()->SetCellValue('X9', isset($pago)?date('d-m-Y'):"Pendiente");
-				
-				$objPHPExcel->getActiveSheet()->SetCellValue('S13', $base_imponible);
-				$objPHPExcel->getActiveSheet()->SetCellValue('V13', $tipo_de_gravamen);
-				if($tipo=="cv"){
-					$objPHPExcel->getActiveSheet()->SetCellValue('G14', $vendedor);
-				}else{
-					$objPHPExcel->getActiveSheet()->SetCellValue('F14', $vendedor);
-				}
-				$objPHPExcel->getActiveSheet()->SetCellValue('D16', $vTlf);
-				$objPHPExcel->getActiveSheet()->SetCellValue('D18', $vMail);
-				$objPHPExcel->getActiveSheet()->SetCellValue('F21', $comprador);
-				$objPHPExcel->getActiveSheet()->SetCellValue('D23', $cTlf);
-				$objPHPExcel->getActiveSheet()->SetCellValue('D25', $cMail);
-				if($tipo=="cv")
-					$objPHPExcel->getActiveSheet()->SetCellValue('Y18', $gestion);
-				$presupuesto = $objPHPExcel->getActiveSheet()->getCell('X33')->getFormattedValue();
-				// Importar a base de datos, tabla entrada
-
-				$entrada=$_POST;
-				$entrada['total']=$presupuesto;
-
-
-
-				// Nombre archivo
-
-				$fileName=$matricula.".xlsx";
-
-				// Guarda el archivo
-
-				$objWriter = new \PHPExcel_Writer_Excel2007($objPHPExcel);
-
-				$objWriter->save(__DIR__.'\Traspasos\\'.$fileName);
-*/
 
 				$e2=EntradaM::insert($datos);
 
@@ -212,6 +145,9 @@ class Entrada extends ControllerBase{
 					View::render("entrada");
 				}else{
 					$this->log("entrada OK");
+					if(strpos($datosComprador['mail'],"@")){
+						
+					}
 					echo "<script>
 					window.location.href='?controller=Entrada&action=view';
 					</script>";
@@ -492,8 +428,11 @@ class Entrada extends ControllerBase{
 
 		
 		//Se elimina el array intermedio
-		for ($i=0; $i < count($salida); $i++) { 
+		for ($i=0; $i < count($salida); $i++) {
 
+			//$filaSiga=$this->siga("SELECT TOP 1 TRANSMISIONES.CODIGOTRANSMISION FROM TRANSMISIONES JOIN VEHICULOS ON VEHICULOS.CodigoVehiculo = TRANSMISIONES.VEHICodigoVehiculo AND VEHICULOS.Matricula = '". $matri."' ORDER BY TRANSMISIONES.CODIGOTRANSMISION DESC");
+
+			$this->sigaUpdate("UPDATE TRANSMISIONES SET Anotaciones = CONCAT(Anotaciones, '\nSALIDA ".date('d/m/Y')."') WHERE CODIGOTRANSMISION = (SELECT TOP 1 TRANSMISIONES.CODIGOTRANSMISION FROM TRANSMISIONES JOIN VEHICULOS ON VEHICULOS.CodigoVehiculo = TRANSMISIONES.VEHICodigoVehiculo AND VEHICULOS.Matricula = '". $salida[$i]['matricula']."' ORDER BY TRANSMISIONES.CODIGOTRANSMISION DESC)");
 
 			//Si encuentra un telefono de comprador menor a 6 digitos, busca el del vendedor o el del comrpaventa
 			if(strlen($salida[$i]['comprador'])>6){
@@ -637,6 +576,19 @@ class Entrada extends ControllerBase{
 	//Pendiente
 	public function del($id){
 		$resultado=Entrada::delete($id);
+	}
+	public function find620(){
+		$empieza= new \DateTime();
+		extract($_POST);
+		if(isset($matricula)){
+			$json=$this->check620($matricula,empty($precio)?1000:$precio,empty($tick)?500:$tick);
+			$termina=new \DateTime();
+			$interval=$empieza->diff($termina);
+			$json['time']=$interval->format("%i:%s");
+
+			echo json_encode($json);
+			//echo json_encode($json);
+		}
 	}
 }
 ?>

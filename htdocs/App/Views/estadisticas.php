@@ -1,20 +1,5 @@
 <?php 
 
-
-	//var_export($diaria); 
-
-	for ($i=0; $i < count($horas); $i++) { 
-		$hora[]=$horas[$i]['hora'];
-		$cantidad[]=$horas[$i]['cantidad'];
-	}
-	for ($i=0; $i < count($diaria); $i++) { 
-		$fecha[]=$diaria[$i]['fecha'];
-		$traspasos[]=$diaria[$i]['traspasos'];
-		$mails[]=$diaria[$i]['mails'];
-		$c=$diaria[$i]['dayofweek']*35;
-		$dayofweek[]="rgb($c,$c,$c)";
-	}
-
 ?>
 
 <div id="estadisticas">
@@ -38,6 +23,8 @@
 				<label for="">Hasta</label>
 				<input id="hasta" type="date" value="<?= date("Y-m-d") ?>">
 			</li>
+				<label for="">Usuario: </label>
+				<select id="usuarios"></select>
 			<li>
 				<button id="filtrar">Filtrar</button>
 			</li>
@@ -86,61 +73,76 @@
 <script>
 	var contador=0;
 	
-	ajax1("");
+	// Se consultan todos los datos
+	filtro("");
+	// Se envia una peticion ajax con los datos de los filtros y se procesan los datos devueltos
 	$('#filtrar').on('click',function(){
-		datos={'entrada':$('input[name=control]:checked').val(),'desde':$('#desde').val(),'hasta':$('#hasta').val()};
+		//Se prepara un objeto con los datos de cada filtro.
+		datos={'entrada':$('input[name=control]:checked').val(),'desde':$('#desde').val(),'hasta':$('#hasta').val(),'usuario':$('#usuarios').val()};
 		console.log("Datos enviados para filtrar: ",datos);
-		ajax1(datos);
+		//Se procesan los datos devueltos
+		filtro(datos);
 	})
 
 	//Se cargan los datos de las estadisticas
-	function ajax1(datos){
+	function filtro(datos){
 		//Se realiza una consulta ajax con los datos de los filtros
-		$.post("?controller=estadisticas&action=ajax1",{
+		$.post("?controller=estadisticas&action=filtro",{
 			'vcv': datos['entrada'],
 			'desde': datos['desde'],
-			'hasta': datos['hasta']
+			'hasta': datos['hasta'],
+			'usuario': datos['usuario']
 		},function(data){
-			//console.log(data);
+			console.log(data);
+			// Se obtiene un objeto el cual almacena un objeto por cada grafica.
 			info=JSON.parse(data);
-			console.log(info);
-			//Se almacenarán los resultados de los usuarios
+			//console.log(info);
+
+			/////////////////////////////  GRAFICA USUARIOS //////////////////////////////////////
 			tabla=$("#ajax1 tbody");
 			tabla.html('');
-			traspasos=0;
-			mails=0;
-			n= new Array();
-			t= new Array();
-			m= new Array();
+			if(contador==0){
+				selectUsuarios=$('#usuarios');
+				selectUsuarios.html('').append(
+					$('<option>',{'value':'','html':'Todos'})
+				);
+			}
+			usuarios={"nombre":[],"traspasos":[],"mails":[],"totalTraspasos":0,"totalMails":0};
+			//Se extrae el contenido
 			for (var i = 0; i < info['usuarios'].length; i++) {
-				n[i]=info['usuarios'][i]['nombre'];
-				t[i]=info['usuarios'][i]['traspasos'];
-				m[i]=info['usuarios'][i]['mails'];
-				traspasos+=parseInt(info['usuarios'][i]['traspasos']);
-				mails+=parseInt(info['usuarios'][i]['mails']);
+				usuarios['nombre'][i]=info['usuarios'][i]['nombre'];
+				usuarios['traspasos'][i]=info['usuarios'][i]['traspasos'];
+				usuarios['mails'][i]=info['usuarios'][i]['mails'];
+				usuarios['totalTraspasos']+=parseInt(info['usuarios'][i]['traspasos']);
+				usuarios['totalMails']+=parseInt(info['usuarios'][i]['mails']);
+				if(contador==0){
+					selectUsuarios.append(
+						$('<option>',{'value':usuarios['nombre'][i],'html':usuarios['nombre'][i]})
+					);
+				}
 				tabla.append(
 					$('<tr>').append(
-						$('<td>',{'html':info['usuarios'][i]['nombre']}),
-						$('<td>',{'html':info['usuarios'][i]['traspasos']}),
-						$('<td>',{'html':info['usuarios'][i]['mails']}),
-						$('<td>',{'html':Math.round(info['usuarios'][i]['mails']/info['usuarios'][i]['traspasos']*100)+"%"})
+						$('<td>',{'html':usuarios['nombre'][i]}),
+						$('<td>',{'html':usuarios['traspasos'][i]}),
+						$('<td>',{'html':usuarios['mails'][i]}),
+						$('<td>',{'html':Math.round(usuarios['mails'][i]/usuarios['traspasos'][i]*100)+"%"})
 					)
 				)
 			}
 			tabla.append(
 				$('<tr>').append(
 					$('<td>',{'html':'total'}),
-					$('<td>',{'html':traspasos}),
-					$('<td>',{'html':mails})
+					$('<td>',{'html':usuarios['totalTraspasos']}),
+					$('<td>',{'html':usuarios['totalMails']})
 				)
 			)
 			// Traspasos por usuarios
 			var ctx = $("#myChart");
 			datosGrafica1={
-		        labels: n,
+		        labels: usuarios['nombre'],
 		        datasets: [{
 		            label: 'Traspasos',
-		            data: t,
+		            data: usuarios['traspasos'],
 		            backgroundColor: [
 		                'rgba(255, 99, 132, 0.2)',
 		                'rgba(54, 162, 235, 0.2)',
@@ -160,7 +162,7 @@
 		            borderWidth: 1
 		        },{
 		        	 label: 'mails',
-		        	 data: m,
+		        	 data: usuarios['mails'],
 		        	 type: 'line'
 		        }]
 		    }
@@ -175,12 +177,21 @@
 						title: {
 							display: true,
 							text: 'Usuarios'
+						},
+						scales:{
+							yAxes:[{
+								ticks:{
+									//max: 120
+								}
+							}]
 						}
 					}
 				});
 			}
-			//
-			diaria={'fecha':[],'traspasos':[],'mails':[],'dayofweek':[]};
+			//////////////////////////////// FIN GRAFICA USUARIO ////////////////////////////////////
+
+			////////////////////////////// GRAFICA DIARIA //////////////////////////////////
+			diaria={'fecha':[],'traspasos':[],'mails':[],'dayofweek':[],'dayofweek2':[]};
 			
 			for (var i = 0; i < info['diaria'].length; i++) {
 				diaria['fecha'][i]=info['diaria'][i]['fecha'];
@@ -188,6 +199,7 @@
 				diaria['mails'][i]=info['diaria'][i]['mails'];
 				c=info['diaria'][i]['dayofweek']*35;
 				diaria['dayofweek'][i]='rgb('+c+','+c+','+c+')';
+				diaria['dayofweek2'][i]=info['diaria'][i]['dayofweek'];
 			}
 			// Traspasos y mails de cada dia
 			ctx3 = $("#diaria");
@@ -198,6 +210,7 @@
 						data: diaria['traspasos'],
 						pointBackgroundColor: diaria['dayofweek'],
 						pointBorderColor: diaria['dayofweek'],
+						pointRadius: diaria['dayofweek2'],
 						borderColor: 'rgb(25, 250, 25)',
 						backgroundColor: 'rgba(25, 250, 25,0.5)',
 						borderWidth: 1
@@ -224,6 +237,10 @@
 					}
 				});
 			}
+			//////////////////////////////// FIN GRAFICA DIARIA ///////////////////////////
+
+
+			//////////////////////////////// GRAFICA HORAS ///////////////////////////////
 			//Se crea un objeto con dos arrays
 			horas={'hora':[],'cantidad':[]};
 			
@@ -256,29 +273,12 @@
 					}
 				});
 			}
+			///////////////////////////// FIN GRAFICA HORAS //////////////////////////////
 			contador++;
 		})
 	}
 
-	datos=new Array;
-	/*
-	datos['hora']=JSON.parse('<?= json_encode($hora) ?>');
-	datos['cantidad']=JSON.parse('<?= json_encode($cantidad) ?>');
 
-	var ctx2 = $("#horas");
-	var myLineChart = new Chart(ctx2, {
-		type: 'line',
-		data: {
-			labels: datos['hora'],
-			datasets: [{
-				label: 'Traspasos',
-				data: datos['cantidad'],
-				borderColor: 'rgb(255, 99, 132)',
-				borderWidth: 1
-			}]
-		},
-		options: {}
-	});*/
 
 	function addData(chart, label, data) {
 		i=0;
@@ -302,6 +302,10 @@
 			if(data['datasets'][i]['pointBorderColor']){
 				dataset.pointBorderColor=data['datasets'][i]['pointBorderColor'];
 			}
+			if(data['datasets'][i]['pointRadius']){
+				dataset.pointRadius=data['datasets'][i]['pointRadius'];
+			}
+
 			i++;
 	    });
 	    chart.update();

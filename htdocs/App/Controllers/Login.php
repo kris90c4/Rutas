@@ -32,7 +32,12 @@ class Login{
 				UserAdmin::update("SET fechaEntrada = CURRENT_TIMESTAMP WHERE id = " . $_SESSION['usuario']->getId());
 				// Si logea un administrador se rediridige a la pagina de gestion
 				if($_SESSION['usuario']->getAdmin()){
-					header("location: ?controller=perfil&action=gestion");
+					
+					if($_SESSION['usuario']->getNombre()=="Myrna"){
+						header("location: ?controller=estadisticas&action=view");
+					}else{
+						header("location: ?controller=perfil&action=gestion");
+					}
 				}else{//Si es un usuario normal, se muestra la vista con las matriculaciones
 					header("location: ?controller=entrada&action=view");
 				}

@@ -1,6 +1,6 @@
 <?php defined("APPPATH") OR die("Acceso denegado"); ?>
 <div>
-	<a class="btn btn-success" href="?controller=compraventa&action=create">Añadir Compraventa</a>
+	<button class="btn btn-success" id="nuevo">Nuevo Compraventa</button>
 	<table id="compraventa">
 		<thead>
 			<tr>

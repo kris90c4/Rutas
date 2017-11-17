@@ -310,6 +310,14 @@ tfoot input {
 #plantilla .separador h3{
 	margin-bottom: 8px;
 }
+#plantilla #bt{
+	padding: 2px 5px 1px 5px;
+	margin: 0 0 2px 3px;
+}
+#plantilla #bt + i{
+	padding: 2px 5px 1px 5px;
+	margin: 0 0 4px 3px;
+}
 
 
 /*Redimension de boton*/
@@ -394,6 +402,36 @@ input[type=number]#vTlf {
 	margin-left:3px;
 	margin-right: 6px;
 }
+.datos label{
+    width: 190px;
+    /*margin-left: 60px;*/
+    margin-right: -80px;
+    text-align: left;
+}
+.datos span {
+    width: 200px;
+    text-align: right;
+    display: inline-block;
+}
+
+#modal620{
+	display:none;
+	position:fixed;
+	background-color:grey;
+	padding:10px;
+	border-radius:10px;
+}
+
+#modal620 #close{
+	position:absolute;
+	right:8px;
+	top:8px;
+}
+.cvButton{
+	padding: 3px;
+	margin: 5px 0;
+	display: none;
+}
 
 
 /*#plantilla input {
@@ -406,3 +444,41 @@ input[type=number]#vTlf {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
    border-color: rgb(102, 175, 233);
 }*/
+
+			/*MODAL*/
+
+#overlay{
+	position: fixed; 
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+}
+
+#modal{
+	position:absolute;
+	background:url(tint20.png) 0 0 repeat;
+	background:rgba(0,0,0,0.2);
+	border-radius:14px;
+	padding:8px;
+}
+
+#content{
+	border-radius:8px;
+	background:#fff;
+	padding:20px;
+}
+
+#close{
+	position:absolute;
+	background:url(close.png) 0 0 no-repeat;
+	width:24px;
+	height:27px;
+	display:block;
+	text-indent:-9999px;
+	top:-7px;
+	right:-7px;
+}

@@ -1,6 +1,3 @@
-<!-- http://ProgramarEnPHP.wordpress.com -->
-
-<!-- FORMULARIO PARA SOICITAR LA CARGA DEL EXCEL -->
 <form id="plantilla" method="post" action="?controller=entrada&action=<?= isset($editar)?"editado":"save" ?>">
 	<div class="separador">
 		<h3>Datos Traspaso</h3>
@@ -20,7 +17,8 @@
 	<div class="separador">
 		<h3>Datos Vehiculo</h3>
 		<label for="matricula">Matricula <font color="red">*</font></label>
-		<input id="matricula" type="text" name="matricula" tabindex="1" value="<?= isset($editar)?$editar['matricula']:"" ?>" required/>
+		<input style="width: 150px" id="matricula" type="text" name="matricula" tabindex="1" value="<?= isset($editar)?$editar['matricula']:"" ?>" required/><i style="padding: 1px 5px;" class="btn btn-default" id=bt>620</i><i id="conf" class="glyphicon glyphicon-wrench btn btn-success"></i>
+		<div id="modal620"><label for="">Precio Inicial: </label><br><input name="inicial" id="inicial" type="number" value="1000"><i id="close" class="glyphicon glyphicon-remove-circle"></i><!--label for="">Tick: </label><input id="tick" name="tick" type="number"--></div>
 		<br>
 		<label for="base_imponible">Base imponible <font color="red">*</font></label>
 		<input id="base_imponible" type="number" tabindex="1" name="base_imponible" value="<?= isset($editar)?$editar['base_imponible']:"" ?>" required />
@@ -33,7 +31,8 @@
 	</div>
 	<div class="separador">
 		<h3 id="vcv">Vendedor</h3>
-		<button id="nuevo" class="btn btn-default" style="padding: 3px; margin: 5px 0; display: none; " >Nuevo Compraventa</button>
+		<button class="cvButton btn btn-default" id="nuevo">Nuevo Compraventa</button>
+		<!--button id="nuevo" class="cvButton btn btn-default" >Nuevo Compraventa</button-->
 		<div class="wrap">
 			<label for="vendedor">Nombre <font color="red">*</font></label>
 			<input class="nombre" list="cv" id="vendedor" tabindex="1" type="text" name="vendedor" required  value="<?= isset($editar)?$editar['vendedor']:"" ?>" />
@@ -52,6 +51,7 @@
 	</div>
 	<div class="separador">
 		<h3>Comprador</h3>
+		<button id="mismoCV" class="cvButton btn btn-default">Mismo Compraventa</button>
 		<label for="comprador">Nombre <font color="red">*</font></label>
 		<input class="nombre" id="comprador" tabindex="1" type="text" name="comprador" required  value="<?= isset($editar)?$editar['comprador']:"" ?>" />
 		<br>
@@ -119,13 +119,87 @@
 		
 	})*/
 
-	$('#nuevo').on('click',function(){
-		swal({
-			html:'<form class="form" action="?controller=compraventa&action=save" method="POST"><h3>Compraventa</h3><br><label for="nombre">Nombre</label><input id="nombre" type="text" name="nombre" required><br><label for="gestion">Gestión</label><i id="info_gestion" class="glyphicon glyphicon-info-sign" title="Como calcular el precio"></i><input id="gestion" type="number" step="0.1" name="gestion"  required><br><label for="mail">Mail</label><input id="mail" type="mail" name="mail" required><br><label for="telefono">Teléfono</label><input id="telefono" type="text" name="telefono" required ><br><br><input type="hidden" name="id"><input type="submit" name="nuevo" value="Nuevo"><span><?= isset($error)?$error:"" ?></span></form>',
-			title: 'Nuevo Compraventa',
-			showCloseButton: false,
-			showCancelButton: false,
+	$('#conf').on('click',function(e){
+		console.log(e);
+		$( "#modal620" ).css({"top":(e.clientY-50)+"px","left":(e.clientX+20)+"px"}).show();
+	});
+	$("#modal620 #close").on("click",function(){
+		$( "#modal620" ).hide();
+	})
+
+
+
+	
+	
+
+	// calculo de precio base vehiculo
+	$('#bt').on('click',function(){
+		//$(this).html($('<img src="asset/gifs/ajax-loader (1).gif">'));
+		crono(true);
+		$.post('?controller=entrada&action=find620',{
+			"matricula": $('#matricula').val(),
+			"precio": $('#inicial').val()
+		},function(data){
+			//console.log(data);
+			info=JSON.parse(data);
+			console.log(info);
+			$('#base_imponible').val(info['precio']);
+			swal({
+				title: '<i>Datos</i>',
+				html: 
+					'<label for="">Marca: </label><span>'+info['marca']+'</span><br>' +
+					'<label for="">Modelo: </label><span>'+info['modelo']+'</span><br>' +
+					'<label for="">Cilindrada: </label><span>'+info['cilindrada']+'</span><br>' +
+					'<label for="">Bastidor: </label><span>'+info['bastidor']+'</span><br>' +
+					'<label for="">Fecha matriculacion: </label><span>'+info['fechaMatri']+'</span><br>'+
+					'<label for="">CVf: </label><span>'+info['cvf']+'</span><br><br>'+
+					'<label for="">Base imponible: </label><span>'+info['precio']+'€</span><br>'+
+					'<label for="">Cuota: </label><span>'+info['cuota']+'€</span><br>'+
+					'<label for="">Tipo de gravamen: </label><span>'+(info['cuota']/info['precio']*100)+'%</span><hr>'+
+					'<label for="">Precio del Traspaso: </label><span style="color:red">'+(info['cuota']+121)+'€</span><br>',
+				customClass: 'datos'
+			});
+			$('#tipo_de_gravamen').val(info['cuota']/info['precio']*100);
+			calculo();
+			//$('#bt').html('620');
+			crono(false);
 		})
+	});
+
+	function crono(estado){
+		if(estado==true){
+			i=0;
+			$('#bt').css('background','#ddd');
+			crono2=setInterval(function(){
+				$('#bt').text(i+'s');
+				if(i==30){
+					$('#bt').css('background','green');
+				}else if(i==50){
+					$('#bt').css('background','yellow');
+				}else if(i==70){
+					$('#bt').css('background','red');
+				}
+				i++;
+				
+			},1000)
+		}else{
+			clearInterval(crono2);
+			//$('#bt').html('620');
+		}
+	}
+
+	$('#nuevo').on('click',function(e){
+		e.preventDefault();
+		$.post("App\\Views\\nuevoCompraventa.php", function(htmlexterno){
+			modal.open({content: htmlexterno,class:"form"});
+    	});
+	});
+
+	$('#mismoCV').on('click',function(e){
+		e.preventDefault();
+		$('#comprador').val($('#vendedor').val());
+		$('#cTlf').val($('#vTlf').val());
+		$('#cMail').val($('#vMail').val());
 	});
 
 	// Maximo 9 digitos por telefono y solo numeros
@@ -137,19 +211,19 @@
 	});
 
 	//Calculo presupuesto dinamico
-
+/*
 	$('#base_imponible, #tipo_de_gravamen').blur(function(){
 		if($.isNumeric($(this).val())){
 			gravamen=$('#tipo_de_gravamen').val();
-			m620=$(this).val()*gravamen/100;
+			m620=$('#base_imponible').val()*gravamen/100;
 		}
-	})
+	})*/
 
 
 
 	gestion=63;
 	m620=0;
-	tipo=[]
+	tipo=[];
 	tipo[1]=58;
 	tipo[2]=12.4;
 	tipo[3]=58;
@@ -158,10 +232,12 @@
 
 	$('#precio').html(gestion+tipo[3]+m620);
 
-	$(document).on('change',function(){
+	function calculo(){
 		setTimeout(function(){
-			if($.isNumeric($('#base_imponible').val())){
+			//Se mira
+			if($.isNumeric($('#base_imponible').val()) && $('#base_imponible').val()>0){
 				gravamen=$('#tipo_de_gravamen').val();
+				console.log("Base imponible",$('#base_imponible').val())
 				m620=$('#base_imponible').val()*gravamen/100;
 			}
 			if($('#tipo').val()=='cv'){
@@ -183,7 +259,10 @@
 			$('#precio').html(gestion+tipo[i]+m620);
 			console.log(gestion,tipo[i],m620);
 		},300)
-		
+	}
+
+	$(document).on('change',function(){
+		calculo();
 	});
 
 
@@ -293,7 +372,7 @@
 		console.log($('#tipo').val());
 		if($('#tipo').val()=="cv"){
 			$('#vcv').html('Compraventa');
-			$('#nuevo').css('display','inline-block');
+			$('.cvButton').css('display','block');
 			$('#vTlf, #vMail').on('keydown',keyOff);
 			$('#vTlf, #vMail').val("");
 			$('#vMND, #vTND').hide();
@@ -337,7 +416,7 @@
 		}else{
 			$('#vTlf, #vMail').off('keydown',keyOff);
 			$('#vcv').html('Vendedor');
-			$('#nuevo').css('display','none');
+			$('.cvButton').hide();
 			$('#vMND, #vTND').show();
 		}
 	}

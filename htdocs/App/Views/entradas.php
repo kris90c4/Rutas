@@ -78,7 +78,7 @@
 				<td><?= $entrada['vMail'] ?></td-->
 <?php //endif; ?>
 				<td><?= $entrada['comprador'] ?></td>
-				<td><?= $entrada['cTelefono']?></td>
+				<td><?= $entrada['cTelefono']<100000000?"No Disponible":$entrada['cTelefono'] ?></td>
 				<!--td><?= $entrada['cMail']?></td>
 				<td><?= $entrada['tipo'] ?></td>
 				<td><?= $entrada['provision'] ?></td>
@@ -99,3 +99,19 @@
 	</table>
 	<div id="errorCliente"></div>
 </div>
+<script>
+	$('#btModal').on('click',function(){
+		modalCreate();
+	});
+	function modalCreate(){
+		$.post('?controller=entrada&action=modalCreate',{
+
+		},function(data){
+			swal({
+				html: data,
+				showCancelButton: false,
+				showConfirmButton: false
+			});
+		});
+	}
+</script>

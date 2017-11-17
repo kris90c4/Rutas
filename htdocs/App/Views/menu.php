@@ -14,25 +14,28 @@
       <ul class="nav navbar-nav">
         <li class=""><a href="?controller=home&action=view">Home</a></li>
         <?php if(isset($_SESSION['usuario'])):?> <!--Menu para registrados-->
-          <!--Seccion Comun-->
-            <li><a href="?controller=home&action=novedades">Novedades</a></li>
-            <li><a href="?controller=compraventa&action=view">Compraventas</a></li>
-            <li><a href="?controller=cliente&action=view">clientes</a></li>
-          <!--Fin Seccion Comun-->
-	        <?php if($_SESSION['usuario']->getAdmin()): ?> <!--Sección usuario Admin-->
-		        <li><a href="?controller=perfil&action=gestion">GestionUsuarios</a></li>
-            <li><a href="?controller=reportes&action=view">Reportes<span class="badge" id="pen"></span></a></li>
+          <?php if($_SESSION['usuario']->getNombre()=="Myrna"): ?>
             <li><a href="?controller=estadisticas&action=view">Estadisticas</a></li>
-			    <?php else: ?><!--Seccion Usuario normal-->
-		        <!--li><a href="?controller=traspasos&action=view">Traspasos</a></li>
-		        <li><a href="?controller=matri&action=view">Matriculaciones</a></li-->
-            <li class=""><a href="?controller=entrada&action=view">Test</a></li>
-            <li class=""><a href="?controller=entrada&action=view">Entradas</a></li>
-	        <?php endif; ?>
+          <?php else: ?>
+            <!--Seccion Comun-->
+              <li><a href="?controller=test&action=novedades">Novedades</a></li>
+              <li><a href="?controller=compraventa&action=view">Compraventas</a></li>
+              <li><a href="?controller=cliente&action=view">clientes</a></li>
+            <!--Fin Seccion Comun-->
+            <?php if($_SESSION['usuario']->getAdmin()): ?> <!--Sección usuario Admin-->
+              <li><a href="?controller=perfil&action=gestion">GestionUsuarios</a></li>
+              <li><a href="?controller=reportes&action=view">Reportes<span class="badge" id="pen"></span></a></li>
+              <li><a href="?controller=estadisticas&action=view">Estadisticas</a></li>
+            <?php else: ?><!--Seccion Usuario normal-->
+              <!--li><a href="?controller=traspasos&action=view">Traspasos</a></li>
+              <li><a href="?controller=matri&action=view">Matriculaciones</a></li-->
+              <li class=""><a href="?controller=entrada&action=view">Entradas</a></li>
+            <?php endif; ?>
+          <?php endif; ?>
         <?php endif; ?>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      	<?php if(defined('ACCESS')):?>
+        <?php if(defined('ACCESS')):?>
        
      	<?php elseif(!isset($_SESSION['usuario'])): ?>
          <li><a href="?controller=registrar&action=view"><span class="glyphicon glyphicon-user"></span> Registrar</a></li>

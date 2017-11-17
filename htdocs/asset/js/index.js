@@ -73,7 +73,7 @@ function aMays(e, elemento) {
 
 // Información nuevo compraventa
 $('#info_gestion').on('click',function(){
-	swal('Para calcular el precio de la gestión', 'Hay que restar 58€ al total del traspaso<br>Por ejemplo, Rollando paga 85€ por traspaso, al restarle 58€(Que son las tasas fijas), el coste de la gestión se queda en 27€','info');
+	swal('Para calcular el precio de la gestión', 'Hay que restar 58€ al total del traspaso<br>Por ejemplo, Rollandi paga 85€ por traspaso, al restarle 58€(Que son las tasas fijas), el coste de la gestión se queda en 27€','info');
 });
 
 
@@ -82,11 +82,7 @@ function keyOff(){
 }
 
 
-
-
-
-
-										//////////////// ENTRADAS \\\\\\\\\\\\\\\\\\
+//////////////// ENTRADAS \\\\\\\\\\\\\\\\\\
 
 $('#entradas').ready(function() {
 
@@ -260,6 +256,97 @@ $('#entradas').ready(function() {
 							////////////////// FIN ENTRADAS \\\\\\\\\\\\\\\\\\\\
 
 
+/*MODAL*/
 
 
+var modal = (function(){
+	var method = {},
+	$overlay,
+	$modal,
+	$content,
+	$close;
 
+	// Center the modal in the viewport
+	method.center = function () {
+		var top, left;
+
+		top = Math.max($(window).height() - $modal.outerHeight(), 0) / 2;
+		left = Math.max($(window).width() - $modal.outerWidth(), 0) / 2;
+
+		$modal.css({
+			top:top + $(window).scrollTop(),
+			left:left + $(window).scrollLeft()
+		});
+	};
+
+	// Open the modal
+	method.open = function (settings) {
+		$content.empty().append(settings.content);
+		$content.addClass(settings.class);
+		$modal.css({
+			width: settings.width || 'auto',
+			height: settings.height || 'auto'
+		});
+
+		method.center();
+		$(window).bind('resize.modal', method.center);
+		$modal.show();
+		$overlay.show();
+	};
+
+	// Close the modal
+	method.close = function () {
+		$modal.hide();
+		$overlay.hide();
+		$content.empty();
+		$(window).unbind('resize.modal');
+	};
+
+	// Generate the HTML and add it to the document
+	$overlay = $('<div id="overlay"></div>');
+	$modal = $('<div id="modal"></div>');
+	$content = $('<div id="content"></div>');
+	$close = $('<a id="close" href="#">close</a>');
+
+	$modal.hide();
+	$overlay.hide();
+	$modal.append($content, $close);
+
+	$(document).ready(function(){
+		$('body').append($overlay, $modal);						
+	});
+
+	$overlay.click(function(){
+		method.close();
+	});
+
+	$close.click(function(e){
+		e.preventDefault();
+		method.close();
+	});
+
+	return method;
+
+}());
+
+// Wait until the DOM has loaded before querying the document
+
+$(document).ready(function(){
+
+	/*$.get('ajax.html', function(data){
+		modal.open({content: data});
+	});
+
+	$('a#howdy').click(function(e){
+		modal.open({content: "Hows it going?"});
+		e.preventDefault();
+	});*/
+	$('#nuevo').on('click',function(e){
+		e.preventDefault();
+		$.post("App\\Views\\nuevoCompraventa.php", function(htmlexterno){
+			modal.open({content: htmlexterno,class:"form"});
+    	});
+	});
+
+
+});

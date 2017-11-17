@@ -21,7 +21,7 @@ class App{
 
 	public function __construct(){
 
-		$this->access=$_SERVER["SERVER_NAME"]=="portol.ddns.net"?"ext":"int";
+		$this->access=$_SERVER["SERVER_NAME"]=="portol2.ddns.net"?"ext":"int";
 
 		
 		//comprobamos que exista el archivo en el directorio controllers
