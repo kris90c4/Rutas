@@ -82,184 +82,12 @@ function keyOff(){
 }
 
 
-//////////////// ENTRADAS \\\\\\\\\\\\\\\\\\
-
-$('#entradas').ready(function() {
-
-	// Al recargar la pagina, se vuelven a seleccionar los registros seleccionados previamente
-	$.post("?controller=entrada&action=check",{
-
-	},function(data){
-		if(data){
-			check =jQuery.parseJSON(data);
-			if(check.length>0){
-				$('.opciones button:nth-child(3)').each(function(index){
-					id=$(this).closest('tr').find('td:nth-child(1)').html();
-					if(jQuery.inArray(id,check)>=0){
-						$(this).toggleClass('seleccionar btn-default').html('Seleccionado');
-						$(this).toggleClass('deseleccionar btn-danger');
-					}
-				});
-			}else{
-				console.log('No hay resultados');
-			}
-		}else{
-			console.log('Error al ver la tabla enviados. Revisar controlador entrada y funcion check');
-		}
-	});
-	////////////////////Nuevo, pendiente de probar
-
-	$('#edit').on('click', function(){
-		id=this.parents('td').first().value
-	});
-
-	$('.editar').on('click', function(){
-		console.log("Editando");
-		id=$(this).parents("tr").find("td:nth-child(1)").html();
-		window.location.href='?controller=entrada&action=editar&parametros='+id;
-	})
-
-	//Añadir a lista para enviar telefonos por correo
-	$('.seleccionar, .seleccionado').on('click',function(){
-		boton=$(this);
-		id=$(this).closest('tr').find('td:nth-child(1)').html();
-		console.log($(this).hasClass('seleccionar'))
-		if($(this).hasClass('seleccionar')){
-			$.post("?controller=entrada&action=seleccionar",{
-				'id_entrada' : id
-			},function(data){
-				if(data){//En caso de error
-					console.log(data);
-				}else{//Todo correcto
-					console.log("seleccionado correctamente");
-					$(boton).toggleClass('seleccionar btn-default').html('Seleccionado');
-					$(boton).toggleClass('deseleccionar btn-danger');
-				}
-			});
-		}else{
-			$.post("?controller=entrada&action=deseleccionar",{
-				'id' : id
-			},function(data){
-				if(data){//En caso de error
-					console.log(data);
-				}else{//Todo correcto
-					console.log("deseleccionado correctamente");
-					$(boton).toggleClass('seleccionar btn-default').html('Seleccionar');
-					$(boton).toggleClass('deseleccionar btn-danger');
-				}
-			});
-		}
-	});
-
-	//Confirma las entradas seleccionadas y graba la fecha de salida de todas ellas
-	$('#confirmar').on('click',function(){
-		$.post('?controller=entrada&action=confirmar',{
-			
-		},function(data){
-			if(data=="ok"){
-				swal('Se han grabado las fechas de salida correctamente');
-			}else if(data==0){
-				swal('No se ha seleccionado ningun registro');
-			}else{
-				swal('Ha habido algun problema, contacta con el administrador para reportar el problema');
-				console.log(data);
-			}
-		})
-	})
-
-	//Envia un correo con todos los telefonos seleccionados a comercial@gestoriaportol.com
-	$('#enviar').on('click',function(){
-		$.post('?controller=entrada&action=enviar',{
-			
-		},function(data){
-			if(data>0&&data<100){
-				swal('Se ha enviado el correo correctamente con '+data+' telefonos, paciencia, el correo esta por llegar');
-			}else if(data=="error"){
-				swal('No se ha enviado el correo, contacta con el administrador');
-				console.log(data);
-			}else if(data==0){
-				swal('No se ha seleccionado ningun registro');
-			}else{
-				swal(data);
-			}
-		})
-	})
-
-	// Se descarga la plantilla de entrada
-	$('.descarga').on('click',function(){
-		id=$(this).closest('tr').find('td:nth-child(1)').html();
-		$.post('?controller=entrada&action=descargar',{
-			'id' : id
-		},function(data){
-			console.log(data);
-			window.location.href=data;
-		})
-	});
-
-	//Se descarga la plantilla de salida
-	$('.descargarsalida').on('click',function(){
-		id=$(this).closest('tr').find('td:nth-child(1)').html();
-		$.post('?controller=entrada&action=descargarsalida',{
-			'id' : id
-		},function(data){
-			window.location.href=data;
-		})
-	});
-
-	//Entra en cada enlace
-	$('.descargarTodasSalidas').on('click',function(){
-		i=1;
-		$('tbody tr').each(function(){
-			
-				id=$(this).find('td:nth-child(1)').html();
-				$.post('?controller=entrada&action=descargarsalida',{
-					'id' : id
-				},function(data){
-					//setTimeout(function(){
-					window.location.href=data;
-					//},i*500);
-				})
-				i++;
-			
-		});
-	});
-
-	$('#entrada tfoot th').each( function () {
-	    var title = $(this).text();
-	    $(this).html( '<input type="text" placeholder="'+title+'" />' );
-	} );
-	// Aplica la api de DataTable a la tabla con Id $vista
-	//se aplica un retardo para asugurar la aplicacion del seleccionado
-	setTimeout(function(){
-		var table2 = $('#entrada').DataTable({
-		    "order": [[ 0, "desc" ]],
-		});
-			
-		// Aplica el buscador
-		table2.columns().every( function () {
-		    var that = this;
-		    $( 'input', this.footer() ).on( 'keyup change', function () {
-		        if ( that.search() !== this.value ) {
-		            that
-		                .search( this.value )
-		                .draw();
-		        }
-		    });
-		});
-		/*$('.opciones button:nth-child(3)').on('click',function(){
-			table2.reload();
-		});*/
-		
-	},100);
-});
-
-							////////////////// FIN ENTRADAS \\\\\\\\\\\\\\\\\\\\
 
 
 /*MODAL*/
 
 
-var modal = (function(){
+var modal = function(){
 	var method = {},
 	$overlay,
 	$modal,
@@ -283,23 +111,25 @@ var modal = (function(){
 	method.open = function (settings) {
 		$content.empty().append(settings.content);
 		$content.addClass(settings.class);
+		$content.attr('id',settings.id);
 		$modal.css({
 			width: settings.width || 'auto',
 			height: settings.height || 'auto'
 		});
 
 		method.center();
-		$(window).bind('resize.modal', method.center);
+		$(window).on('resize.modal', method.center);
 		$modal.show();
 		$overlay.show();
 	};
 
 	// Close the modal
 	method.close = function () {
-		$modal.hide();
-		$overlay.hide();
-		$content.empty();
-		$(window).unbind('resize.modal');
+		$modal.remove();
+		$overlay.remove();
+		//$content.empty();
+		$(window).off('resize.modal', method.center);
+
 	};
 
 	// Generate the HTML and add it to the document
@@ -327,7 +157,7 @@ var modal = (function(){
 
 	return method;
 
-}());
+};
 
 // Wait until the DOM has loaded before querying the document
 
@@ -341,11 +171,12 @@ $(document).ready(function(){
 		modal.open({content: "Hows it going?"});
 		e.preventDefault();
 	});*/
-	$('#nuevo').on('click',function(e){
+	$('#nuevaEntrada').on('click',function(e){
 		e.preventDefault();
-		$.post("App\\Views\\nuevoCompraventa.php", function(htmlexterno){
-			modal.open({content: htmlexterno,class:"form"});
-    	});
+		modal2=new modal();
+		$.post("App\\Views\\entrada.php", function(htmlexterno){
+			modal2.open({content: htmlexterno,id:'plantilla'});
+		});
 	});
 
 

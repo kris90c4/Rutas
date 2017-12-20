@@ -6,6 +6,9 @@
 <?php if (isset($error)) {?>
 	<h1 id="saludo"><?= $error ?></h1>
 <?php } ?>
+<?php if (isset($cache_expire)) {?>
+
+<?php } ?>
 <!--div id="portada">
 <h2>La web se ha migrado a la siguiente dirección</h2>
 <a href="http://app.gestoriaportol.com">app.gestoriaportol.com</a>

@@ -7,6 +7,7 @@
 				<th>ID</th>
 				<th>Nombre</th>
 				<th>Gestion</th>
+				<th>Nv</th>
 				<th>Mail</th>
 				<th>Telefono</th>
 				<th>Opciones</th>
@@ -17,6 +18,7 @@
 				<th>ID</th>
 				<th>Nombre</th>
 				<th>Gestion</th>
+				<th>Nv</th>
 				<th>Mail</th>
 				<th>Telefono</th>
 				<th>Opciones</th>
@@ -28,6 +30,7 @@
 				<td><?= $cliente['id'] ?></td>
 				<td><?= $cliente['nombre'] ?></td>
 				<td><?= $cliente['gestion']?>€</td>
+				<td><?= $cliente['nv']?>€</td>
 				<td><?= $cliente['mail'] ?></td>
 				<td><?= $cliente['telefono'] ?></td>
 				<td>
@@ -110,4 +113,11 @@
 		    } );
 		} );
 	} );
+	$('#nuevo').on('click',function(e){
+		e.preventDefault();
+		modal1=new modal();
+		$.post("App\\Views\\nuevoCompraventa.php", function(htmlexterno){
+			modal1.open({content: htmlexterno,class:"form"});
+		});
+	});
 </script>

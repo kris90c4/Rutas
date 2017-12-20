@@ -5,6 +5,8 @@
 	<input id="nombre" type="text" name="nombre" value="<?php echo isset($compraventa)?$compraventa['nombre']:""; ?>" required>
 	<label for="gestion">Gestión</label><i id="info_gestion" class="glyphicon glyphicon-info-sign" title="Como calcular el precio"></i>
 	<input id="gestion" type="number" step="0.1" name="gestion" value="<?php echo isset($compraventa)?$compraventa['gestion']:""; ?>" required>
+	<label for="nv">Notificacion Venta</label>
+	<input id="nv" type="number" step="0.1" name="nv" value="<?php echo isset($compraventa)?$compraventa['nv']:""; ?>" required>
 	<label for="mail">Mail</label>
 	<input id="mail" type="mail" name="mail" value="<?php echo isset($compraventa)?$compraventa['mail']:""; ?>" required>
 	<label for="telefono">Teléfono</label>

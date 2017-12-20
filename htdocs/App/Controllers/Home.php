@@ -18,4 +18,12 @@ class Home{
 	public function error404(){
 		View::render("errors/404");
 	}
+	public function sms(){
+		View::set("title","SMS");
+		View::set("sms","sms");
+		View::render('home');
+	}
+	public function cache(){
+		echo session_cache_expire();
+	}
 }

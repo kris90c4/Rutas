@@ -1,7 +1,8 @@
 <?php
 namespace App\Controllers;
 defined("APPPATH") OR die("Acceso denegado");
-defined("USUARIO") OR die("Acceso denegado");
+// Comprueba si se esta logeado y si no lo esta se reenvia al login
+require PROJECTPATH . '/App/usuario.php';
 //USUARIO==1 OR die("Acceso denegado");
  
 use \Core\View,

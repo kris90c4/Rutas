@@ -30,7 +30,7 @@ nav li a:hover, nav li a:focus {
 #login,#registrar, #perfil, #plantilla, .form{
 	background-color: #fefefe;
 	display: block;
-	margin:50px auto;
+	margin:0 auto;
 	padding: 20px;
 	border: 2px solid #4e9ac2;
 	border-radius:10px;
@@ -314,7 +314,7 @@ tfoot input {
 	padding: 2px 5px 1px 5px;
 	margin: 0 0 2px 3px;
 }
-#plantilla #bt + i{
+#plantilla #bt + i, #plantilla #datosVehiculo{
 	padding: 2px 5px 1px 5px;
 	margin: 0 0 4px 3px;
 }
@@ -409,7 +409,7 @@ input[type=number]#vTlf {
     text-align: left;
 }
 .datos span {
-    width: 200px;
+    width: 205px;
     text-align: right;
     display: inline-block;
 }
@@ -417,20 +417,31 @@ input[type=number]#vTlf {
 #modal620{
 	display:none;
 	position:fixed;
-	background-color:grey;
+	background-color:#5cb85c;
 	padding:10px;
 	border-radius:10px;
 }
 
-#modal620 #close{
-	position:absolute;
-	right:8px;
-	top:8px;
+#modal620 input{
+	width: 100px;
 }
 .cvButton{
 	padding: 3px;
 	margin: 5px 0;
 	display: none;
+}
+
+#plantilla input.mail{
+	width: 220px;
+}
+#plantilla input.nombre{
+	width:200px;
+}
+#plantilla input{
+	width: 100px;
+}
+#plantilla input[name=editar]{
+	width: auto;
 }
 
 
@@ -446,7 +457,7 @@ input[type=number]#vTlf {
 }*/
 
 			/*MODAL*/
-
+/*Fondo Modal*/
 #overlay{
 	position: fixed; 
 	top: 0;
@@ -478,7 +489,76 @@ input[type=number]#vTlf {
 	width:24px;
 	height:27px;
 	display:block;
-	text-indent:-9999px;
-	top:-7px;
+	/*text-indent:-9999px;*/
+	top:3px;
 	right:-7px;
+}
+
+/*El filtro cuando hay espacio se muestra en la parte superior*/
+@media screen and (min-width: 800px) {
+	#filtros{
+		position: absolute;
+		top:123px;
+		right:270px;
+		background-color: rgba(55, 179, 93, 0.35);
+		padding: 3px;
+		border-radius: 5px;
+	}
+}
+#filtros button{
+	margin: 0 3px;
+}
+
+
+/*Se modifica los pixeles del collapse del menu*/
+@media (max-width: 900px) {
+
+    .navbar-header {
+
+        float: none;
+
+    }
+
+    .navbar-toggle {
+
+        display: block;
+
+    }
+
+    .navbar-collapse {
+
+        border-top: 1px solid transparent;
+
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+
+    }
+
+    .navbar-collapse.collapse {
+
+        display: none!important;
+
+    }
+
+    .navbar-nav {
+
+        float: none!important;
+
+        margin: 7.5px -15px;
+
+    }
+
+    .navbar-nav>li {
+
+        float: none;
+
+    }
+
+    .navbar-nav>li>a {
+
+        padding-top: 10px;
+
+        padding-bottom: 10px;
+
+    }
+
 }

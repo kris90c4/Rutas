@@ -1,7 +1,8 @@
 <?php
 namespace App\Controllers;
 defined("APPPATH") OR die("Acceso denegado");
-defined("USUARIO") OR die("Acceso denegado");
+// Comprueba si se esta logeado y si no lo esta se reenvia al login
+require PROJECTPATH . '/App/usuario.php';
  
 use \Core\View,
 	\App\Models\Entrada as EntradaM,
@@ -31,6 +32,7 @@ class Entrada extends ControllerBase{
 		View::set('title',"Nueva entrada");
 		if($id>0){
 			view::set('editar',$editar);
+			view::set('id',"plantilla");
 		}
 		View::render("entrada");
 	}
@@ -88,7 +90,6 @@ class Entrada extends ControllerBase{
 				$this->log("Creando entrada... Matricula: $matricula - Gestionado por ". $_SESSION['usuario']->getNombre());
 
 				//Se recopilan todos los datos necesarios para almacenarlos en la base de datos
-
 				$datosVendedor=array('nombre'=> $vendedor, 'mail'=> $vMail, 'telefono'=> $vTlf);
 				$datosComprador=array('nombre'=> $comprador, 'mail'=> $cMail, 'telefono'=> $cTlf);
 				$datos=$_POST;
@@ -249,7 +250,11 @@ class Entrada extends ControllerBase{
 			$objPHPExcel->getActiveSheet()->SetCellValue('G14', $datoscompraventa['nombre']);
 			$objPHPExcel->getActiveSheet()->SetCellValue('D16', $datoscompraventa['telefono']);
 			$objPHPExcel->getActiveSheet()->SetCellValue('D18', $datoscompraventa['mail']);
-			$objPHPExcel->getActiveSheet()->SetCellValue('Y18', $datoscompraventa['gestion']);
+			if($id_tipo==2){
+				$objPHPExcel->getActiveSheet()->SetCellValue('Y18', $datoscompraventa['nv']);
+			}else{
+				$objPHPExcel->getActiveSheet()->SetCellValue('Y18', $datoscompraventa['gestion']);
+			}
 			if($correo_ordinario==1){
 				$objPHPExcel->getActiveSheet()->SetCellValue('S22', "Correos");
 				$objPHPExcel->getActiveSheet()->SetCellValue('Y22', 15);
@@ -387,7 +392,7 @@ class Entrada extends ControllerBase{
 		for ($i=0; $i < count($telefonos); $i++) { 
 
 
-			//Si encuentra un telefono de comprador menor a 6 digitos, busca el del vendedor o el del comrpaventa
+			//Si encuentra un telefono de comprador menor a 6 digitos, busca el del vendedor o el del compraventa
 			if(strlen($telefonos[$i]['comprador'])>6){
 				$telefonos[$i]=$telefonos[$i]['comprador'];
 			}else{
@@ -397,22 +402,64 @@ class Entrada extends ControllerBase{
 					$telefonos[$i]=$telefonos[$i]['vendedor'];
 				}
 			}
-
 		}
-
+		$value['error']="";
 		if(count($telefonos)==0){
-			exit(count($telefonos));
+			$value['count']=count($telefonos);
+		}else{
+			//Se envia el correo
+			$ok=mail("comercial@gestoriaportol.com","Enviar sms a los ".count($telefonos)." telefonos seleccionados",implode(",", $telefonos),"From: cristiandiazportero@gmail.com");
+
+			if($ok){
+				$this->log($_SESSION['usuario']->getNombre() . " ha enviado los siguientes telefonos " . implode(", ", $telefonos));
+				$value['count']= count($telefonos);
+				$value['sms']=implode(",", $telefonos);
+			}else{
+				$value['error']= "error";
+			}
 		}
 		
-		//Se envia el correo
-		$ok=mail("comercial@gestoriaportol.com","Enviar sms a los ".count($telefonos)." telefonos seleccionados",implode(",", $telefonos),"From: cristiandiazportero@gmail.com");
 
-		if($ok){
-			$this->log($_SESSION['usuario']->getNombre() . " ha enviado los siguientes telefonos " . implode(", ", $telefonos));
-			echo count($telefonos);
-		}else{
-			echo "error";
+		echo json_encode($value);
+		
+
+	}
+
+	//Ajax
+	//Return "ok" Todo bien
+	//Return "error" No se ha enviado
+	public function sms(){
+
+		//Devuelve los telefonos de las entradas que coincidan con las entradas en la tabla enviado.
+		$sql="SELECT c.telefono comprador, cv.telefono compraventa, v.telefono vendedor FROM Entrada left JOIN compraventa cv on cv.id = Entrada.id_compraventa JOIN enviado ON Entrada.id = enviado.id_entrada left JOIN cliente c ON c.id = Entrada.id_comprador left JOIN cliente v ON v.id = Entrada.id_vendedor";
+
+		$telefonos=Ajax::sql($sql);
+
+		//Se elimina el array intermedio
+		for ($i=0; $i < count($telefonos); $i++) { 
+
+			//Si encuentra un telefono de comprador menor a 6 digitos, busca el del vendedor o el del compraventa
+			if(strlen($telefonos[$i]['comprador'])>6){
+				$telefonos[$i]=$telefonos[$i]['comprador'];
+			}else{
+				if($telefonos[$i]['vendedor']==null){
+					$telefonos[$i]=$telefonos[$i]['compraventa'];
+				}else{
+					$telefonos[$i]=$telefonos[$i]['vendedor'];
+				}
+			}
 		}
+		$value['error']="";
+		if(count($telefonos)==0){
+			$value['count']=0;
+		}else{
+			$this->log($_SESSION['usuario']->getNombre() . " ha enviado los siguientes telefonos " . implode(", ", $telefonos));
+			$value['count']= count($telefonos);
+			$value['sms']=implode(",", $telefonos);
+		}
+		
+
+		echo json_encode($value);
 		
 
 	}
@@ -578,17 +625,24 @@ class Entrada extends ControllerBase{
 		$resultado=Entrada::delete($id);
 	}
 	public function find620(){
-		$empieza= new \DateTime();
+		$empieza= new \DateTime(); 		
 		extract($_POST);
-		if(isset($matricula)){
+		if(isset($matricula)&&!empty($matricula)){
 			$json=$this->check620($matricula,empty($precio)?1000:$precio,empty($tick)?500:$tick);
 			$termina=new \DateTime();
 			$interval=$empieza->diff($termina);
 			$json['time']=$interval->format("%i:%s");
 
-			echo json_encode($json);
 			//echo json_encode($json);
+		}else{
+			$json['error']="Escribe una matricula";
 		}
+		echo json_encode($json);
+	}
+	public function jsonDatosVehiculo(){
+		extract($_POST);
+		$json=$this->datosVehiculo($matricula);
+		echo json_encode($json);
 	}
 }
 ?>

@@ -18,7 +18,7 @@ function autoload_classes($class_name)
 spl_autoload_register('autoload_classes');
 
 // Con esa sencilla función, todos los archivos que estén dentro del proyecto y cualquier directorio serán autocargados para poder utilizarlos donde necesitemos, y lo más importante, utilizando namespaces.
-
+session_cache_expire();
 //Se inicia la global $_SESSION
 session_start();
 

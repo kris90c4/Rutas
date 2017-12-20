@@ -65,7 +65,7 @@ class Compraventa implements Crud{
 	public static function insert($data){
 		try{
 			$connection = Database::instance();
-			$sql="INSERT INTO ".self::TABLE."(nombre, gestion, mail, telefono) VALUES(:nombre, :gestion, :mail, :telefono)";
+			$sql="INSERT INTO ".self::TABLE."(nombre, gestion, nv, mail, telefono) VALUES(:nombre, :gestion, :nv, :mail, :telefono)";
 			$query = $connection->prepare($sql);
 			//si no se envia la poblacion, se asigna null
 			//isset($data['mail'])&&!empty($data['mail'])?:$data['mail']=null;
@@ -73,6 +73,7 @@ class Compraventa implements Crud{
 			$query->bindParam(":nombre", $data['nombre'], \PDO::PARAM_STR);
 			$query->bindParam(":gestion", $data['gestion'], \PDO::PARAM_INT);
 			$query->bindParam(":telefono", $data['telefono'], \PDO::PARAM_INT);
+			$query->bindParam(":nv", $data['nv'], \PDO::PARAM_INT);
 			return $query->execute();
 			//$ok == true? ha ido bien:No ha ido bien.
 		}
@@ -88,13 +89,14 @@ class Compraventa implements Crud{
 	public static function update($data){
 		try{
 			$connection = Database::instance();
-			$sql = "UPDATE ". self::TABLE. " SET nombre = :nombre, gestion = :gestion, mail = :mail, telefono = :telefono where id = :id";
+			$sql = "UPDATE ". self::TABLE. " SET nombre = :nombre, gestion = :gestion, mail = :mail, telefono = :telefono, nv = :nv where id = :id";
 			$query = $connection->prepare($sql);
 			$query->bindParam(":id", $data['id'], \PDO::PARAM_INT);
 			$query->bindParam(":mail", $data['mail'], \PDO::PARAM_STR);
 			$query->bindParam(":nombre", $data['nombre'], \PDO::PARAM_STR);
 			$query->bindParam(":gestion", $data['gestion'], \PDO::PARAM_INT);
 			$query->bindParam(":telefono", $data['telefono'], \PDO::PARAM_INT);
+			$query->bindParam(":nv", $data['nv'], \PDO::PARAM_INT);
 
 			return $query->execute();
 			//$ok == true? ha ido bien:No ha ido bien.

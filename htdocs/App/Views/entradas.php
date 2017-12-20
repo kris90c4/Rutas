@@ -1,19 +1,20 @@
 <?php defined("APPPATH") OR die("Acceso denegado"); ?>
 <div id="entradas">
 	<div class="contenedorEntradas">
-		<a class="btn btn-default" href="?controller=entrada&action=create">Nueva entrada</a>
+		<button id="nuevaEntrada" class="btn btn-default">Nueva entrada</button>
 		<button id="enviar" class="pull-right btn btn-default" title="Envia los telefonos seleccionados al correo comercial@gestoriaportol.com">
 			<i style="margin-right: 4px" class="glyphicon glyphicon-send"></i>
 			<span>Enviar</span>
 		</button>
+		<button id="sms" class="pull-right btn btn-default" title="Desde el movil, se abre un nuevo mensaje con todos los contactos seleccionados">SMS</button>
 		<button id="confirmar" class="pull-right btn btn-default" title="Tras enviar los sms atraves del movil, se confirma que todos los sms han sido enviados correctamente">
 			<i  class="glyphicon glyphicon-saved"></i>
 			<span>Confirmar</span>
 		</button>
-		<button class="descargarTodasSalidas pull-right btn btn-default" title="Hay que filtrar solo las salidas deseadas, Solo funciona en ¡¡¡CHROME!!!!">
+		<!--button class="descargarTodasSalidas pull-right btn btn-default" title="Hay que filtrar solo las salidas deseadas, Solo funciona en ¡¡¡CHROME!!!!">
 			<i  class="glyphicon glyphicon-saved"></i>
 			<span>Descargar todas las salidas(Solo Compatible con CHROME)</span>
-		</button>
+		</button-->
 
 	</div>
 	
@@ -97,21 +98,39 @@
 		<?php endforeach;?>
 		</tbody>
 	</table>
+	<div id="filtros">
+		<button id="selec" class="pull-right btn btn-default">Seleccionados</button>
+		<button id="hoy" class="pull-right btn btn-default">Salida hoy</button>
+		<button id="delFiltros" class="pull-right btn btn-info">Quitar filtros</button>
+		<span class="pull-right">Filtros:</span>
+	</div>
 	<div id="errorCliente"></div>
 </div>
 <script>
-	$('#btModal').on('click',function(){
-		modalCreate();
+	//Añade un filtro en la columnas Opciones para visualizar solo las entradas seleccionadas
+	$('#selec').on('click',function(){
+		selec=$('#entrada tfoot input[placeholder=Opciones]');
+		selec.val('seleccionado');
+		selec.trigger('keyup');
 	});
-	function modalCreate(){
-		$.post('?controller=entrada&action=modalCreate',{
-
-		},function(data){
-			swal({
-				html: data,
-				showCancelButton: false,
-				showConfirmButton: false
-			});
-		});
-	}
+	//Filtro por fecha de salida
+	$('#hoy').on('click',function(){
+		fSalida=$('#entrada tfoot input[placeholder=Fecha_salida]');
+		fSalida.val('<?= date('d-m-Y')?>');
+		fSalida.trigger('keyup');
+	});
+	//Elimina todos los filtros
+	$('#delFiltros').on('click',function(){
+		$('input').val("");
+		$('input').trigger('keyup');
+		
+	});
+	//Centrado de filtros
+	$(window).ready(function(){
+		//$('#filtros').css('left',window.innerWidth/2-$('#filtros').outerWidth()/2+"px");
+	})
+	$(window).on('resize',function(){
+		//$('#filtros').css('left',window.innerWidth/2-$('#filtros').outerWidth()/2+"px");
+	})
+	
 </script>

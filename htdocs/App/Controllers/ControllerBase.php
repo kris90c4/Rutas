@@ -110,6 +110,43 @@ class ControllerBase{
 			$this->form = $crawler->selectButton('ctl00$ctl00$cph_main$cph_main$621_0$lnkBuscarTrafico')->form();
 		}
 	}
+	public function dgt(){
+		$client = new Client();
+		/*$empieza= new \DateTime();*/
+		// Login page
+		/*$crawler = $client->request('GET', 'https://sedeclave.dgt.gob.es/WEB_INTV_INTER/xhtml/acciones/iniciarDatosVerificacion.jsf');
+
+		// Select Login form
+		//$form = $crawler->selectButton('btnFirmar')->form();
+
+		//$post['id_owner']='43185091s';
+		//$post['pin']='HddNoSsdSi90.';
+		//$crawler = $client->submit($form, $post);
+		$url="https://pasarela.clave.gob.es/Proxy/ServiceProvider";
+ 		$input1=$crawler->filterXPath("//*[@name='SAMLRequest']")->attr('value');
+ 		$input2=$crawler->filterXPath("//*[@name='idpList']")->attr('value');
+ 		$input3=$crawler->filterXPath("//*[@name='allowLegalPerson']")->attr('value');
+ 		$client2 = new Client();
+ 		$crawler2 = $client2->request('POST', $url,array("SAMLRequest"=>$input1,"idpList"=>$input2,"allowLegalPerson"=>$input3));
+
+		$form=$crawler2->filter("form[name=ssRedirect] #indexparseScope_samlId")->parents()->eq(0)->form();
+		$crawler2=$client2->submit($form);
+		$url2=$crawler2->filter("iframe")->attr('src');
+		
+		$client3 = new Client();
+		$crawler2 = $client2->request('GET', $url2);
+		$form2=$crawler2->filter("#countrySelector")->form();
+		$crawler2=$client3->submit($form2);
+
+		//$link = $crawler->selectLink('Acceder  >')->link();
+		//$crawler2 = $client2->click($link);
+		//$crawler = $client->getCrawler();
+		echo $html=$crawler2->html();*/
+		//getInternalRequest()
+
+		$crawler = $client->request('GET','https://clave-dninbrt.seg-social.gob.es/rss-gateway/AuthByLevelFormGateWayServlet?id_transaction=');
+		echo $html=$crawler->html();
+	}
 	public function atib($matricula,$precio){
 
 		$this->insta620();
@@ -120,9 +157,9 @@ class ControllerBase{
 		//Matricula
 		$post['ctl00$ctl00$cph_main$cph_main$621_0$numMatricu2']=$matricula;
 		//DNI Vendedor
-		$post['ctl00$ctl00$cph_main$cph_main$621_0$txtnif']='43185089j';
+		$post['ctl00$ctl00$cph_main$cph_main$621_0$txtnif']='43077529R';
 		//Apellido Vendedor
-		$post['ctl00$ctl00$cph_main$cph_main$621_0$txtnombre']='diaz';
+		$post['ctl00$ctl00$cph_main$cph_main$621_0$txtnombre']='garcia';
 
 		$post['ctl00$ctl00$cph_main$cph_main$621_0$valorDecla']=number_format($precio,2,",",".");
 
@@ -143,11 +180,10 @@ class ControllerBase{
 		$res['cilindrada']= $crawler->filterXPath("//*[@id='cph_main_cph_main_621_0_cilindrada']")->attr('value');
 		$res['fechaMatri']= $crawler->filterXPath("//*[@id='cph_main_cph_main_621_0_fechaMatri']")->attr('value');
 		$res['cvf']= $crawler->filterXPath("//*[@id='cph_main_cph_main_621_0_cvf']")->attr('value');
-		
 
-		if($res['cuota']){
+		/*if($res['cuota']){
 
-		}
+		}*/
 		try{
 			$tag = $crawler->filterXPath("//div[@class='alerta']/ul/li")->text();
 			//echo "\nInferior";
@@ -158,8 +194,50 @@ class ControllerBase{
 		return false;
 	}
 
+	public function datosVehiculo($matricula){
+		$empieza= new \DateTime();
+		$this->insta620();
+		//DNI Comprador
+		$post['ctl00$ctl00$cph_main$cph_main$621_0$nifC']='43185091s';
+		//Apellido Comrpador
+		$post['ctl00$ctl00$cph_main$cph_main$621_0$apenomC']="diaz";
+		//Matricula
+		$post['ctl00$ctl00$cph_main$cph_main$621_0$numMatricu2']=$matricula;
+		//DNI Vendedor
+		$post['ctl00$ctl00$cph_main$cph_main$621_0$txtnif']='43077529R';
+		//Apellido Vendedor
+		$post['ctl00$ctl00$cph_main$cph_main$621_0$txtnombre']='garcia';
+
+		//Precio 0€
+		$post['ctl00$ctl00$cph_main$cph_main$621_0$valorDecla']=number_format(0,2,",",".");
+
+		// Submit form
+		$crawler = $this->client->submit($this->form, $post);
+
+		//Devuelve todo el contenido de la respuesta
+		//echo $html=$crawler->html();
+
+		/*$termina=new \DateTime();
+		$interval=$empieza->diff($termina);
+		echo "<br>".$interval->format("%ss");*/
+
+		$res['cuota']= (int)str_replace(".","",$crawler->filterXPath("//*[@id='cph_main_cph_main_621_E_CuotaSola']")->attr('value'));
+		$res['marca']= $crawler->filterXPath("//*[@id='cph_main_cph_main_621_0_marcaVeh']")->attr('value');
+		$res['modelo']= $crawler->filterXPath("//*[@id='cph_main_cph_main_621_0_modeloVeh']")->attr('value');
+		$res['bastidor']= $crawler->filterXPath("//*[@id='cph_main_cph_main_621_0_bastidorSV']")->attr('value');
+		$res['cilindrada']= $crawler->filterXPath("//*[@id='cph_main_cph_main_621_0_cilindrada']")->attr('value');
+		$res['fechaMatri']= $crawler->filterXPath("//*[@id='cph_main_cph_main_621_0_fechaMatri']")->attr('value');
+		$res['cvf']= $crawler->filterXPath("//*[@id='cph_main_cph_main_621_0_cvf']")->attr('value');
+		
+		$termina=new \DateTime();
+		$interval=$empieza->diff($termina);
+		$res['time']=$interval->format("%i:%s");
+		return $res;
+	}
+
 
 	public function check620($matricula,$aprox=1000,$tick=500){
+		setcookie("run",1);
 		$reduc=1;
 		$sem=false;
 		// cada vez que se reduce la cantidad a sumar o restar
@@ -167,6 +245,7 @@ class ControllerBase{
 		$p=false;
 		$resultado=array();
 		$precioMuyAlto=false;
+		session_write_close();
 		while(true){
 			$resultadoanterior=$resultado;
 			$resultado=$this->atib($matricula,$aprox);
@@ -208,9 +287,22 @@ class ControllerBase{
 				$aprox=round($aprox-($tick*$reduc));
 				$i++;
 			}
+			//En caso de volver a ejecutar
+			if(isset($_COOKIE['run'])){
+				if($_COOKIE['run']==1){
+					$resultado['run']=$_COOKIE['run'];
+				}else{
+					$resultado['run']=$_COOKIE['run'];
+					//return $resultado;
+				}
+			}else{
+				$resultado['otros']="No hay cookie";
+			}
 			//echo "<br>".$aprox;
 		}
 		$resultado['precio']=$aprox;
+		setcookie("run",0);
+		session_start();
 		return $resultado;
 	}
 }
