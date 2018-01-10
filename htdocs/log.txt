@@ -1000,3 +1000,698 @@
 20 18:07:39 --> entrada OK
 20 18:15:40 --> Creando entrada... Matricula: 7344DYC - Gestionado por Jaume
 20 18:15:40 --> entrada OK
+20 18:25:46 --> Creando entrada... Matricula: 2045DJB - Gestionado por Jaume
+20 18:25:46 --> entrada OK
+20 18:35:07 --> Creando entrada... Matricula: 4044JHN - Gestionado por Cristina
+20 18:35:07 --> entrada OK
+20 18:46:15 --> Creando entrada... Matricula: 2983HXG - Gestionado por Cristina
+20 18:46:15 --> entrada OK
+20 18:49:58 --> Creando entrada... Matricula: 1029GPW - Gestionado por Jaume
+20 18:49:59 --> entrada OK
+20 18:51:35 --> Creando entrada... Matricula: 5127DGF - Gestionado por Cristina
+20 18:51:35 --> entrada OK
+20 18:56:49 --> Editando entrada... Matricula: 2045DJB - Gestionado por Jaume
+20 18:56:49 --> entrada OK
+20 18:57:15 --> Editando entrada... Matricula: 7344DYC - Gestionado por Jaume
+20 18:57:15 --> entrada OK
+21 10:11:49 --> Creando entrada... Matricula: 3660BWF - Gestionado por Silvia
+21 10:11:49 --> entrada OK
+21 12:18:07 --> Creando entrada... Matricula: IB7577CT - Gestionado por Silvia
+21 12:18:07 --> entrada OK
+21 12:18:22 --> Editando entrada... Matricula: IB7577CT - Gestionado por Silvia
+21 12:18:22 --> entrada OK
+21 12:38:43 --> Xisco ha enviado los siguientes telefonos 691351070, 687717304, 661822825, 634239960, 677008492, 647729040, 647729040, 647729040, 687717304, 687717304
+21 13:24:14 --> Creando entrada... Matricula: 8564JDB - Gestionado por Silvia
+21 13:24:14 --> entrada OK
+21 13:25:22 --> Creando entrada... Matricula: 6079JND - Gestionado por Silvia
+21 13:25:22 --> entrada OK
+21 15:13:06 --> Creando entrada... Matricula: 9690GDD - Gestionado por Cristina
+21 15:13:06 --> entrada OK
+21 16:24:19 --> Creando entrada... Matricula: 3858HGD - Gestionado por Cristina
+21 16:24:19 --> entrada OK
+21 16:28:09 --> Creando entrada... Matricula: 9294BRW - Gestionado por Cristina
+21 16:28:09 --> entrada OK
+21 16:39:34 --> Creando entrada... Matricula: 4829GTW - Gestionado por Cristina
+21 16:39:34 --> entrada OK
+21 16:49:13 --> Creando entrada... Matricula: 1556GTZ - Gestionado por Cristina
+21 16:49:13 --> entrada OK
+21 16:53:05 --> Creando entrada... Matricula: 0783GMP - Gestionado por Jaume
+21 16:53:05 --> entrada OK
+21 17:02:30 --> Creando entrada... Matricula: 2891CHF - Gestionado por Cristina
+21 17:02:30 --> entrada OK
+21 17:09:30 --> Creando entrada... Matricula: 3518CPG - Gestionado por Cristina
+21 17:09:30 --> entrada OK
+21 17:16:45 --> Creando entrada... Matricula: 3720FXJ - Gestionado por Cristina
+21 17:16:45 --> entrada OK
+21 17:20:50 --> Creando entrada... Matricula: IB6883DK - Gestionado por Cristina
+21 17:20:50 --> entrada OK
+21 17:43:44 --> Creando entrada... Matricula: 3744GMF - Gestionado por Cristina
+21 17:43:44 --> entrada OK
+21 18:27:27 --> Creando entrada... Matricula: 0501GKD - Gestionado por Cristina
+21 18:27:27 --> entrada OK
+21 18:32:58 --> Editando entrada... Matricula: 3660BWF - Gestionado por Jaume
+21 18:32:58 --> entrada OK
+21 18:37:29 --> Creando entrada... Matricula: 5404DHF - Gestionado por Cristina
+21 18:37:29 --> entrada OK
+22 08:25:14 --> Creando entrada... Matricula: 5768FRW - Gestionado por Cristina
+22 08:25:14 --> entrada OK
+22 09:45:48 --> Creando entrada... Matricula: 2567FYV - Gestionado por Silvia
+22 09:45:48 --> entrada OK
+22 10:26:13 --> Creando entrada... Matricula: 3628FRJ  - Gestionado por Silvia
+22 10:26:13 --> entrada OK
+22 10:34:04 --> Creando entrada... Matricula: 8497DPK - Gestionado por Silvia
+22 10:34:04 --> entrada OK
+22 10:51:01 --> Creando entrada... Matricula: 6496GDL - Gestionado por Silvia
+22 10:51:01 --> entrada OK
+22 13:46:09 --> Creando entrada... Matricula: IB2133AV - Gestionado por Silvia
+22 13:46:09 --> entrada OK
+22 13:59:42 --> Xisco ha enviado los siguientes telefonos 693006352, 629620735
+22 18:15:25 --> Creando entrada... Matricula: 9610HYH - Gestionado por Cristina
+22 18:15:25 --> entrada OK
+22 18:17:42 --> Creando entrada... Matricula: 6415HRF - Gestionado por Cristina
+22 18:17:42 --> entrada OK
+22 18:21:52 --> Creando entrada... Matricula: IB9949DJ - Gestionado por Cristina
+22 18:21:52 --> entrada OK
+22 18:23:40 --> Creando entrada... Matricula: 9062DVK - Gestionado por Cristina
+22 18:23:40 --> entrada OK
+22 18:24:56 --> Creando entrada... Matricula: 7824BCK - Gestionado por Cristina
+22 18:24:56 --> entrada OK
+22 18:26:26 --> Creando entrada... Matricula: 2877BWM - Gestionado por Cristina
+22 18:26:26 --> entrada OK
+22 18:38:33 --> Creando entrada... Matricula: 9414GJB - Gestionado por Cristina
+22 18:38:33 --> entrada OK
+22 18:45:13 --> Creando entrada... Matricula: 3650CTN - Gestionado por Cristina
+22 18:45:13 --> entrada OK
+22 18:55:31 --> Creando entrada... Matricula: 1255HXC - Gestionado por Cristina
+22 18:55:31 --> entrada OK
+22 19:13:41 --> Creando entrada... Matricula: 1712HWR - Gestionado por Jaume
+22 19:13:41 --> entrada OK
+22 19:56:49 --> Creando entrada... Matricula: IB7889DK - Gestionado por Jaume
+22 19:56:49 --> entrada OK
+22 20:11:44 --> Creando entrada... Matricula: 2811FPT - Gestionado por Jaume
+22 20:11:44 --> entrada OK
+23 11:16:26 --> Xisco ha enviado los siguientes telefonos 642644182, 654211622, 616043273, 655804823, 663495688, 650739756, 663580355, 663580355, 647729040, 631666238, 647729040, 629620734, 647729040, 679581759, 679581759, 654211622, 610371503, 601013420, 658838499, 674728510
+27 09:13:28 --> Creando entrada... Matricula: C5379BPH  - Gestionado por Silvia
+27 09:13:28 --> entrada OK
+27 09:42:17 --> Creando entrada... Matricula: 1207CCK - Gestionado por Cristina
+27 09:42:17 --> entrada OK
+27 10:07:40 --> Creando entrada... Matricula: 7209DTN - Gestionado por Cristina
+27 10:07:40 --> entrada OK
+27 10:18:42 --> Creando entrada... Matricula: 3244GXY - Gestionado por Cristina
+27 10:18:42 --> entrada OK
+27 10:55:13 --> Creando entrada... Matricula: C2258BVT - Gestionado por Silvia
+27 10:55:13 --> entrada OK
+27 11:26:40 --> Creando entrada... Matricula: 1665BDD - Gestionado por Silvia
+27 11:26:40 --> entrada OK
+27 12:20:39 --> Creando entrada... Matricula: 4592CWD - Gestionado por Cristina
+27 12:20:39 --> entrada OK
+27 12:28:28 --> Creando entrada... Matricula: 3990CDZ  - Gestionado por Silvia
+27 12:28:28 --> entrada OK
+27 12:38:29 --> Creando entrada... Matricula: B5970TL - Gestionado por Silvia
+27 12:38:29 --> entrada OK
+27 12:40:15 --> Creando entrada... Matricula: 5468HBC - Gestionado por Cristina
+27 12:40:15 --> entrada OK
+27 13:01:16 --> Creando entrada... Matricula: 5907GBY - Gestionado por Cristina
+27 13:01:16 --> entrada OK
+27 13:26:56 --> Creando entrada... Matricula: B5160WG - Gestionado por Silvia
+27 13:26:56 --> entrada OK
+27 14:02:04 --> Creando entrada... Matricula: 3203DGP - Gestionado por Cristina
+27 14:02:04 --> entrada OK
+27 14:11:00 --> Editando entrada... Matricula: 0707FKW - Gestionado por Xisco
+27 14:11:00 --> entrada OK
+27 14:12:37 --> Creando entrada... Matricula: IB9540DM - Gestionado por Silvia
+27 14:12:37 --> entrada OK
+27 14:15:35 --> Xisco ha enviado los siguientes telefonos 617679429, 696862411, 620085686, 646515249, 611240736, 632706225, 625388640, 686897292, 671711802, 686562512, 689871991, 663617951, 616949306, 679796859, 667357999, 670421141, 663580355, 687376881
+27 14:38:11 --> Creando entrada... Matricula: 7607FDK - Gestionado por Cristina
+27 14:38:11 --> entrada OK
+27 14:44:37 --> Creando entrada... Matricula: 7170BJV - Gestionado por Cristina
+27 14:44:37 --> entrada OK
+27 14:59:23 --> Creando entrada... Matricula: 6933CCB - Gestionado por Cristina
+27 14:59:23 --> entrada OK
+27 15:17:23 --> Creando entrada... Matricula: IB5258CP - Gestionado por Cristina
+27 15:17:23 --> entrada OK
+27 17:23:23 --> Creando entrada... Matricula: PM8000DS  - Gestionado por Silvia
+27 17:23:23 --> entrada OK
+27 18:02:45 --> Creando entrada... Matricula: 3242GVG - Gestionado por Jaume
+27 18:02:45 --> entrada OK
+27 18:45:21 --> Creando entrada... Matricula: 2061DKH - Gestionado por Cristina
+27 18:45:21 --> entrada OK
+27 18:55:02 --> Creando entrada... Matricula: 6788HXR - Gestionado por Cristina
+27 18:55:02 --> entrada OK
+27 19:18:29 --> Creando entrada... Matricula: 0347CTN - Gestionado por Cristina
+27 19:18:29 --> entrada OK
+27 19:26:00 --> Creando entrada... Matricula: 1779HTF - Gestionado por Jaume
+27 19:26:00 --> entrada OK
+27 19:28:07 --> Creando entrada... Matricula: 8573CRH - Gestionado por Cristina
+27 19:28:07 --> entrada OK
+28 08:27:36 --> Xisco ha enviado los siguientes telefonos 659239694, 625847038, 647729040, 687717304, 637032436, 639589823, 658188491, 663576688, 600008309, 647243874, 637032436, 622544664, 625012524, 625012524, 622929007
+28 10:56:09 --> Creando entrada... Matricula: 2939FBG - Gestionado por Silvia
+28 10:56:09 --> entrada OK
+28 11:29:39 --> Creando entrada... Matricula: IB3785CZ - Gestionado por Cristina
+28 11:29:39 --> entrada OK
+28 12:02:48 --> Creando entrada... Matricula: IB9884CT - Gestionado por Silvia
+28 12:02:48 --> entrada OK
+28 12:08:37 --> Creando entrada... Matricula: 8433BCK - Gestionado por Cristina
+28 12:08:37 --> entrada OK
+28 12:34:54 --> Creando entrada... Matricula: 5191DTY - Gestionado por Silvia
+28 12:34:54 --> entrada OK
+28 12:41:35 --> Creando entrada... Matricula: 6834GTZ - Gestionado por Silvia
+28 12:41:35 --> entrada OK
+28 14:20:47 --> Creando entrada... Matricula: 0735JHF - Gestionado por Silvia
+28 14:20:47 --> entrada OK
+28 14:41:03 --> Creando entrada... Matricula: 3088FCL - Gestionado por Silvia
+28 14:41:03 --> entrada OK
+28 15:41:05 --> Creando entrada... Matricula: 6890CCL - Gestionado por Silvia
+28 15:41:05 --> entrada OK
+28 16:31:32 --> Creando entrada... Matricula: 9893DRV - Gestionado por Jaume
+28 16:31:32 --> entrada OK
+28 16:54:19 --> Creando entrada... Matricula: 6338GGR - Gestionado por Cristina
+28 16:54:19 --> entrada OK
+28 17:34:51 --> Creando entrada... Matricula: 3738GVY - Gestionado por Jaume
+28 17:34:51 --> entrada OK
+28 17:44:55 --> Creando entrada... Matricula: 7306DYN - Gestionado por Cristina
+28 17:44:55 --> entrada OK
+28 17:48:48 --> Creando entrada... Matricula: 5709HXJ - Gestionado por Cristina
+28 17:48:48 --> entrada OK
+28 17:52:19 --> Creando entrada... Matricula: 9550GBX - Gestionado por Cristina
+28 17:52:19 --> entrada OK
+28 18:02:07 --> Creando entrada... Matricula: 3308GLW - Gestionado por Cristina
+28 18:02:07 --> entrada OK
+28 18:14:33 --> Creando entrada... Matricula: 0511FSX - Gestionado por Cristina
+28 18:14:33 --> entrada OK
+28 18:27:24 --> Creando entrada... Matricula: 1955BJR - Gestionado por Cristina
+28 18:27:24 --> entrada OK
+28 18:34:08 --> Creando entrada... Matricula: 1423BNG - Gestionado por Jaume
+28 18:34:08 --> entrada OK
+28 19:11:13 --> Creando entrada... Matricula: 4312FNL - Gestionado por Cristina
+28 19:11:13 --> entrada OK
+28 19:16:51 --> Creando entrada... Matricula: 2454CYK - Gestionado por Cristina
+28 19:16:51 --> entrada OK
+28 19:19:41 --> Creando entrada... Matricula: 4412HBF - Gestionado por Cristina
+28 19:19:41 --> entrada OK
+29 09:23:40 --> Creando entrada... Matricula: 8919BKT - Gestionado por Silvia
+29 09:23:40 --> entrada OK
+29 10:45:26 --> Creando entrada... Matricula: 0012CSF - Gestionado por Cristina
+29 10:45:26 --> entrada OK
+29 10:45:48 --> Creando entrada... Matricula: 1843CPW - Gestionado por Cristina
+29 10:45:48 --> entrada OK
+29 10:46:10 --> Creando entrada... Matricula: 4219BZJ - Gestionado por Cristina
+29 10:46:10 --> entrada OK
+29 10:57:55 --> Creando entrada... Matricula: 7603FPK - Gestionado por Silvia
+29 10:57:55 --> entrada OK
+29 11:29:49 --> Creando entrada... Matricula: 0266GHV - Gestionado por Cristina
+29 11:29:49 --> entrada OK
+29 12:09:28 --> Xisco ha enviado los siguientes telefonos 626150122, 672426934, 619207530, 679371887, 620271230, 600068204, 607266548, 605413392, 687717304, 677737497, 608760822, 647729040, 610880101
+29 12:50:37 --> Editando entrada... Matricula: 4460BRJ - Gestionado por Cristina
+29 12:50:37 --> entrada OK
+29 13:20:35 --> Creando entrada... Matricula: 3945CGV - Gestionado por Silvia
+29 13:20:35 --> entrada OK
+29 13:33:02 --> Creando entrada... Matricula: 9816BPL - Gestionado por Silvia
+29 13:33:03 --> entrada OK
+29 13:39:31 --> Creando entrada... Matricula: 7315CWK - Gestionado por Cristina
+29 13:39:31 --> entrada OK
+29 16:19:07 --> Creando entrada... Matricula: 2210HSG - Gestionado por Cristina
+29 16:19:07 --> entrada OK
+29 16:39:51 --> Creando entrada... Matricula: 8725DDG - Gestionado por Jaume
+29 16:39:51 --> entrada OK
+29 16:59:52 --> Creando entrada... Matricula: MU2493CK - Gestionado por Cristina
+29 16:59:52 --> entrada OK
+29 17:25:11 --> Creando entrada... Matricula: 5999GLS - Gestionado por Cristina
+29 17:25:11 --> entrada OK
+29 17:26:17 --> Creando entrada... Matricula: C7131BVV - Gestionado por Jaume
+29 17:26:17 --> entrada OK
+29 17:40:39 --> Creando entrada... Matricula: IB6898DP - Gestionado por Jaume
+29 17:40:39 --> entrada OK
+29 17:57:09 --> Creando entrada... Matricula: MU9993BF - Gestionado por Jaume
+29 17:57:09 --> entrada OK
+29 18:16:12 --> Creando entrada... Matricula: 3160FBN - Gestionado por Cristina
+29 18:16:12 --> entrada OK
+29 18:25:10 --> Creando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+29 18:26:02 --> Creando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+29 18:26:53 --> Creando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+29 18:27:44 --> Creando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+29 18:27:44 --> Tarjeta transporte OK
+29 18:28:50 --> Creando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+29 18:28:50 --> Tarjeta transporte OK
+29 18:30:34 --> Creando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+29 18:30:34 --> Tarjeta transporte OK
+29 18:31:04 --> Creando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+29 18:31:04 --> Tarjeta transporte OK
+29 18:34:48 --> Creando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+29 18:34:48 --> Tarjeta transporte OK
+29 19:44:08 --> Creando entrada... Matricula: 6012DPS - Gestionado por Jaume
+29 19:44:08 --> entrada OK
+29 19:47:37 --> 1
+29 19:47:43 --> 0
+29 19:49:22 --> 1
+29 19:55:42 --> Creando entrada... Matricula: 2971HRN - Gestionado por Cristina
+29 19:55:42 --> entrada OK
+29 20:00:47 --> Creando entrada... Matricula: 7686DFM - Gestionado por Cristina
+29 20:00:47 --> entrada OK
+29 20:03:30 --> Creando entrada... Matricula: 6978HXV - Gestionado por Cristina
+29 20:03:30 --> entrada OK
+29 20:08:16 --> Creando entrada... Matricula: 8757HYJ - Gestionado por Cristina
+29 20:08:16 --> entrada OK
+29 20:24:02 --> Creando entrada... Matricula: 7726BDZ - Gestionado por Jaume
+29 20:24:02 --> entrada OK
+02 10:44:06 --> Creando entrada... Matricula: 9285GPF - Gestionado por Cristina
+02 10:44:06 --> entrada OK
+02 11:16:55 --> Creando entrada... Matricula: 2087FJK - Gestionado por Cristina
+02 11:16:55 --> entrada OK
+02 11:43:27 --> Creando entrada... Matricula: 1235CPK - Gestionado por Silvia
+02 11:43:27 --> entrada OK
+02 12:37:59 --> Xisco ha enviado los siguientes telefonos 637032436, 605111908, 687717304, 687376881, 651585554, 615135171, 687209688, 686705587, 629058881, 655178632, 655178632, 654211622, 654211622, 1590, 647729040, 660506293, 605111908, 600672867, 674805102, 631764699
+02 15:44:41 --> Creando entrada... Matricula: 9144HTB - Gestionado por Silvia
+02 15:44:41 --> entrada OK
+02 16:21:55 --> 0
+02 16:26:28 --> Creando entrada... Matricula: 3389HKG - Gestionado por Jaume
+02 16:26:28 --> entrada OK
+02 16:59:04 --> Creando entrada... Matricula: 5028DYH - Gestionado por Jaume
+02 16:59:04 --> entrada OK
+02 17:18:18 --> Creando entrada... Matricula: IB9949DJ - Gestionado por Jaume
+02 17:18:18 --> entrada OK
+02 17:25:45 --> Creando entrada... Matricula: CO9286V - Gestionado por Cristina
+02 17:25:45 --> entrada OK
+02 18:05:16 --> Creando tarjeta transporte... Matricula: 1472KJH - Gestionado por cristian
+02 18:05:16 --> Tarjeta transporte OK
+02 18:05:35 --> Creando tarjeta transporte... Matricula: 1472KJH - Gestionado por cristian
+02 18:05:35 --> Tarjeta transporte OK
+02 18:23:05 --> Creando entrada... Matricula: 8466JBD - Gestionado por Cristina
+02 18:23:05 --> entrada OK
+02 18:24:13 --> Creando entrada... Matricula: 7842DRV - Gestionado por Jaume
+02 18:24:14 --> entrada OK
+02 18:37:37 --> 1
+02 18:37:37 --> 1
+02 18:38:26 --> 1
+02 18:38:26 --> 1
+02 18:38:30 --> 2
+02 18:38:30 --> 2
+02 18:38:36 --> 1
+02 18:38:36 --> 1
+02 18:38:39 --> 3
+02 18:38:39 --> 3
+02 18:40:19 --> 1
+02 18:40:19 --> 1
+02 18:40:31 --> 1
+02 18:40:31 --> 1
+02 18:41:07 --> 1
+02 18:41:07 --> 1
+02 18:42:18 --> 1
+02 18:42:18 --> 1
+02 18:42:20 --> 2
+02 18:42:20 --> 2
+02 18:42:23 --> 4
+02 18:42:23 --> 4
+02 18:42:26 --> 6
+02 18:42:26 --> 6
+02 18:42:35 --> 8
+02 18:42:35 --> 8
+02 18:43:05 --> 32
+02 18:43:05 --> 32
+03 11:07:58 --> Creando entrada... Matricula: 9006FTS  - Gestionado por Silvia
+03 11:07:58 --> entrada OK
+03 11:20:03 --> Creando entrada... Matricula: 1324DKK - Gestionado por Cristina
+03 11:20:03 --> entrada OK
+03 11:24:04 --> Creando entrada... Matricula: 8374HRH - Gestionado por Silvia
+03 11:24:04 --> entrada OK
+03 11:50:46 --> Creando entrada... Matricula: 2167JBF - Gestionado por Cristina
+03 11:50:46 --> entrada OK
+03 12:13:07 --> Creando entrada... Matricula: IB7280DJ - Gestionado por Cristina
+03 12:13:07 --> entrada OK
+03 14:06:37 --> Creando entrada... Matricula: 8673BKB - Gestionado por Cristina
+03 14:06:37 --> entrada OK
+03 16:59:36 --> Creando entrada... Matricula: V7229FH - Gestionado por Jaume
+03 16:59:36 --> entrada OK
+03 18:27:44 --> Creando entrada... Matricula: 8641BDW - Gestionado por Jaume
+03 18:27:44 --> entrada OK
+03 18:57:30 --> Creando entrada... Matricula: 3456BZR - Gestionado por Jaume
+03 18:57:30 --> entrada OK
+03 20:03:43 --> Creando entrada... Matricula: 3427BRN - Gestionado por Cristina
+03 20:03:43 --> entrada OK
+04 11:15:51 --> Creando entrada... Matricula: 1623BWC - Gestionado por Silvia
+04 11:15:51 --> entrada OK
+04 11:35:49 --> Creando entrada... Matricula: 5866HRP - Gestionado por Silvia
+04 11:35:49 --> entrada OK
+04 13:20:45 --> Creando entrada... Matricula: 8644DMN - Gestionado por Silvia
+04 13:20:46 --> entrada OK
+04 14:05:12 --> Xisco ha enviado los siguientes telefonos 671247476, 617172885, 638181906, 671247476, 601458666, 608042378, 622526174, 622526174, 629938876, 622526174, 622526174, 622035966, 1626, 698573133, 682453538, 616276031, 647729040, 685048202
+04 16:35:13 --> Creando entrada... Matricula: 1189FWL - Gestionado por Silvia
+04 16:35:13 --> entrada OK
+04 16:41:49 --> Editando tarjeta transporte... Matricula: 1472KJH - Gestionado por cristian
+04 16:43:38 --> Editando tarjeta transporte... Matricula: 1472KJH - Gestionado por cristian
+04 16:43:38 --> Tarjeta transporte modificada OK
+04 16:44:31 --> Editando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+04 16:44:31 --> Tarjeta transporte modificada OK
+04 16:44:36 --> Editando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+04 16:44:36 --> Tarjeta transporte modificada OK
+04 16:44:52 --> Editando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+04 16:44:52 --> Tarjeta transporte modificada OK
+04 16:44:55 --> Editando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+04 16:44:55 --> Tarjeta transporte modificada OK
+04 16:45:05 --> Editando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+04 16:45:05 --> Tarjeta transporte modificada OK
+04 16:45:23 --> Editando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+04 16:45:23 --> Tarjeta transporte modificada OK
+04 16:45:33 --> Editando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+04 16:45:33 --> Tarjeta transporte modificada OK
+04 16:45:55 --> Editando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+04 16:45:55 --> Tarjeta transporte modificada OK
+04 16:46:08 --> Editando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+04 16:46:08 --> Tarjeta transporte modificada OK
+04 16:46:50 --> Editando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+04 16:46:50 --> Tarjeta transporte modificada OK
+04 16:51:43 --> Editando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+04 16:52:56 --> Creando entrada... Matricula: IB5848DD - Gestionado por Jaume
+04 16:52:56 --> entrada OK
+04 16:59:35 --> Editando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+04 16:59:35 --> Tarjeta transporte modificada OK
+04 17:02:37 --> Creando entrada... Matricula: IB4042CP - Gestionado por Silvia
+04 17:02:37 --> entrada OK
+04 17:08:26 --> Creando entrada... Matricula: 66814FWX - Gestionado por Silvia
+04 17:08:26 --> entrada OK
+04 17:09:38 --> Editando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+04 17:09:38 --> Tarjeta transporte modificada OK
+04 17:09:50 --> Editando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+04 17:09:50 --> Tarjeta transporte modificada OK
+04 17:09:52 --> Editando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+04 17:09:52 --> Tarjeta transporte modificada OK
+04 17:09:57 --> Editando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+04 17:09:57 --> Tarjeta transporte modificada OK
+04 17:09:59 --> Editando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+04 17:09:59 --> Tarjeta transporte modificada OK
+04 17:10:50 --> Editando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+04 17:10:50 --> Tarjeta transporte modificada OK
+04 17:11:19 --> Editando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+04 17:11:19 --> Tarjeta transporte modificada OK
+04 17:11:26 --> Editando tarjeta transporte... Matricula: 5555TES - Gestionado por cristian
+04 17:11:26 --> Tarjeta transporte modificada OK
+04 17:11:48 --> Creando tarjeta transporte... Matricula: 2222AAA - Gestionado por cristian
+04 17:11:48 --> Tarjeta transporte OK
+04 17:24:22 --> Creando entrada... Matricula: 2774FGV - Gestionado por Jaume
+04 17:24:22 --> entrada OK
+04 17:24:36 --> Editando entrada... Matricula: 2774FGV - Gestionado por Jaume
+04 17:24:36 --> entrada OK
+04 17:48:10 --> Creando entrada... Matricula: 6638CTL - Gestionado por Silvia
+04 17:48:10 --> entrada OK
+04 17:53:15 --> Creando tarjeta transporte... Matricula: 1234ASD - Gestionado por cristian
+04 17:53:15 --> Tarjeta transporte OK
+04 18:11:58 --> Creando entrada... Matricula: 1121CPW - Gestionado por Jaume
+04 18:11:58 --> entrada OK
+04 18:15:58 --> Creando entrada... Matricula: 8644DMN - Gestionado por Silvia
+04 18:15:58 --> entrada OK
+04 19:33:27 --> Creando entrada... Matricula: 4444GTC - Gestionado por Silvia
+04 19:33:27 --> entrada OK
+04 19:54:09 --> Creando tarjeta transporte... Matricula: 6543ASD - Gestionado por cristian
+04 20:00:39 --> Creando tarjeta transporte... Matricula: 6543ASD - Gestionado por cristian
+04 20:01:10 --> Creando tarjeta transporte... Matricula: 6543ASD - Gestionado por cristian
+04 20:02:16 --> Creando tarjeta transporte... Matricula: 6543ASD - Gestionado por cristian
+04 20:06:18 --> Creando tarjeta transporte... Matricula: 6543ASD - Gestionado por cristian
+05 11:02:03 --> Creando entrada... Matricula: 7852CHG - Gestionado por Silvia
+05 11:02:03 --> entrada OK
+05 11:20:16 --> Cristina ha enviado los siguientes telefonos 627374843, 633701054, 634679337, 660506293, 628286141, 667945549, 679913951, 607297199, 667524924, 685800605, 667524924, 667524924, 687717304, 686431793, 679289312, 630987389, 655178632, 603137838, 671247476, 687708466, 663580355, 663580355, 663580355, 695071381, 676334449, 633701054, 687273808, 607762861, 678533587, 609343983, 647729040, 627060148, 607192768, 661336993, 633701054, 647729040, 647729040, 647729040
+05 11:23:07 --> Cristina ha enviado los siguientes telefonos 627374843, 633701054, 634679337, 660506293, 628286141, 667945549, 679913951, 607297199, 667524924, 685800605, 667524924, 667524924, 687717304, 686431793, 679289312, 630987389, 655178632, 603137838, 671247476, 687708466, 663580355, 663580355, 663580355, 695071381, 676334449, 633701054, 687273808, 607762861, 678533587, 609343983, 647729040, 627060148, 607192768, 661336993, 633701054, 647729040, 647729040, 647729040
+05 11:23:45 --> Cristina ha enviado los siguientes telefonos 627374843, 633701054, 634679337, 660506293, 628286141, 667945549, 679913951, 607297199, 667524924, 685800605, 667524924, 667524924, 687717304, 686431793, 679289312, 630987389, 655178632, 603137838, 671247476, 687708466, 663580355, 663580355, 663580355, 695071381, 676334449, 633701054, 687273808, 607762861, 678533587, 609343983, 647729040, 627060148, 607192768, 661336993, 633701054, 647729040, 647729040, 647729040
+05 11:24:05 --> Cristina ha enviado los siguientes telefonos 627374843, 633701054, 634679337, 660506293, 628286141, 667945549, 679913951, 607297199, 667524924, 685800605, 667524924, 667524924, 687717304, 686431793, 679289312, 630987389, 655178632, 603137838, 671247476, 687708466, 663580355, 663580355, 663580355, 695071381, 676334449, 633701054, 687273808, 607762861, 678533587, 609343983, 647729040, 627060148, 607192768, 661336993, 633701054, 647729040, 647729040, 647729040
+05 12:08:30 --> Creando entrada... Matricula: 5046FHR  - Gestionado por Silvia
+05 12:08:30 --> entrada OK
+05 12:23:24 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 12:23:59 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 12:33:27 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 12:33:30 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 12:33:33 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 12:33:58 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 12:36:28 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 12:36:28 --> Tarjeta transporte OK
+05 12:47:30 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 12:47:57 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 12:51:15 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 12:52:00 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 12:52:31 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 12:55:25 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 12:55:25 --> Tarjeta transporte OK
+05 12:56:03 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 12:56:03 --> Tarjeta transporte OK
+05 12:56:08 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 12:56:08 --> Tarjeta transporte OK
+05 12:56:39 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 12:56:39 --> Tarjeta transporte OK
+05 12:58:03 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 12:58:03 --> Tarjeta transporte OK
+05 12:58:06 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 13:05:30 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 13:05:30 --> Tarjeta transporte OK
+05 13:06:05 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 13:06:05 --> Tarjeta transporte OK
+05 13:07:46 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 13:07:47 --> Tarjeta transporte OK
+05 13:07:50 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 13:07:51 --> Tarjeta transporte OK
+05 13:08:57 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 13:08:58 --> Tarjeta transporte OK
+05 13:09:06 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 13:09:06 --> Tarjeta transporte OK
+05 13:10:09 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 13:10:12 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 13:10:47 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 13:11:17 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 13:11:22 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 13:11:43 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 13:12:46 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 13:13:26 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 13:14:54 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 13:14:55 --> Tarjeta transporte OK
+05 13:19:14 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 13:19:14 --> Tarjeta transporte OK
+05 13:21:09 --> Creando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+05 13:21:09 --> Tarjeta transporte OK
+05 13:37:51 --> Creando tarjeta transporte... Matricula: 5555TES - Gestionado por Cristian
+05 13:37:52 --> Tarjeta transporte OK
+05 14:00:53 --> Creando entrada... Matricula: 7775CVP - Gestionado por Silvia
+05 14:00:53 --> entrada OK
+05 14:48:16 --> Creando tarjeta transporte... Matricula: 3214ASD - Gestionado por Cristian
+05 14:48:16 --> Tarjeta transporte OK
+05 14:48:45 --> Creando tarjeta transporte... Matricula: 3214ASD - Gestionado por Cristian
+05 14:48:45 --> Tarjeta transporte OK
+05 14:48:46 --> Creando tarjeta transporte... Matricula: 3214ASD - Gestionado por Cristian
+05 14:48:46 --> Tarjeta transporte OK
+05 14:58:39 --> Creando tarjeta transporte... Matricula: 3214ASD - Gestionado por Cristian
+05 14:58:39 --> Tarjeta transporte OK
+05 14:59:26 --> Creando tarjeta transporte... Matricula: 3214ASD - Gestionado por Cristian
+05 14:59:26 --> Tarjeta transporte OK
+05 15:00:43 --> Creando entrada... Matricula: 1702DHZ  - Gestionado por Silvia
+05 15:00:43 --> entrada OK
+05 15:01:10 --> Creando tarjeta transporte... Matricula: 3214ASD - Gestionado por Cristian
+05 15:01:10 --> Tarjeta transporte OK
+05 15:12:15 --> Creando entrada... Matricula: 2297DZC - Gestionado por Silvia
+05 15:12:15 --> entrada OK
+05 16:04:57 --> Creando entrada... Matricula: 4909DTP - Gestionado por Jaume
+05 16:04:57 --> entrada OK
+05 16:06:33 --> Creando entrada... Matricula: 5282FXY - Gestionado por Cristina
+05 16:06:33 --> entrada OK
+05 16:07:31 --> Editando entrada... Matricula: 4909DTP - Gestionado por Jaume
+05 16:07:31 --> entrada OK
+05 16:34:06 --> Creando entrada... Matricula: 0666DZF - Gestionado por Cristina
+05 16:34:06 --> entrada OK
+05 16:35:44 --> Editando entrada... Matricula: 5282FXY - Gestionado por Cristina
+05 16:35:44 --> entrada OK
+05 17:19:16 --> Creando entrada... Matricula: 9908HSK - Gestionado por Jaume
+05 17:19:16 --> entrada OK
+05 18:14:16 --> Creando entrada... Matricula: 8875GGB - Gestionado por Jaume
+05 18:14:16 --> entrada OK
+05 19:16:54 --> Creando entrada... Matricula: 6732FPG - Gestionado por Cristina
+05 19:16:54 --> entrada OK
+05 19:23:59 --> Creando entrada... Matricula: 9184BZR - Gestionado por Cristina
+05 19:23:59 --> entrada OK
+05 19:32:25 --> Creando entrada... Matricula: 0537DJM - Gestionado por Cristina
+05 19:32:26 --> entrada OK
+05 19:36:01 --> Creando entrada... Matricula: 7744CZY - Gestionado por Cristina
+05 19:36:01 --> entrada OK
+05 19:45:35 --> Creando entrada... Matricula: 8223DMD - Gestionado por Cristina
+05 19:45:35 --> entrada OK
+05 20:11:59 --> Cristina ha enviado los siguientes telefonos 677829128
+08 09:23:44 --> Creando entrada... Matricula: 1555DXD - Gestionado por Silvia
+08 09:23:44 --> entrada OK
+08 10:32:33 --> Creando entrada... Matricula: 8265BXS - Gestionado por Cristina
+08 10:32:33 --> entrada OK
+08 10:52:10 --> Creando entrada... Matricula: 6568DXG - Gestionado por Silvia
+08 10:52:10 --> entrada OK
+08 11:08:49 --> Creando entrada... Matricula: 6876GZM - Gestionado por Cristina
+08 11:08:49 --> entrada OK
+08 11:13:09 --> Editando entrada... Matricula: 6876GZM - Gestionado por Cristina
+08 11:13:09 --> entrada OK
+08 11:25:58 --> Creando entrada... Matricula: IB2048DF - Gestionado por Silvia
+08 11:25:58 --> entrada OK
+08 11:33:08 --> Xisco ha enviado los siguientes telefonos 632054441, 633796391, 633701054, 693028304, 602332374, 675950511, 687809785, 658276378, 653791592, 602009507, 647118524, 647729040, 686018162
+08 12:35:39 --> Creando entrada... Matricula: 6318CPV  - Gestionado por Silvia
+08 12:35:39 --> entrada OK
+08 13:16:12 --> Creando entrada... Matricula: 5292GDD - Gestionado por Cristina
+08 13:16:12 --> entrada OK
+08 13:34:46 --> Creando entrada... Matricula: 7146HNP - Gestionado por Cristina
+08 13:34:46 --> entrada OK
+08 14:04:50 --> Creando entrada... Matricula: 8298FXP - Gestionado por Cristina
+08 14:04:50 --> entrada OK
+08 14:36:02 --> Creando entrada... Matricula: 6994FGH - Gestionado por Cristina
+08 14:36:02 --> entrada OK
+08 16:20:47 --> Creando entrada... Matricula: 6799FNB - Gestionado por Jaume
+08 16:20:47 --> entrada OK
+08 16:22:16 --> Editando tarjeta transporte... Matricula: 3214ASD - Gestionado por Cristian
+08 16:22:16 --> Tarjeta transporte modificada OK
+08 16:23:42 --> Editando tarjeta transporte... Matricula: 1111AAA - Gestionado por Cristian
+08 16:23:42 --> Tarjeta transporte modificada OK
+08 16:25:54 --> Editando tarjeta transporte... Matricula: 3214ASD - Gestionado por Cristian
+08 16:25:54 --> Tarjeta transporte modificada OK
+08 16:59:02 --> Editando tarjeta transporte... Matricula: 3214ASD - Gestionado por Cristian
+08 16:59:02 --> Tarjeta transporte modificada OK
+08 17:00:00 --> Creando entrada... Matricula: 2776CYY - Gestionado por Jaume
+08 17:00:00 --> entrada OK
+08 18:53:31 --> Creando entrada... Matricula: 2405BLG - Gestionado por Cristina
+08 18:53:31 --> entrada OK
+08 19:08:07 --> Creando tarjeta transporte... Matricula: 5555TES - Gestionado por Cristian
+08 19:08:07 --> Tarjeta transporte OK
+08 19:10:57 --> Creando tarjeta transporte... Matricula: 5555TES - Gestionado por Cristian
+08 19:10:57 --> Tarjeta transporte OK
+08 19:13:02 --> Creando tarjeta transporte... Matricula: 5555TES - Gestionado por Cristian
+08 19:13:02 --> Tarjeta transporte OK
+08 19:15:09 --> Creando tarjeta transporte... Matricula: 5555TES - Gestionado por Cristian
+08 19:15:09 --> Tarjeta transporte OK
+08 19:23:21 --> Editando tarjeta transporte... Matricula: 5555TES - Gestionado por Cristian
+08 19:23:21 --> Tarjeta transporte modificada OK
+08 19:36:01 --> Creando tarjeta transporte... Matricula: 8888AAA - Gestionado por Cristian
+08 19:36:01 --> Tarjeta transporte OK
+08 19:45:12 --> Editando tarjeta transporte... Matricula: 8888AAA - Gestionado por Cristian
+08 19:45:12 --> Error: 
+08 19:47:13 --> Editando tarjeta transporte... Matricula: 8888AAA - Gestionado por Cristian
+08 19:47:13 --> Tarjeta transporte modificada OK
+08 19:47:53 --> Editando tarjeta transporte... Matricula: 8888AAA - Gestionado por Cristian
+08 19:47:53 --> Tarjeta transporte modificada OK
+08 19:49:36 --> Editando tarjeta transporte... Matricula: 8888AAA - Gestionado por Cristian
+08 19:49:36 --> Tarjeta transporte modificada OK
+08 19:56:53 --> Creando entrada... Matricula: 1111AAA - Gestionado por Cristian
+08 19:56:53 --> entrada OK
+08 19:57:47 --> Editando entrada... Matricula: 1111AAA - Gestionado por Cristian
+08 19:57:47 --> entrada OK
+08 19:58:03 --> Editando entrada... Matricula: 1111AAA - Gestionado por Cristian
+08 19:58:03 --> entrada OK
+08 19:58:27 --> Editando entrada... Matricula: 1111AAA - Gestionado por Cristian
+08 19:58:27 --> entrada OK
+08 20:01:39 --> Editando tarjeta transporte... Matricula: 8888AAA - Gestionado por Cristian
+08 20:01:39 --> Tarjeta transporte modificada OK
+08 20:01:58 --> Editando tarjeta transporte... Matricula: 8888AAA - Gestionado por Cristian
+08 20:02:19 --> Editando tarjeta transporte... Matricula: 8888AAA - Gestionado por Cristian
+08 20:06:16 --> Editando tarjeta transporte... Matricula: 8888AAA - Gestionado por Cristian
+08 20:06:16 --> Tarjeta transporte modificada OK
+09 09:26:59 --> Creando entrada... Matricula: M473619 - Gestionado por Silvia
+09 09:26:59 --> entrada OK
+09 10:03:21 --> Creando entrada... Matricula: 5718GGM - Gestionado por Cristina
+09 10:03:21 --> entrada OK
+09 10:04:28 --> Creando entrada... Matricula: 6254DRZ - Gestionado por Cristina
+09 10:04:28 --> entrada OK
+09 10:05:25 --> Creando entrada... Matricula: 4712CXX - Gestionado por Cristina
+09 10:05:25 --> entrada OK
+09 10:20:37 --> Creando entrada... Matricula: 7658DRV - Gestionado por Silvia
+09 10:20:37 --> entrada OK
+09 10:24:02 --> Creando entrada... Matricula: 1717HVP - Gestionado por Cristina
+09 10:24:02 --> entrada OK
+09 11:40:56 --> Creando entrada... Matricula: 9959BHG - Gestionado por Silvia
+09 11:40:56 --> entrada OK
+09 11:47:27 --> Creando entrada... Matricula: 7093FGR - Gestionado por Cristina
+09 11:47:27 --> entrada OK
+09 11:56:32 --> Xisco ha enviado los siguientes telefonos 687717304, 652622893, 663580355, 679581759, 671247476, 667400525, 686179187
+09 12:50:27 --> Creando entrada... Matricula: 7809BNZ - Gestionado por Cristina
+09 12:50:27 --> entrada OK
+09 12:55:51 --> Creando entrada... Matricula: 8724FPD - Gestionado por Cristina
+09 12:55:51 --> entrada OK
+09 13:13:41 --> Creando entrada... Matricula: 2405BLG - Gestionado por Cristina
+09 13:13:41 --> entrada OK
+09 13:14:19 --> Editando entrada... Matricula: 2405BLG - Gestionado por Cristina
+09 13:14:19 --> entrada OK
+09 15:28:59 --> Creando entrada... Matricula: 4558JFR - Gestionado por Silvia
+09 15:28:59 --> entrada OK
+09 15:55:12 --> Creando entrada... Matricula: 1939CDG - Gestionado por Cristina
+09 15:55:12 --> entrada OK
+09 16:23:35 --> Creando entrada... Matricula: 4120FJY - Gestionado por Cristina
+09 16:23:36 --> entrada OK
+09 17:33:01 --> Creando tarjeta transporte... Matricula: 3214asd - Gestionado por Cristian
+09 17:33:01 --> Tarjeta transporte OK
+09 17:40:20 --> Creando tarjeta transporte... Matricula: 3214asd - Gestionado por Cristian
+09 17:40:20 --> Tarjeta transporte OK
+09 17:41:30 --> Creando tarjeta transporte... Matricula: 3214asd - Gestionado por Cristian
+09 17:41:30 --> Tarjeta transporte OK
+09 17:42:33 --> Creando tarjeta transporte... Matricula: 8524asd - Gestionado por Cristian
+09 17:42:33 --> Tarjeta transporte OK
+09 17:44:44 --> Creando tarjeta transporte... Matricula: 1111aaa - Gestionado por Cristian
+09 17:44:59 --> Creando tarjeta transporte... Matricula: 1111aaa - Gestionado por Cristian
+09 17:45:03 --> Creando tarjeta transporte... Matricula: 1111aaa - Gestionado por Cristian
+09 17:45:05 --> Creando tarjeta transporte... Matricula: 1111aaa - Gestionado por Cristian
+09 17:45:07 --> Creando tarjeta transporte... Matricula: 1111aaa - Gestionado por Cristian
+09 17:45:17 --> Creando tarjeta transporte... Matricula: 1111aaa - Gestionado por Cristian
+09 17:45:17 --> Tarjeta transporte OK
+09 17:49:10 --> Creando tarjeta transporte... Matricula: 2222AAA - Gestionado por Cristian
+09 17:49:10 --> Tarjeta transporte OK
+09 17:50:49 --> Creando tarjeta transporte... Matricula: 3214asd - Gestionado por Cristian
+09 17:51:26 --> Creando tarjeta transporte... Matricula: 3214asd - Gestionado por Cristian
+09 17:51:26 --> Tarjeta transporte OK
+09 17:57:18 --> Creando tarjeta transporte... Matricula: 5555tes - Gestionado por Cristian
+09 17:57:18 --> Tarjeta transporte OK
+09 18:34:39 --> Creando entrada... Matricula: 7550DGG - Gestionado por Cristina
+09 18:34:39 --> entrada OK
+09 18:51:22 --> Creando tarjeta transporte... Matricula: 7777aaa - Gestionado por Cristian
+09 18:51:22 --> Tarjeta transporte OK
+09 18:53:53 --> Creando tarjeta transporte... Matricula: 7777aaa - Gestionado por Cristian
+09 18:55:53 --> Creando tarjeta transporte... Matricula: 7777aaa - Gestionado por Cristian
+09 18:56:35 --> Creando tarjeta transporte... Matricula: 7777aaa - Gestionado por Cristian
+09 18:56:39 --> Creando tarjeta transporte... Matricula: 7777aaa - Gestionado por Cristian
+09 18:57:02 --> Creando tarjeta transporte... Matricula: 7777aaa - Gestionado por Cristian
+09 18:57:02 --> Tarjeta transporte OK
+09 18:58:33 --> Creando tarjeta transporte... Matricula: 1111aaa - Gestionado por Cristian
+09 18:58:34 --> Tarjeta transporte OK
+09 19:01:18 --> Creando tarjeta transporte... Matricula: 2222AAA - Gestionado por Cristian
+09 19:03:11 --> Creando tarjeta transporte... Matricula: 2222AAA - Gestionado por Cristian
+09 19:03:28 --> Creando tarjeta transporte... Matricula: 2222AAA - Gestionado por Cristian
+09 19:03:32 --> Creando tarjeta transporte... Matricula: 2222AAA - Gestionado por Cristian
+09 19:04:27 --> Creando tarjeta transporte... Matricula: 2222AAA - Gestionado por Cristian
+09 19:04:27 --> Tarjeta transporte OK
+09 19:16:26 --> Creando tarjeta transporte... Matricula: 3214asd - Gestionado por Cristian
+09 19:17:28 --> Creando tarjeta transporte... Matricula: 3214asd - Gestionado por Cristian
+09 19:17:28 --> Tarjeta transporte OK
+09 19:19:56 --> Creando tarjeta transporte... Matricula: 5555TES - Gestionado por Cristian
+09 19:29:00 --> Creando tarjeta transporte... Matricula: 5555TES - Gestionado por Cristian
+09 19:29:00 --> Tarjeta transporte OK
+09 19:33:39 --> Creando entrada... Matricula: IB2407BL - Gestionado por Jaume
+09 19:33:39 --> entrada OK
+09 19:34:35 --> Creando tarjeta transporte... Matricula: 6543asd - Gestionado por Cristian
+09 19:35:06 --> Creando tarjeta transporte... Matricula: 6543asd - Gestionado por Cristian
+09 19:39:53 --> Creando tarjeta transporte... Matricula: 6543asd - Gestionado por Cristian
+09 19:40:08 --> Creando tarjeta transporte... Matricula: 6543asd - Gestionado por Cristian
+09 19:40:09 --> Tarjeta transporte OK
+09 19:51:04 --> Creando tarjeta transporte... Matricula: 1111aaa - Gestionado por Cristian
+09 19:51:04 --> Tarjeta transporte OK
+09 19:59:25 --> Creando tarjeta transporte... Matricula: 2222AAA - Gestionado por Cristian
+09 19:59:25 --> Tarjeta transporte OK
+09 20:02:44 --> Creando tarjeta transporte... Matricula: 1111aaa - Gestionado por Cristian
+09 20:02:44 --> Tarjeta transporte OK
+09 20:03:28 --> Creando tarjeta transporte... Matricula: 1111aaa - Gestionado por Cristian
+09 20:03:28 --> Tarjeta transporte OK
+09 20:12:18 --> Creando tarjeta transporte... Matricula: 1111aaa - Gestionado por Cristian
+09 20:12:44 --> Creando tarjeta transporte... Matricula: 1111aaa - Gestionado por Cristian
+10 10:38:52 --> Creando entrada... Matricula: 2675JMX - Gestionado por Silvia
+10 10:38:52 --> entrada OK
+10 11:26:30 --> Creando entrada... Matricula: 1722BTF - Gestionado por Silvia
+10 11:26:30 --> entrada OK
+10 11:40:06 --> Creando entrada... Matricula: 3724HNJ - Gestionado por Cristina
+10 11:40:06 --> entrada OK
+10 11:40:15 --> Editando entrada... Matricula: 3724HNJ - Gestionado por Cristina
+10 11:40:15 --> entrada OK
+10 11:42:56 --> Creando entrada... Matricula: 9934FTB - Gestionado por Cristina
+10 11:42:56 --> entrada OK
+10 11:44:49 --> Creando entrada... Matricula: 1706CYG - Gestionado por Cristina
+10 11:44:49 --> entrada OK
+10 11:46:10 --> Creando entrada... Matricula: 9514HVH - Gestionado por Cristina
+10 11:46:10 --> entrada OK
+10 12:38:49 --> Xisco ha enviado los siguientes telefonos 685800605, 601245238, 670036036, 677008492, 609207318, 634732636, 677008492, 671889797, 635414776, 655178632
+10 16:37:44 --> Creando entrada... Matricula: 7734CDR - Gestionado por Jaume
+10 16:37:44 --> entrada OK
+10 16:56:33 --> Creando entrada... Matricula: 5586DPC - Gestionado por Jaume
+10 16:56:33 --> entrada OK
+10 17:26:21 --> Creando entrada... Matricula: IB1214DS - Gestionado por Cristina
+10 17:26:21 --> entrada OK

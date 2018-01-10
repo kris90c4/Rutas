@@ -136,7 +136,7 @@ var modal = function(){
 	$overlay = $('<div id="overlay"></div>');
 	$modal = $('<div id="modal"></div>');
 	$content = $('<div id="content"></div>');
-	$close = $('<a id="close" href="#">close</a>');
+	$close = $('<a id="close" class="glyphicon glyphicon-remove" href="#"></a>');
 
 	$modal.hide();
 	$overlay.hide();
@@ -171,13 +171,7 @@ $(document).ready(function(){
 		modal.open({content: "Hows it going?"});
 		e.preventDefault();
 	});*/
-	$('#nuevaEntrada').on('click',function(e){
-		e.preventDefault();
-		modal2=new modal();
-		$.post("App\\Views\\entrada.php", function(htmlexterno){
-			modal2.open({content: htmlexterno,id:'plantilla'});
-		});
-	});
+	
 
 
 });

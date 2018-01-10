@@ -20,9 +20,8 @@ $('#conf').on('click',function(e){
 			//console.log(data);
 			info=JSON.parse(data);
 			console.log(info);
-			if(info['error']==""){
-				swal(info['error']);
-			}else{
+			console.log(typeof info['error']);
+			if(typeof info['error']=='undefined'){
 				$('#base_imponible').val(info['precio']);
 				swal({
 					title: '<i>Datos</i>',
@@ -41,6 +40,8 @@ $('#conf').on('click',function(e){
 				});
 				$('#tipo_de_gravamen').val(info['cuota']/info['precio']*100);
 				calculo();
+			}else{
+				swal(info['error']);
 			}
 			//$('#bt').html('620');
 			crono(false);
@@ -78,17 +79,22 @@ $('#conf').on('click',function(e){
 		},function(data){
 			info=JSON.parse(data);
 			console.log(info);
-			swal({
-				title: '<i>Datos</i>',
-				html: 
-					'<label for="">Marca: </label><span>'+info['marca']+'</span><br>' +
-					'<label for="">Modelo: </label><span>'+info['modelo']+'</span><br>' +
-					'<label for="">Cilindrada: </label><span>'+info['cilindrada']+'</span><br>' +
-					'<label for="">Bastidor: </label><span>'+info['bastidor']+'</span><br>' +
-					'<label for="">Fecha matriculacion: </label><span>'+info['fechaMatri']+'</span><br>'+
-					'<label for="">CVf: </label><span>'+info['cvf']+'</span><br><br>',
-				customClass: 'datos'
-			});
+			console.log(typeof info['error']);
+			if(typeof info['error']=='undefined'){
+				swal({
+					title: '<i>Datos</i>',
+					html: 
+						'<label for="">Marca: </label><span>'+info['marca']+'</span><br>' +
+						'<label for="">Modelo: </label><span>'+info['modelo']+'</span><br>' +
+						'<label for="">Cilindrada: </label><span>'+info['cilindrada']+'</span><br>' +
+						'<label for="">Bastidor: </label><span>'+info['bastidor']+'</span><br>' +
+						'<label for="">Fecha matriculacion: </label><span>'+info['fechaMatri']+'</span><br>'+
+						'<label for="">CVf: </label><span>'+info['cvf']+'</span><br><br>',
+					customClass: 'datos'
+				});
+			}else{
+				swal(info['error']);
+			}
 		})
 	})
 

@@ -3,6 +3,7 @@
 <html>
 	<head>
 		<title><?=$title?></title>
+		<link rel="icon" href="asset/icons/portol.ico" type="image/x-icon" />
 		<!--meta http-equiv="Expires" content="0">
 		<meta http-equiv="Last-Modified" content="0">
 		<meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
@@ -44,7 +45,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
 		
-		<script src='https://www.google.com/recaptcha/api.js'></script>
+		<!--script src='https://www.google.com/recaptcha/api.js'></script-->
 		
 		<!-- jQuery Modal -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
@@ -57,7 +58,7 @@
 		<?php } ?>
 	</head>
 	<body>
-	<?= $menu; //Variable que contiene el html del menu ?>
+	<?= $full==true?$menu:""; //Variable que contiene el html del menu ?>
 
 
 		<div id="cuerpo">

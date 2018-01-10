@@ -19,11 +19,12 @@ class Entrada extends ControllerBase{
 	public function view(){
 		View::set("title","Entradas");
 		$entradas=EntradaM::getView();
-		for ($i=0; $i < count($entradas); $i++) { 
+		/*$cantidad=count($entradas);
+		for ($i=0; $i < $cantidad; $i++) { 
 			$cliente=ClienteM::getByTlf($entradas[$i]['vTelefono']);
 			if(!empty($cliente))
 				$entradas[$i]['vId']=$cliente['id'];
-		}
+		}*/
 		
 		View::set("entradas",$entradas);
 		View::render('entradas');
@@ -68,32 +69,21 @@ class Entrada extends ControllerBase{
 			}
 		
 	}
-
-	//Guarda en la base de datos los datos introducidos en el formulario
-	public function log($mensaje){
-		$log=fopen("log.txt", "a");
-		fwrite($log, date("d H:i:s")." --> ".$mensaje."\n");
-	}
 	public function save() {
 		try{
 			if (isset($_POST['enviar'])){
 
 				extract($_POST);
 
-
-				$matricula=strtoupper($matricula);
-				$vendedor=strtoupper($vendedor);
-				$comprador=strtoupper($comprador);
-				//$vMail=strtolower($vMail);
-				//$cMail=strtolower($cMail);
-
 				$this->log("Creando entrada... Matricula: $matricula - Gestionado por ". $_SESSION['usuario']->getNombre());
 
 				//Se recopilan todos los datos necesarios para almacenarlos en la base de datos
 				$datosVendedor=array('nombre'=> $vendedor, 'mail'=> $vMail, 'telefono'=> $vTlf);
 				$datosComprador=array('nombre'=> $comprador, 'mail'=> $cMail, 'telefono'=> $cTlf);
+				$this->tratamiento_datos_cliente($datosVendedor);
+				$this->tratamiento_datos_cliente($datosComprador);
 				$datos=$_POST;
-				$datos['matricula']=$matricula;
+				$datos['matricula']=strtoupper($matricula);
 				$datos['base_imponible']=$base_imponible;
 				$datos['tipo_de_gravamen']=$tipo_de_gravamen;
 				if($tipo=="part"){
@@ -113,12 +103,11 @@ class Entrada extends ControllerBase{
 				}
 				$datos['id_comprador']=$this->id_cliente($datosComprador);
 
+				//Medicion del tiempo desde que se crea el formulario hasta que se envia.
 				$a=new \DateTime();
 				$antes=$a->createFromFormat('Y-m-d H:i:s',$tiempo);
 				$ahora=new \DateTime();
 				$dif=$ahora->diff($antes);
-
-
 				$datos['tiempo']=$dif->format("%H:%I");
 
 
@@ -129,32 +118,29 @@ class Entrada extends ControllerBase{
 				$datos['correo_ordinario']=isset($correo_ordinario)?$correo_ordinario:0;
 
 
-				$e2=EntradaM::insert($datos);
+				$resultado=EntradaM::insert($datos);
 
+				//Se almacena en una variable, los datos introducidos en el formulario para mostrarlos en caso de
 				ob_start();
 				print "Formulario: \n";
 				var_export($datos);
 				$error= ob_get_contents();
 				ob_end_clean();
-				ob_start();
 
-				if(substr($e2, 0, 5) == "Error"){
-					$this->log("Entrada: $e2\n$error");
+				if(substr($resultado, 0, 5) == "Error"){
+					$this->log("Entrada: $resultado\n$error");
 
-					View::set("error","Ha ocurrido un error.$error $e2");
-					View::set('title',"Nueva entrada");
+					View::set("error","Ha ocurrido un error. $error $resultado");
+					View::set('title',"Error");
 					View::render("entrada");
 				}else{
 					$this->log("entrada OK");
-					if(strpos($datosComprador['mail'],"@")){
-						
-					}
-					echo "<script>
-					window.location.href='?controller=Entrada&action=view';
-					</script>";
-				}
-				
 
+					/*if(strpos($datosComprador['mail'],"@")){
+						
+					}*/
+					header('location: ?controller=Entrada&action=view');
+				}
 			}
 		}catch(Exception $e){
 			$this->log("Error:" . $e->getMessage());
@@ -164,33 +150,14 @@ class Entrada extends ControllerBase{
 	public function descargar(){
 
 		$entrada = EntradaM::getById($_POST['id']);
-		
 		extract($entrada);
-		
 		require_once('Classes/PHPExcel.php');
-
 		require_once('Classes/PHPExcel/Reader/Excel2007.php');
-
 		require_once ('Classes/PHPExcel/IOFactory.php');
-
 		include_once ('Classes/PHPExcel/Writer/Excel2007.php');
-
 		include_once ('Classes/PHPExcel/Writer/PDF.php');
 
-		
-		//$rendererName = \PHPExcel_Settings::PDF_RENDERER_TCPDF;
-
-		// tcpdf folder
-		
-		//$rendererLibraryPath = dirname(__FILE__).'\Classes\PHPExcel\Writer\PDF'; 
-
-		//include_once ('Classes/PHPExcel/Writer/PDF/tcPDF.php');
-		
-		// Cargando la hoja de cálculo
-
 		$objReader = new \PHPExcel_Reader_Excel2007();
-
-		//exit(__DIR__."/HojaEntradaParticulares2017.xlsx");
 
 		if($id_vendedor){
 			$datosVendedor=ClienteM::getById($entrada['id_vendedor']);
@@ -199,37 +166,24 @@ class Entrada extends ControllerBase{
 			$datoscompraventa=CompraventaM::getById($entrada['id_compraventa']);
 			$objPHPExcel = $objReader->load(__DIR__."/HojaEntradaCompraventas2017.xlsx");
 		}
+
 		$datosComprador=ClienteM::getById($entrada['id_comprador']);
-
-		/** Clases necesarias */
-
-
 
 		$objFecha = new \PHPExcel_Shared_Date();
 
 		// Asignar hoja de excel activa
-
 		$objPHPExcel->setActiveSheetIndex(0);
 
-
 		//conectamos con la base de datos
-
-		///////////////////////////////////////////////////////////
-
 		$usuario= UserM::getById($entrada['id_usuario']);
-		///////////////////////////////////////////////////////////
-
-
+		
 		// Llenamos el arreglo con los datos  del archivo xlsx
-
 		$objPHPExcel->getActiveSheet()->SetCellValue('X2', $matricula);
 		$objPHPExcel->getActiveSheet()->SetCellValue('X4', date("d-m-Y", strtotime($fecha_entrada)));
 		$objPHPExcel->getActiveSheet()->SetCellValue('X6', $usuario['nombre']);
 		$objPHPExcel->getActiveSheet()->SetCellValue('X8', $provision);
 		$objPHPExcel->getActiveSheet()->SetCellValue('X9', $cobrado);
 
-
-		
 		$objPHPExcel->getActiveSheet()->SetCellValue('S13', $base_imponible);
 		$objPHPExcel->getActiveSheet()->SetCellValue('V13', $tipo_de_gravamen);
 
@@ -270,67 +224,52 @@ class Entrada extends ControllerBase{
 		$objPHPExcel->getActiveSheet()->SetCellValue('D25', $datosComprador['mail']);
 
 		$presupuesto = $objPHPExcel->getActiveSheet()->getCell('X33')->getFormattedValue();
+		
 		// Importar a base de datos, tabla entrada
-
 		// Nombre archivo
-
 		$fileName=$matricula.".xlsx";
 
 		// Guarda el archivo
-
 		//\PHPExcel_Settings::setPdfRenderer($rendererName, $rendererLibraryPath);
 
 		$objWriter = new \PHPExcel_Writer_Excel2007($objPHPExcel);
 		//$objWriter = new \PHPExcel_Writer_PDF($objPHPExcel);
 		//$objWriter->writeAllSheets();
-
 		// Redirect output to a client’s web browser (Excel2007)
-
 		header('Content-Type: application/Excel');
-
 		header("Content-Disposition: attachment;filename=\"$fileName\"");
-
 		header('Cache-Control: max-age=0');
 
 		//$objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'PDF');
 
 		$objWriter->save(__DIR__.'/Traspasos/'.$fileName);
-
 		echo "App/Controllers/Traspasos/$fileName";
 		
 
 	}
 
-	public function descargarsalida(){
+	public function descargar_salida(){
 
-		$entrada = EntradaM::getById($_POST['id']);
-		
 		require_once('Classes/PHPExcel.php');
-
 		require_once('Classes/PHPExcel/Reader/Excel2007.php');
-
 		require_once('Classes/PHPExcel/Writer/Excel2007.php');
-
 		require_once('Classes/PHPExcel/Writer/PDF.php');
 		
-		// Cargando la hoja de cálculo
+		$entrada = EntradaM::getById($_POST['id']);
 
+		// Cargando la hoja de cálculo
 		$objReader = new \PHPExcel_Reader_Excel2007();
 
+		// Aplicando plantilla
 		$objPHPExcel = $objReader->load(__DIR__."/HojaSalida.xlsx");
 
-		/** Clases necesarias */
-
+		// Clases necesarias
 		$objFecha = new \PHPExcel_Shared_Date();
 
 		// Asignar hoja de excel activa
-
 		$objPHPExcel->setActiveSheetIndex(0);
 
-
-
 		// Llenamos el arreglo con los datos  del archivo xlsx
-
 		$objPHPExcel->getActiveSheet()->SetCellValue('G23', $entrada['matricula']);
 		$objPHPExcel->getActiveSheet()->SetCellValue('G38', date("d-m-Y", strtotime($entrada['fecha_salida'])));
 		$_SESSION['error']=$entrada;
@@ -342,25 +281,19 @@ class Entrada extends ControllerBase{
 			$objPHPExcel->getActiveSheet()->SetCellValue('F2', $compraventa['nombre']);
 		}
 
-		
-		// Importar a base de datos, tabla entrada
-
 		// Nombre archivo
-
 		$fileName="Salida-".$entrada['matricula'].".xlsx";
 
 		// Guarda el archivo
-
 		$objWriter = new \PHPExcel_Writer_Excel2007($objPHPExcel);
-
 		$objWriter->save(__DIR__.'/Traspasos/Salidas/'.$fileName);
 
 		echo "App/Controllers/Traspasos/Salidas/$fileName";
-		
 
 	}
 
 	//Al recargar la pagina de entradas, se vuelven a seleccionar los traspasos marcados
+	// Ajax
 	public function check(){
 		$enviados=EnviadoM::getAll();
 		for ($i=0; $i < count($enviados); $i++) { 
@@ -369,19 +302,20 @@ class Entrada extends ControllerBase{
 		$myJSON = json_encode($enviados);
 		echo $myJSON;
 	}
-
+	// Ajax
 	public function seleccionar(){
 		EnviadoM::insert($_POST);
 	}
+
+	// Ajax
 	public function deseleccionar(){
 		EnviadoM::delete($_POST['id']);
 	}
 
-	//Ajax
-	//Return "ok" Todo bien
-	//Return "error" No se ha enviado
-	public function enviar(){
-
+	// Ajax
+	// Devuelve un array via Json
+	// Envia un correo con todos los telefonos seleccionados
+	public function enviar(){ 
 		//Devuelve los telefonos de las entradas que coincidan con las entradas en la tabla enviado.
 		$sql="SELECT c.telefono comprador, cv.telefono compraventa, v.telefono vendedor FROM Entrada left JOIN compraventa cv on cv.id = Entrada.id_compraventa JOIN enviado ON Entrada.id = enviado.id_entrada left JOIN cliente c ON c.id = Entrada.id_comprador left JOIN cliente v ON v.id = Entrada.id_vendedor";
 
@@ -390,8 +324,6 @@ class Entrada extends ControllerBase{
 		
 		//Se elimina el array intermedio
 		for ($i=0; $i < count($telefonos); $i++) { 
-
-
 			//Si encuentra un telefono de comprador menor a 6 digitos, busca el del vendedor o el del compraventa
 			if(strlen($telefonos[$i]['comprador'])>6){
 				$telefonos[$i]=$telefonos[$i]['comprador'];
@@ -419,15 +351,61 @@ class Entrada extends ControllerBase{
 			}
 		}
 		
-
 		echo json_encode($value);
 		
-
 	}
 
-	//Ajax
-	//Return "ok" Todo bien
-	//Return "error" No se ha enviado
+		// Ajax
+	// Devuelve un array via Json
+	// Envia un correo con todos los telefonos seleccionados
+	public function enviar2(){
+		//Devuelve los telefonos de las entradas que coincidan con las entradas en la tabla enviado.
+		$sql="SELECT c.telefono comprador, cv.telefono compraventa, v.telefono vendedor FROM Entrada left JOIN compraventa cv on cv.id = Entrada.id_compraventa JOIN enviado ON Entrada.id = enviado.id_entrada left JOIN cliente c ON c.id = Entrada.id_comprador left JOIN cliente v ON v.id = Entrada.id_vendedor";
+
+		$telefonos=Ajax::sql($sql);
+
+		
+		//Se elimina el array intermedio
+		for ($i=0; $i < count($telefonos); $i++) { 
+			//Si encuentra un telefono de comprador menor a 6 digitos, busca el del vendedor o el del compraventa
+			if(strlen($telefonos[$i]['comprador'])>6){
+				$telefonos[$i]=$telefonos[$i]['comprador'];
+			}else{
+				if($telefonos[$i]['vendedor']==null){
+					$telefonos[$i]=$telefonos[$i]['compraventa'];
+				}else{
+					$telefonos[$i]=$telefonos[$i]['vendedor'];
+				}
+			}
+		}
+		$value['error']="";
+		$texto="";
+		if(count($telefonos)==0){
+			$value['count']=count($telefonos);
+		}else{
+			if(isset($_POST['sms'])){
+				$ok=true;
+				$texto="por sms ";
+			}else{
+				//Se envia el correo
+				$ok=mail("comercial@gestoriaportol.com","Enviar sms a los ".count($telefonos)." telefonos seleccionados ",implode(",", $telefonos),"From: cristiandiazportero@gmail.com");
+			}
+			if($ok){
+				$this->log($_SESSION['usuario']->getNombre() . " ha enviado los siguientes telefonos $texto" . implode(", ", $telefonos));
+				$value['count']= count($telefonos);
+				$value['sms']=implode(",", $telefonos);
+			}else{
+				$value['error']= "error";
+			}
+		}
+		
+		echo json_encode($value);
+		
+	}
+
+	// Ajax
+	// Return "ok" Todo bien
+	// Return "error" No se ha enviado
 	public function sms(){
 
 		//Devuelve los telefonos de las entradas que coincidan con las entradas en la tabla enviado.
@@ -453,15 +431,11 @@ class Entrada extends ControllerBase{
 		if(count($telefonos)==0){
 			$value['count']=0;
 		}else{
-			$this->log($_SESSION['usuario']->getNombre() . " ha enviado los siguientes telefonos " . implode(", ", $telefonos));
+			$this->log($_SESSION['usuario']->getNombre() . " ha enviado los siguientes telefonos via SMS " . implode(", ", $telefonos));
 			$value['count']= count($telefonos);
 			$value['sms']=implode(",", $telefonos);
 		}
-		
-
 		echo json_encode($value);
-		
-
 	}
 
 	//Ajax
@@ -539,7 +513,6 @@ class Entrada extends ControllerBase{
 		$datos['cTlf']=$comprador['telefono'];
 		
 		$this->create($datos['id'],$datos);
-
 	}
 
 	public function editado(){
@@ -588,38 +561,7 @@ class Entrada extends ControllerBase{
 			}
 		}
 	}
-	public function actualizar_cliente($datos){
-		// Si el numero de telefono no existe, se actualiza id del cliente actual.
-		if(empty($cliente=ClienteM::getByTlf($datos['telefono']))){
-			$cliente=ClienteM::getById($datos['id']);
-			$sql="";
-			$coma="";
-			if($cliente['telefono']!=$datos['telefono']){
-				$sql.="telefono = '" . $datos['telefono']."'";
-				$coma=",";
-			}
-			if(strcmp($cliente['mail'],$datos['mail'])){
-				$sql.="$coma mail = '" . $datos['mail']."'";
-				$coma=",";
-			}
-			if(strcmp($cliente['nombre'],$datos['nombre'])){
-				$sql.="$coma nombre = '" . $datos['nombre']."'";
-			}
-			if(!empty($sql)){
-				$sql.= "where id = ". $datos['id'];
-				if(ClienteM::updateManual("set $sql")){
-					return $datos['id'];
-				}
-			}
-		}else{
-			//Si ya existe el numero del cliente, solo se devuelve su id
-			return $cliente['id'];
-		}
-	}
-
-	public function error404(){
-		View::render("errors/404");
-	}
+	
 	//Pendiente
 	public function del($id){
 		$resultado=Entrada::delete($id);

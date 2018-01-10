@@ -6,7 +6,7 @@
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
+        <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="?controller=home&action=view">Gestoria Portol</a>
     </div>
@@ -18,7 +18,6 @@
             <li><a href="?controller=estadisticas&action=view">Estadisticas</a></li>
           <?php else: ?>
             <!--Seccion Comun-->
-              <li><a href="?controller=test&action=novedades">Novedades</a></li>
               <li><a href="?controller=compraventa&action=view">Compraventas</a></li>
               <li><a href="?controller=cliente&action=view">clientes</a></li>
             <!--Fin Seccion Comun-->
@@ -29,6 +28,7 @@
             <?php else: ?><!--Seccion Usuario normal-->
               <!--li><a href="?controller=traspasos&action=view">Traspasos</a></li>
               <li><a href="?controller=matri&action=view">Matriculaciones</a></li-->
+              <li><a href="?controller=tarjeta_transporte&action=view">Tarjetas transporte</a></li>
               <li class=""><a href="?controller=entrada&action=view">Entradas</a></li>
             <?php endif; ?>
           <?php endif; ?>
@@ -55,11 +55,6 @@
   	$("#menu div").slideToggle();
   });
 
-  $.post('?controller=reportes&action=pendientes',{
-
-  },function(data){
-    $('#pen').html(data);
-  });
 
 
 </script>

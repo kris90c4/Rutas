@@ -25,6 +25,11 @@ class Cliente{
 		View::render("nuevoCliente");
 	}
 
+	public function del(){
+		extract($_POST);
+		ClienteM::delete($id);
+	}
+
 	public function save() {
 		if(isset($_POST['nuevo'])){
 			if($id=ClienteM::insert($_POST)){//Si es correcto se reenvia a la tabla

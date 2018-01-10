@@ -34,7 +34,7 @@
 				<td><?= $cliente['mail'] ?></td>
 				<td><?= $cliente['telefono'] ?></td>
 				<td>
-					<a href="?controller=compraventa&action=create&parametros=<?= $cliente['id'] ?>" class="btn btn-success" id="edit">Editar</a>
+					<button class="edit btn btn-success" >Editar</button>
 					<button class="del btn btn-danger">Eliminar</button>
 				</td>
 			</tr>
@@ -54,9 +54,6 @@
 
 	////////////////////Nuevo, pendiente de probar
 
-	$('#compraventa .edit').on('click', function(){
-		id=this.parents('td').first().value
-	})
 	// Elimina un contacto de la agenda
 	$('#compraventa .del').on('click', function(){
 		console.log("asd");
@@ -113,10 +110,17 @@
 		    } );
 		} );
 	} );
-	$('#nuevo').on('click',function(e){
-		e.preventDefault();
+	$('#nuevo').on('click',function(){
 		modal1=new modal();
-		$.post("App\\Views\\nuevoCompraventa.php", function(htmlexterno){
+		$.post("?controller=compraventa&action=create", function(htmlexterno){
+			modal1.open({content: htmlexterno,class:"form"});
+		});
+	});
+	$('.edit').on('click',function(){
+		modal1=new modal();
+		id=$(this).parents("tr").find("td:nth-child(1)").html()
+		console.log(id);
+		$.post("?controller=compraventa&action=create&parametros="+id, function(htmlexterno){
 			modal1.open({content: htmlexterno,class:"form"});
 		});
 	});

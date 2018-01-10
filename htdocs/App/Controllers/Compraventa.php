@@ -8,7 +8,7 @@ use \Core\View,
 	\App\Models\Compraventa as CompraventaM;
 
 
-class Compraventa{
+class Compraventa extends ControllerBase{
 	public function view(){
 		View::set("title","Compraventas");
 		View::set("clientes",CompraventaM::getAll());
@@ -16,10 +16,12 @@ class Compraventa{
 	}
 	public function create($id=0) {
 		View::set('title',"Nuevo Compraventa");
+		$this->log($id);
 		if($id>0){
 			view::set('compraventa',CompraventaM::getById($id));
+			$this->log($id);
 		}
-		View::render("nuevoCompraventa");
+		View::render("nuevoCompraventa",false);
 	}
 	//Guarda en la base de datos los datos introducidos en el formulario
 	public function save() {

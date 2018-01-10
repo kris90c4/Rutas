@@ -1,6 +1,15 @@
 //////////////// ENTRADAS \\\\\\\\\\\\\\\\\\
 
-$('#entradas').ready(function() {
+$(document).ready(function() {
+
+	//Se añade el evento del boton Nueva Entrada. Se abre un modal
+	$('#nuevaEntrada').on('click',function(e){
+		e.preventDefault();
+		modal2=new modal();
+		$.post("App\\Views\\entrada.php", function(htmlexterno){
+			modal2.open({content: htmlexterno,id:'plantilla'});
+		});
+	});
 
 	// Al recargar la pagina, se vuelven a seleccionar los registros seleccionados previamente
 	$.post("?controller=entrada&action=check",{
@@ -23,6 +32,7 @@ $('#entradas').ready(function() {
 			console.log('Error al ver la tabla enviados. Revisar controlador entrada y funcion check');
 		}
 	});
+	
 	////////////////////Nuevo, pendiente de probar
 
 	$('#edit').on('click', function(){
@@ -84,10 +94,9 @@ $('#entradas').ready(function() {
 	})
 
 	//Desde el movil se abre un nuevo SMS con los contactos seleccionados
-	
 	$('#sms').on('click',function(e){
-		$.post('?controller=entrada&action=sms',{
-			
+		$.post('?controller=entrada&action=enviar2',{
+			'sms':1
 		},function(data){
 			info =jQuery.parseJSON(data);
 			if(info['count']>0&&info['count']<100){
@@ -104,7 +113,7 @@ $('#entradas').ready(function() {
 
 
 	$('#enviar').on('click',function(){
-		$.post('?controller=entrada&action=enviar',{
+		$.post('?controller=entrada&action=enviar2',{
 			
 		},function(data){
 			info =jQuery.parseJSON(data);
@@ -113,9 +122,7 @@ $('#entradas').ready(function() {
 				console.log(data);
 			}else{
 				if(info['count']>0&&info['count']<100){
-					
 					swal('Se ha enviado el correo correctamente con '+info['count']+' telefonos, paciencia, el correo esta por llegar');
-					
 				}else if(info['count']==0){
 					swal('No se ha seleccionado ningun registro');
 				}else{
@@ -139,7 +146,7 @@ $('#entradas').ready(function() {
 	//Se descarga la plantilla de salida
 	$('.descargarsalida').on('click',function(){
 		id=$(this).closest('tr').find('td:nth-child(1)').html();
-		$.post('?controller=entrada&action=descargarsalida',{
+		$.post('?controller=entrada&action=descargar_salida',{
 			'id' : id
 		},function(data){
 			window.location.href=data;
@@ -152,7 +159,7 @@ $('#entradas').ready(function() {
 		$('tbody tr').each(function(){
 			
 				id=$(this).find('td:nth-child(1)').html();
-				$.post('?controller=entrada&action=descargarsalida',{
+				$.post('?controller=entrada&action=descargar_salida',{
 					'id' : id
 				},function(data){
 					//setTimeout(function(){
@@ -165,32 +172,33 @@ $('#entradas').ready(function() {
 	});
 
 	$('#entrada tfoot th').each( function () {
-	    var title = $(this).text();
-	    $(this).html( '<input type="text" placeholder="'+title+'" />' );
+		var title = $(this).text();
+		$(this).html( '<input type="text" placeholder="'+title+'" />' );
 	} );
 	// Aplica la api de DataTable a la tabla con Id $vista
 	//se aplica un retardo para asugurar la aplicacion del seleccionado
-	setTimeout(function(){
+	function a1(){
 		var table2 = $('#entrada').DataTable({
-		    "order": [[ 0, "desc" ]],
+			"order": [[ 0, "desc" ]],
 		});
-			
+
 		// Aplica el buscador
 		table2.columns().every( function () {
-		    var that = this;
-		    $( 'input', this.footer() ).on( 'keyup change', function () {
-		        if ( that.search() !== this.value ) {
-		            that
-		                .search( this.value )
-		                .draw();
-		        }
-		    });
+			var that = this;
+			$( 'input', this.footer() ).on( 'keyup change', function () {
+				if ( that.search() !== this.value ) {
+					that
+						.search( this.value )
+						.draw();
+				}
+			});
 		});
-		/*$('.opciones button:nth-child(3)').on('click',function(){
-			table2.reload();
-		});*/
+		//$('.opciones button:nth-child(3)').on('click',function(){
+		//	table2.reload();
+		//});
 		
-	},100);
+	};
+	requestAnimationFrame(a1);
 });
 
 							////////////////// FIN ENTRADAS \\\\\\\\\\\\\\\\\\\\

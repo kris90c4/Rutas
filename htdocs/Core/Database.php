@@ -67,7 +67,9 @@ class Database
 			
 			$this->_connection = new \PDO('mysql:host='.$this->_dbHost.'; dbname='.$this->_dbName, $this->_dbUser, $this->_dbPassword);
 			$this->_connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-			$this->_connection->exec("SET CHARACTER SET utf8");
+			//$this->_connection->exec("SET CHARACTER SET utf8");
+			$this->_connection->exec("SET NAMES utf8");
+			
 		}
 		catch (\PDOException $e)
 		{
@@ -81,6 +83,18 @@ class Database
 	 * @param  [type] $sql [description]
 	 * @return [type]      [description]
 	 */
+	public function rollBack()
+	{
+		return $this->_connection->rollBack();
+	}
+	public function commit()
+	{
+		return $this->_connection->commit();
+	}
+	public function beginTransaction()
+	{
+		return $this->_connection->beginTransaction();
+	}
 	public function prepare($sql)
 	{
 		return $this->_connection->prepare($sql);

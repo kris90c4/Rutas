@@ -1,8 +1,8 @@
 <?php defined("APPPATH") OR die("Acceso denegado"); ?>
-<div id="entradas">
+<div id="registros">
 	<div class="contenedorEntradas">
-		<button id="nuevaEntrada" class="btn btn-default">Nueva entrada</button>
-		<button id="enviar" class="pull-right btn btn-default" title="Envia los telefonos seleccionados al correo comercial@gestoriaportol.com">
+		<button id="nuevaTarjeta" class="btn btn-default">Nueva registro</button>
+		<!--button id="enviar" class="pull-right btn btn-default" title="Envia los telefonos seleccionados al correo comercial@gestoriaportol.com">
 			<i style="margin-right: 4px" class="glyphicon glyphicon-send"></i>
 			<span>Enviar</span>
 		</button>
@@ -10,24 +10,18 @@
 		<button id="confirmar" class="pull-right btn btn-default" title="Tras enviar los sms atraves del movil, se confirma que todos los sms han sido enviados correctamente">
 			<i  class="glyphicon glyphicon-saved"></i>
 			<span>Confirmar</span>
-		</button>
-		<!--button class="descargarTodasSalidas pull-right btn btn-default" title="Hay que filtrar solo las salidas deseadas, Solo funciona en ¡¡¡CHROME!!!!">
-			<i  class="glyphicon glyphicon-saved"></i>
-			<span>Descargar todas las salidas(Solo Compatible con CHROME)</span>
 		</button-->
-
 	</div>
 	
 	
-	<table id="entrada">
+	<table id="registro">
 		<thead>
 			<tr>
 				<th>ID</th>
 				<th>Matricula</th>
-				<th>Comprador</th>
-				<th>cTelefono</th>
-				<th>Fecha_entrada</th>
-				<th>Fecha_salida</th>
+				<th>Cliente</th>
+				<th>Telefono</th>
+				<th>Valido Hasta</th>
 				<th>Usuario</th>
 				<th>Opciones</th>
 			</tr>
@@ -36,42 +30,29 @@
 			<tr>
 				<th>ID</th>
 				<th>Matricula</th>
-				<th>Comprador</th>
-				<th>cTelefono</th>
-				<th>Fecha_entrada</th>
-				<th>Fecha_salida</th>
+				<th>Cliente</th>
+				<th>Telefono</th>
+				<th>Valido Hasta</th>
 				<th>Usuario</th>
 				<th>Opciones</th>
 			</tr>
 		</tfoot>
 		<tbody>
-			<?php foreach ($entradas as  $entrada): ?>
-			<tr <?= $entrada['vendedor']==null?"class=\"cv\"":"" ?>>
-				<td><?= $entrada['id'] ?></td>
-				<td><?= strtoupper($entrada['matricula']) ?></td>
-				<td><?= $entrada['comprador'] ?></td>
-				<td><?= $entrada['cTelefono']<100000000?"No Disponible":$entrada['cTelefono'] ?></td>
-				<td><?= date("d-m-Y H:i", strtotime($entrada['fecha_entrada'])) ?></td>
-				<td><?= $entrada['fecha_salida']?date("d-m-Y H:i", strtotime($entrada['fecha_salida'])):"" ?></td>
-				<td><?= $entrada['usuario'] ?></td>
+			<?php foreach ($registros as  $registro): ?>
+			<tr>
+				<td><?= $registro['id'] ?></td>
+				<td><?= strtoupper($registro['matricula']) ?></td>
+				<td><?= $registro['cliente'] ?></td>
+				<td><?= $registro['telefono'] ?></td>
+				<!--td><?= empty($registro['fecha_renovacion'])?"Pendiente":date("d-m-Y", strtotime($registro['fecha_renovacion'])) ?></td-->
+				<td><?= empty($registro['fecha_vencimiento'])?"Pendiente":date("d-m-Y", strtotime($registro['fecha_vencimiento'])) ?></td>
+				<td><?= $registro['usuario'] ?></td>
 				<td class="opciones" style="display:flex;">
-					<button class="editar btn btn-success">Editar</button>
-					<!--a class="btn btn-info" href="App\Controllers\Traspasos\<?= $entrada['matricula'] ?>.xlsx">Descargar</a-->
-					<button class="descarga btn btn-info" >Descargar</button>
-					<button  class="<?= empty($entrada['fecha_salida'])?"seleccionar":"descargarsalida" ?> btn btn-default" ><?= empty($entrada['fecha_salida'])?"Seleccionar":"Salida" ?></button>
+					<button class="edit btn btn-success">Editar</button>
 				</td>
 			</tr>
 		<?php endforeach;?>
 		</tbody>
 	</table>
-	<div id="filtros">
-		<button id="selec" class="pull-right btn btn-default">Seleccionados</button>
-		<button id="hoy" class="pull-right btn btn-default">Salida hoy</button>
-		<button id="delFiltros" class="pull-right btn btn-info">Quitar filtros</button>
-		<span class="pull-right">Filtros:</span>
-	</div>
 	<div id="errorCliente"></div>
 </div>
-<script>
-
-</script>

@@ -6,7 +6,7 @@ defined("APPPATH") OR die("Acceso denegado");
 use \Core\Database,
 \App\Interfaces\Crud;
 
-class Cliente implements Crud{
+class Tarjeta_transporte implements Crud{
 	const TABLE = "tarjeta_transporte";
 	
 	//Se devuelve una consulta adecuada a la tabla donde se va a visualizar
@@ -29,7 +29,26 @@ class Cliente implements Crud{
 			print "Error!: " . $e->getMessage();
 		}
 	}
-	public static function getLastId(){
+	public static function getView(){
+		try {
+			//Se declara la instancia que se comunica con la base de datos
+			$connection = Database::instance();
+			$sql = "SELECT * FROM vistaTarjetaTransporte";
+			// Se preapara la sentencia SQL
+			$query = $connection->prepare($sql);
+			//Se ejecuta la sentencia
+			$query->execute();
+			//se elige como se devolvera el resultado
+			$query->setFetchMode(\PDO::FETCH_ASSOC);
+			//Se devuelven todos las filas dentro de un array
+			return $query->fetchAll();
+		}
+		catch(\PDOException $e)
+		{//En caso de error se imprime
+			print "Error!: " . $e->getMessage();
+		}
+	}
+	public static function getLastId2(){
 		try {
 			//Se declara la instancia que se comunica con la base de datos
 			$connection = Database::instance();
@@ -66,25 +85,10 @@ class Cliente implements Crud{
 			print "Error!: " . $e->getMessage();
 		}
 	}
-	public static function getByName($cv){
+	public static function getLastId(){
 		try {
 			$connection = Database::instance();
-			$sql = "SELECT * from ".self::TABLE . " where nombre LIKE '%". $cv."%'";
-			$query = $connection->prepare($sql);
-			$query->execute();
-			$query->setFetchMode(\PDO::FETCH_ASSOC);
-			return $query->fetchAll();
-		}
-		catch(\PDOException $e)
-		{
-			print "Error!: " . $e->getMessage();
-			var_export($sql);
-		}
-	}
-	public static function getBytlf($tlf){
-		try {
-			$connection = Database::instance();
-			$sql = "SELECT * from ".self::TABLE . " where telefono LIKE '" . $tlf . "'";
+			$sql = "SELECT LAST_INSERT_ID()";
 			$query = $connection->prepare($sql);
 			$query->execute();
 			$query->setFetchMode(\PDO::FETCH_ASSOC);
@@ -93,7 +97,6 @@ class Cliente implements Crud{
 		catch(\PDOException $e)
 		{
 			print "Error!: " . $e->getMessage();
-			var_export($sql);
 		}
 	}
 	// Inserta en la base de datos los datos pasados por el formualrio de introduccion.
@@ -101,13 +104,14 @@ class Cliente implements Crud{
 	public static function insert($data){
 		try{
 			$connection = Database::instance();
-			$sql="INSERT INTO ".self::TABLE."(nombre, mail, telefono) VALUES(:nombre, :mail, :telefono)";
+			$sql="INSERT INTO ".self::TABLE."(matricula, id_cliente, fecha_vencimiento, id_usuario) VALUES(:matricula, :id_cliente, :fecha_vencimiento, :id_usuario)";
 			$query = $connection->prepare($sql);
-			//si no se envia la poblacion, se asigna null
 			//isset($data['mail'])&&!empty($data['mail'])?:$data['mail']=null;
-			$query->bindParam(":mail", $data['mail'], \PDO::PARAM_STR);
-			$query->bindParam(":nombre", $data['nombre'], \PDO::PARAM_STR);
-			$query->bindParam(":telefono", $data['telefono'], \PDO::PARAM_INT);
+			$query->bindParam(":matricula", $data['matricula'], \PDO::PARAM_STR);
+			$query->bindParam(":id_cliente", $data['id_cliente'], \PDO::PARAM_INT);
+			$valido_hasta=!empty($data['fecha_vencimiento'])?$data['fecha_vencimiento']:null;
+			$query->bindParam(":fecha_vencimiento", $valido_hasta, \PDO::PARAM_STR);
+			$query->bindParam(":id_usuario", $data['id_usuario'], \PDO::PARAM_INT);
 			
 			if($query->execute()){
 				return $connection->ultimaId();
@@ -128,12 +132,13 @@ class Cliente implements Crud{
 	public static function update($data){
 		try{
 			$connection = Database::instance();
-			$sql = "UPDATE ". self::TABLE. " SET nombre = :nombre, mail = :mail, telefono = :telefono where id = :id";
+			$sql = "UPDATE ". self::TABLE. " SET matricula = :matricula, id_cliente = :id_cliente, fecha_vencimiento = :fecha_vencimiento where id = :id";
 			$query = $connection->prepare($sql);
 			$query->bindParam(":id", $data['id'], \PDO::PARAM_INT);
-			$query->bindParam(":mail", $data['mail'], \PDO::PARAM_STR);
-			$query->bindParam(":nombre", $data['nombre'], \PDO::PARAM_STR);
-			$query->bindParam(":telefono", $data['telefono'], \PDO::PARAM_INT);
+			$query->bindParam(":matricula", $data['matricula'], \PDO::PARAM_STR);
+			$query->bindParam(":id_cliente", $data['id_cliente'], \PDO::PARAM_INT);
+			$valido_hasta=!empty($data['fecha_vencimiento'])?$data['fecha_vencimiento']:null;
+			$query->bindParam(":fecha_vencimiento", $valido_hasta, \PDO::PARAM_STR);
 
 			return $query->execute();
 			//$ok == true? ha ido bien:No ha ido bien.
