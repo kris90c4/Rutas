@@ -90,8 +90,8 @@ $(document).ready(function() {
 				swal('Ha habido algun problema, contacta con el administrador para reportar el problema');
 				console.log(data);
 			}
-		})
-	})
+		});
+	});
 
 	//Desde el movil se abre un nuevo SMS con los contactos seleccionados
 	$('#sms').on('click',function(e){
@@ -107,10 +107,8 @@ $(document).ready(function() {
 				swal(data);
 				console.log(data);
 			}
-		})
-		
-	})
-
+		});
+	});
 
 	$('#enviar').on('click',function(){
 		$.post('?controller=entrada&action=enviar2',{

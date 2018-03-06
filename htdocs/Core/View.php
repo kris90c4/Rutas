@@ -25,6 +25,7 @@ class View
 	 * @param  [String]  [template name]
 	 * @return [html]    [render html]
 	 */
+	//En caso de enviar el segundo parametro en false, solo se accede a la vista sin el layout.
 	public static function render($template,$full=true)
 	{
 		if(!file_exists(self::VIEWS_PATH . $template . "." . self::EXTENSION_TEMPLATES))
@@ -33,13 +34,18 @@ class View
 		}
 		extract(self::$data);
 		if($full==true){
-
-			ob_start();
-			//Cargo el menu en la variable $menu
-			include_once self::VIEWS_PATH . "menu." . self::EXTENSION_TEMPLATES;
-			$menu= ob_get_contents();
-			
-			ob_end_clean();
+			//Si se entra desde la url externa, se elimina el menu
+			if($_SERVER["SERVER_NAME"]=="portol.ddns.net" || $_SERVER["SERVER_NAME"]=="portolestadisticas.ddns.net"){
+				$menu="";
+			}else{
+				ob_start();
+				//Cargo el menu en la variable $menu
+				include_once self::VIEWS_PATH . "menu." . self::EXTENSION_TEMPLATES;
+				$menu= ob_get_contents();
+				
+				ob_end_clean();
+				
+			}
 			//Se comienza a almacenar en el buffer los datos que salgan por pantalla
 			ob_start();
 			//Se extraen todos los indices y se convierten en variables

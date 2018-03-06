@@ -175,3 +175,89 @@ $(document).ready(function(){
 
 
 });
+
+var openPhotoSwipe = function(src) {
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    // build items array
+    var items = new Array();
+    for (var i = 0; i < src.length; i++) {
+        items[i]={'src': src, w: 0, h: 0};
+    }
+    // define options (if needed)
+    var options = {
+             // history & focus options are disabled on CodePen        
+        history: false,
+        focus: false,
+        showAnimationDuration: 0,
+        hideAnimationDuration: 0
+    };
+    var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+    gallery.listen('gettingData', function(index, item) {
+        if (item.w < 1 || item.h < 1) { // unknown size
+            var img = new Image(); 
+            img.onload = function() { // will get size after load
+            item.w = this.width; // set image width
+            item.h = this.height; // set image height
+               gallery.invalidateCurrItems(); // reinit Items
+               gallery.updateSize(true); // reinit Items
+            }
+            img.src = item.src; // let's download image
+        }
+    });
+    gallery.init();
+};
+
+//Devuelve una promesa que contiene un array con los datos del vehiculo
+datosVehiculo = function(matricula){
+	return new Promise(function(resolve){
+		$.post('?controller=entrada&action=jsonDatosVehiculo',{
+			'matricula': matricula
+		},function(data){
+			values=JSON.parse(data);
+			resolve(values);
+		});
+	});
+}
+/*$('#datosVehiculo').on('click',function(){
+	$.post('?controller=entrada&action=jsonDatosVehiculo',{
+		'matricula': $('#matricula').val()
+	},function(data){
+		info=JSON.parse(data);
+		console.log(info);
+		console.log(typeof info['error']);
+		if(typeof info['error']=='undefined'){
+			swal({
+				title: '<i>Datos</i>',
+				html: 
+					'<label for="">Marca: </label><span>'+info['marca']+'</span><br>' +
+					'<label for="">Modelo: </label><span>'+info['modelo']+'</span><br>' +
+					'<label for="">Cilindrada: </label><span>'+info['cilindrada']+'</span><br>' +
+					'<label for="">Bastidor: </label><span>'+info['bastidor']+'</span><br>' +
+					'<label for="">Fecha matriculacion: </label><span>'+info['fechaMatri']+'</span><br>'+
+					'<label for="">CVf: </label><span>'+info['cvf']+'</span><br><br>',
+				customClass: 'datos'
+			});
+		}else{
+			swal(info['error']);
+		}
+	})
+})*/
+
+function preloader(){
+	//document.getElementById("loading").style.display = "none";
+	//document.getElementById("entrada").style.display = "block";
+	document.getElementById("entradas").style.background = "red";
+	console.log('cargado');
+}//preloader
+
+//$(document).ready(preloader);
+
+$('ul.nav li.dropdown').hover(function() {
+
+  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+
+}, function() {
+
+  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+
+});

@@ -39,4 +39,50 @@ $(document).ready(function(){
 			modal1.open({content: htmlexterno,id:"plantilla"});
 		});
 	});
+
+	// Al clicar sobre
+	$('.archivos').on('click',function(){
+		var info="";
+		id=$(this).parents("tr").find("td:nth-child(1)").html();
+		$.post("?controller=tarjeta_transporte&action=fk_imagenes",{"id":id}, function(data){
+			console.log(data);
+			modal1=new modal();
+			if(data){
+				src=jQuery.parseJSON(data);
+				console.log(src);
+				galeria=$('<div>');
+				for (var i = 0; i < src.length; i++) {
+					var img = new Image();
+					img.src = src[i];
+					img.height=100;
+					img.onclick=function(){
+						this.height=500;
+						modal1.open({content: galeria});
+					}
+					galeria.append($('<a href="#" class="img">').append(img));
+				}
+				modal1.open({content: galeria});
+				
+
+				console.log($('img'));
+				
+
+
+
+				// The tricky part : create a blob url to your image, that you can use anywhere
+				//for (var i = 0; i < src.length; i++) {
+					/*var objurl = window.URL.createObjectURL(new Blob([data]));
+					var img = new Image();
+					img.src = objurl;
+					var div = document.getElementById("cuerpo");
+					div.appendChild(img);
+					img.onload = function() {
+						console.log('imagen ' + i + 'cargada.');
+					}*/
+				//}
+				//openPhotoSwipe(src);
+			}
+		});
+	})
+	
 })

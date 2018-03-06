@@ -23,6 +23,25 @@ class Archivo implements Crud{
 			print "Error!: " . $e->getMessage();
 		}
 	}
+	public static function getByFk($fk){
+		try {
+			$connection = Database::instance();
+			$sql = "SELECT * from ".self::TABLE . " where id_tarjeta_transporte = ". $fk;
+			$query = $connection->prepare($sql);
+			$query->execute();
+			/*$query->bindColumn(1, $id);
+			$query->bindColumn(2, $nombre);
+			$query->bindColumn(3, $tipo, \PDO::PARAM_STR, 256);
+        	$query->bindColumn(4, $contenido, \PDO::PARAM_LOB);
+        	$query->bindColumn(5, $id_tarjeta_transporte);*/
+			$query->setFetchMode(\PDO::FETCH_ASSOC);
+			return $query->fetchAll();
+		}
+		catch(\PDOException $e)
+		{
+			print "Error!: " . $e->getMessage();
+		}
+	}
 	// Devuelve el traspasos corresponiente al id pasado como parametro
 	public static function getById($id){
 		try {
@@ -62,7 +81,6 @@ class Archivo implements Crud{
 			$query->bindParam(":contenido",$fp, \PDO::PARAM_LOB);
 			$query->bindParam(":id_tarjeta_transporte", $data['fk'], \PDO::PARAM_INT);
 			if($query->execute()){
-				fclose($fp);
 				return $connection->ultimaId();
 			}
 			//return == true? ha ido bien:No ha ido bien.
@@ -70,7 +88,7 @@ class Archivo implements Crud{
 		catch(\PDOException $e)
 		{
 			//se muestra el error de SQL en caso de dar fallo
-			print("Error!: " . $e->getMessage());
+			throw $e;
 		}
 	}
 	

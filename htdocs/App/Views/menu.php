@@ -19,7 +19,7 @@
           <?php else: ?>
             <!--Seccion Comun-->
               <li><a href="?controller=compraventa&action=view">Compraventas</a></li>
-              <li><a href="?controller=cliente&action=view">clientes</a></li>
+              <li><a href="?controller=cliente&action=view">Clientes</a></li>
             <!--Fin Seccion Comun-->
             <?php if($_SESSION['usuario']->getAdmin()): ?> <!--Sección usuario Admin-->
               <li><a href="?controller=perfil&action=gestion">GestionUsuarios</a></li>
@@ -30,6 +30,15 @@
               <li><a href="?controller=matri&action=view">Matriculaciones</a></li-->
               <li><a href="?controller=tarjeta_transporte&action=view">Tarjetas transporte</a></li>
               <li class=""><a href="?controller=entrada&action=view">Entradas</a></li>
+              <li><a href="?controller=presupuesto&action=view">Presupuesto</a></li>
+              <!--li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Presupuestos <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="?controller=presupuestos&action=view">Coche</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Moto</a></li>
+                </ul>
+              </li-->
             <?php endif; ?>
           <?php endif; ?>
         <?php endif; ?>

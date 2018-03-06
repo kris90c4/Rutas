@@ -44,7 +44,21 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
-		
+
+								<!--PhotoSwipe-->
+		<!-- Core CSS file -->
+		<link rel="stylesheet" href="/<?=ASSET?>js/PhotoSwipe/photoswipe.css"> 
+		<!-- Skin CSS file (styling of UI - buttons, caption, etc.)
+		In the folder of skin CSS file there are also:
+		- .png and .svg icons sprite, 
+		- preloader.gif (for browsers that do not support CSS animations) -->
+		<link rel="stylesheet" href="/<?=ASSET?>js/PhotoSwipe/default-skin/default-skin.css"> 
+		<!-- Core JS file -->
+		<script src="/<?=ASSET?>js/PhotoSwipe/photoswipe.min.js"></script> 
+		<!-- UI JS file -->
+		<script src="/<?=ASSET?>js/PhotoSwipe/photoswipe-ui-default.min.js"></script> 
+
+
 		<!--script src='https://www.google.com/recaptcha/api.js'></script-->
 		
 		<!-- jQuery Modal -->
@@ -60,7 +74,11 @@
 	<body>
 	<?= $full==true?$menu:""; //Variable que contiene el html del menu ?>
 
-
+		<!--div id="loading">
+			<video autoplay loop>
+				<source src="asset/gifs/loading.mp4" type="video/mp4">
+			</video>
+		</div-->
 		<div id="cuerpo">
 		<?= $content; //Variable que contiene el html de la vista a cargar ?>
 		

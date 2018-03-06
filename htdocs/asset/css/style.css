@@ -37,15 +37,61 @@ nav li a:hover, nav li a:focus {
 	width: 220px;
 }
 #plantilla{
-	width: 345px;
+	/*width: 700px;*/
+	width: 380px;
+}
+#plantilla form{
+	/*display:flex;
+	flex-wrap: wrap;*/
+}
+#plantilla .separador{
+	/*position: relative;
+	flex:50%;*/
+	margin: 10px 0;
+}
+#plantilla .separador h3{
+	margin-bottom: 8px;
+}
+/*#plantilla #bt{
+	padding: 2px 5px 1px 5px;
+	margin: 0 0 2px 3px;
+}*/
+.no{
+	width: auto !important;
+	border: 2px solid grey !important;
+}
+.no input[type=text]{
+	width: 100% !important;
+}
+.no h2{
+	color:grey;
+}
+#plantilla #bt + i, #plantilla #datosVehiculo{
+	padding: 2px 5px 1px 5px;
+	margin: 0 0 4px 3px;
 }
 #plantilla label{
-	
+		/*margin-bottom: 15px;*/
 }
+/*#plantilla button[title="No disponible"]{
+	position: absolute;
+	right:0;
+	margin-top: 1px;
+}*/
+/*#plantilla input,#plantilla select{
+	position: absolute;
+	right:0;
+	width: 60%;
+}*/
+
 #plantilla input[type="submit"]{
+	position:relative;
 	margin: 0 auto;
 	display: block;
 }
+/*.form-control{
+	display: inline-block;
+}*/
 #login h2 , #registrar h2 , #perfil h2, #plantilla h3, .form h3{
 	margin: 0;
 	padding: 10px;
@@ -223,6 +269,9 @@ tfoot input {
 #gestionUsuarios tbody tr:nth-child(2n){
 	background: rgb(128, 208, 245);
 }
+#entradas>#entrada{
+	display: none;
+}
 #entrada tbody tr:nth-child(2n), #entrada tbody tr:nth-child(2n){
 	background-color: #e6e6e6;
 }
@@ -236,9 +285,9 @@ tfoot input {
 #saludo{
 	text-align: center;
 }
-/*#matricula, #bastidor{
+#matricula/*, #bastidor*/{
 	text-transform: uppercase;
-	}*/
+}
 
 .report{
 	font-size: 20px;
@@ -253,10 +302,10 @@ tfoot input {
 }
 .reportes li{
 	height: 250px;
-    margin: 50px;
-    padding: 5px;
-    border: 2px solid black;
-    border-radius: 10px;
+	margin: 50px;
+	padding: 5px;
+	border: 2px solid black;
+	border-radius: 10px;
 }
 
 .reportes li div *{
@@ -304,20 +353,7 @@ tfoot input {
 
 ::-webkit-input-placeholder { color:#91bbbf; }
 
-#plantilla .separador{
-	margin: 10px 0;
-}
-#plantilla .separador h3{
-	margin-bottom: 8px;
-}
-#plantilla #bt{
-	padding: 2px 5px 1px 5px;
-	margin: 0 0 2px 3px;
-}
-#plantilla #bt + i, #plantilla #datosVehiculo{
-	padding: 2px 5px 1px 5px;
-	margin: 0 0 4px 3px;
-}
+
 
 
 /*Redimension de boton*/
@@ -329,8 +365,8 @@ tfoot input {
 /*Se quitan las flechas del input number cuando se selecciona compraventa*/
 input[type=number]#vTlf::-webkit-outer-spin-button,
 input[type=number]#vTlf::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+	-webkit-appearance: none;
+	margin: 0;
 }
 
 input[type=number]#vTlf {
@@ -350,13 +386,13 @@ input[type=number]#vTlf {
 
 
 .msn{
-    background-color: red;
-    border-radius: 10px;
-    width: 22px;
-    border: white 1px solid;
-    display: inline-block;
-    text-align: center;
-    color: white;
+	background-color: red;
+	border-radius: 10px;
+	width: 22px;
+	border: white 1px solid;
+	display: inline-block;
+	text-align: center;
+	color: white;
 }
 
 #novedades{
@@ -403,15 +439,15 @@ input[type=number]#vTlf {
 	margin-right: 6px;
 }
 .datos label{
-    width: 190px;
-    /*margin-left: 60px;*/
-    margin-right: -80px;
-    text-align: left;
+	width: 190px;
+	/*margin-left: 60px;*/
+	margin-right: -80px;
+	text-align: left;
 }
 .datos span {
-    width: 205px;
-    text-align: right;
-    display: inline-block;
+	width: 205px;
+	text-align: right;
+	display: inline-block;
 }
 
 #modal620{
@@ -433,9 +469,11 @@ input[type=number]#vTlf {
 
 #plantilla input.mail{
 	width: 220px;
+	text-transform: lowercase;
 }
 #plantilla input.nombre{
 	width:200px;
+	text-transform: capitalize;
 }
 #plantilla input{
 	width: 100px;
@@ -507,42 +545,131 @@ input[type=number]#vTlf {
 #filtros button{
 	margin: 0 3px;
 }
+div#cuerpo {
+	/*display: none;*/
+}
+#entradas>#entrada{
+	display: none;
+}
+#entrada~#loading{
+	*display: block;
+}
+#entrada+#filtros{
+	display: none;
+}
+div#loading {
+	top: 250px;
+	position: absolute;
+	z-index: 1000;
+	width: 100%;
+	height: 400px;
+	text-align: center;
+	/*background: url('../gifs/loading.gif') no-repeat;
+	background-position: center;*/
+	cursor: wait;
+}
+
 
 
 /*Se modifica los pixeles del collapse del menu*/
 @media (max-width: 930px) {
-    .navbar-header {
-        float: none;
-    }
-    .navbar-left,.navbar-right {
-        float: none !important;
-    }
-    .navbar-toggle {
-        display: block;
-    }
-    .navbar-collapse {
-        border-top: 1px solid transparent;
-        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-    }
-    .navbar-fixed-top {
-        top: 0;
-        border-width: 0 0 1px;
-    }
-    .navbar-collapse.collapse {
-        display: none!important;
-    }
-    .navbar-nav {
-        float: none!important;
-        margin-top: 7.5px;
-    }
-    .navbar-nav>li {
-        float: none;
-    }
-    .navbar-nav>li>a {
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-    .collapse.in{
-        display:block !important;
-    }
+	.navbar-header {
+		float: none;
+	}
+	.navbar-left,.navbar-right {
+		float: none !important;
+	}
+	.navbar-toggle {
+		display: block;
+	}
+	.navbar-collapse {
+		border-top: 1px solid transparent;
+		box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+	}
+	.navbar-fixed-top {
+		top: 0;
+		border-width: 0 0 1px;
+	}
+	.navbar-collapse.collapse {
+		display: none!important;
+	}
+	.navbar-nav {
+		float: none!important;
+		margin-top: 7.5px;
+	}
+	.navbar-nav>li {
+		float: none;
+	}
+	.navbar-nav>li>a {
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	.collapse.in{
+		display:block !important;
+	}
+}
+.rojo{background-color: #ff8f8f !important}
+.verde{background-color: #84da84 !important}
+.naranja{background-color: #ffa944 !important}
+
+/* Hoja presupuestos */
+#presupuesto{
+	width: 400px;
+	position: absolute;
+}
+#presupuesto div#img{
+	background: url('../images/logo-gestoria-portol2.png') no-repeat !important;
+	background-size: 100% !important;
+	opacity: 0.1 !important;
+	position:absolute;
+	left:0;
+	top:20%;
+	right:0;
+	bottom:20%;
+	z-index: -1;
+}
+
+#presupuesto label+* {
+	position: absolute;
+	right: 0;
+}
+#presupuesto hr{
+	border-top:1px solid black;
+}
+#presupuesto #nuevo{
+	visibility: hidden;
+}
+@media print{
+
+	#presupuesto{
+		left:0 !important;
+		width: 100%;
+		font-size:190%;
+	}
+	#presupuesto button, #presupuesto input, #presupuesto #crono {
+		display: none;
+	}
+	#presupuesto label+* {
+		color:#999 !important;
+	}
+	#presupuesto div span#total{
+		color:red !important;
+	}
+	#presupuesto h1,#presupuesto h2,#presupuesto h3,#presupuesto h4{
+		font-size: 190%;
+		text-align: center;
+		font-weight: 700;
+	}
+	#presupuesto label+*{
+		position: absolute;
+		right: 0;
+	}
+	#presupuesto #last{
+		display:none;
+	}
+}
+.btn-mini{
+	padding:2px;
+	margin-left:5px;
+	height: 26px;
 }

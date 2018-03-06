@@ -159,7 +159,7 @@ class ControllerBase{
 			/*$empieza= new \DateTime();*/
 			// Login page
 			$crawler = $this->client->request('GET', 'https://www.atib.es/TA/modelos/Modelo.aspx?m=621');
-			 
+			//$crawler->filterXPath("//*[@name='ctl00$ctl00$cph_main$cph_main$621_0$tipov']")->attr('value');
 			// Select Login form
 			$this->form = $crawler->selectButton('ctl00$ctl00$cph_main$cph_main$621_0$lnkBuscarTrafico')->form();
 		}
@@ -222,6 +222,56 @@ class ControllerBase{
 
 		//Devuelve todo el contenido de la respuesta
 		//echo $html=$crawler->html();
+		/*$termina=new \DateTime();
+		$interval=$empieza->diff($termina);
+		echo "<br>".$interval->format("%ss");*/
+		try{
+			$values['matricula']= $crawler->filterXPath("//*[@id='cph_main_cph_main_621_0_numMatricu']")->attr('value');
+			$values['cuota']= (int)str_replace(".","",$crawler->filterXPath("//*[@id='cph_main_cph_main_621_E_CuotaSola']")->attr('value'));
+			$values['marca']= $crawler->filterXPath("//*[@id='cph_main_cph_main_621_0_marcaVeh']")->attr('value');
+			$values['modelo']= $crawler->filterXPath("//*[@id='cph_main_cph_main_621_0_modeloVeh']")->attr('value');
+			$values['bastidor']= $crawler->filterXPath("//*[@id='cph_main_cph_main_621_0_bastidorSV']")->attr('value');
+			$values['cilindrada']= $crawler->filterXPath("//*[@id='cph_main_cph_main_621_0_cilindrada']")->attr('value');
+			$values['fechaMatri']= $crawler->filterXPath("//*[@id='cph_main_cph_main_621_0_fechaMatri']")->attr('value');
+			$values['cvf']= $crawler->filterXPath("//*[@id='cph_main_cph_main_621_0_cvf']")->attr('value');
+		}catch(\Exception $e){
+			$this->i++;
+			$values['error'] = $crawler->filterXPath("//div[@class='alerta']/ul/li")->text();
+		}
+		try{
+			$tag = $crawler->filterXPath("//div[@class='alerta']/ul/li")->text();
+			$values['accion']="+";
+			//echo "\nInferior";
+		}catch(\Exception $e){
+			$values['accion']="-";
+			//echo "correcto";
+		}
+		return $values;
+	}
+	public function atib2($matricula,$precio=0){
+
+		$this->insta620();
+		//DNI Comprador
+		$post['ctl00$ctl00$cph_main$cph_main$621_0$nifC']='43185091s';
+		//Apellido Comrpador
+		$post['ctl00$ctl00$cph_main$cph_main$621_0$apenomC']="diaz";
+		//Matricula
+		$post['ctl00$ctl00$cph_main$cph_main$621_0$numMatricu2']=$matricula;
+		//DNI Vendedor
+		$post['ctl00$ctl00$cph_main$cph_main$621_0$txtnif']='43077529R';
+		//Apellido Vendedor
+		$post['ctl00$ctl00$cph_main$cph_main$621_0$txtnombre']='garcia';
+
+		$post['ctl00$ctl00$cph_main$cph_main$621_0$valorDecla']=number_format($precio,2,",",".");
+
+		//$post['cph_main_cph_main_621_0_rbMoto']=1;
+
+		// Submit form
+		$crawler = $this->client->submit($this->form, $post);
+
+		//Devuelve todo el contenido de la respuesta
+		echo $html=$crawler->html();
+		exit();
 		/*$termina=new \DateTime();
 		$interval=$empieza->diff($termina);
 		echo "<br>".$interval->format("%ss");*/
@@ -342,6 +392,7 @@ class ControllerBase{
 		echo "<br>".$interval->format("%ss");*/
 
 		try{
+			$values['matricula']= $crawler->filterXPath("//*[@id='cph_main_cph_main_621_0_numMatricu']")->attr('value');
 			$values['cuota']= (int)str_replace(".","",$crawler->filterXPath("//*[@id='cph_main_cph_main_621_E_CuotaSola']")->attr('value'));
 			$values['marca']= $crawler->filterXPath("//*[@id='cph_main_cph_main_621_0_marcaVeh']")->attr('value');
 			$values['modelo']= $crawler->filterXPath("//*[@id='cph_main_cph_main_621_0_modeloVeh']")->attr('value');

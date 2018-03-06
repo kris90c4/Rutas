@@ -18,7 +18,6 @@
 
 	</div>
 	
-	
 	<table id="entrada">
 		<thead>
 			<tr>
@@ -59,6 +58,18 @@
 					<button class="descarga btn btn-info" >Descargar</button>
 					<button  class="<?= empty($entrada['fecha_salida'])?"seleccionar":"descargarsalida" ?> btn btn-default" ><?= empty($entrada['fecha_salida'])?"Seleccionar":"Salida" ?></button>
 					<a href="?controller=tramites&action=estado&parametros=<?= base64_encode($entrada['matricula']) ?>" >Estado</a>
+					<?php
+						if(strlen($entrada['cTelefono'])>6){
+							$telefono=$entrada['cTelefono'];
+						}else{
+							if($entrada['vendedor']==null){
+								$telefono=$entrada['cvTelefono'];
+							}else{
+								$telefono=$entrada['vTelefono'];
+							}
+						}
+					?>
+					<a class="btn btn-success" target="blank" href="https://api.whatsapp.com/send?phone=34<?= $telefono ?>&text=Le%20informamos%20que%20la%20documentaci%C3%B3n%20referente%20al%20veh%C3%ADculo%20con%20matr%C3%ADcula%20<?= strtoupper($entrada['matricula']) ?>%20ya%20est%C3%A1%20tramitada.%0APodr%C3%A1%20recogerla%20en%20Gestor%C3%ADa%20P%C3%B2rtol%2C%20C%2F%20Gran%20V%C3%ADa%20Asima%2C%2015%2C%201%C2%BA%20Izquierda.%0APara%20cualquier%20consulta%20estamos%20disponibles%20en%20el%20siguiente%20tel%C3%A9fono%20971908095.%0ANuestro%20horario%20de%20atenci%C3%B3n%20al%20p%C3%BAblico%20es%20de%208%3A00%20a%2020%3A00%20de%20lunes%20a%20viernes%20y%20de%209%3A00%20a%2013%3A00%20los%20sabados.%0APara%20la%20recogida%20de%20la%20documentaci%C3%B3n%20ser%C3%A1%20necesario%20presentar%20el%20DNI%20para%20dejar%20constancia%20de%20quien%20la%20recoge." >WhatsApp</a>
 				</td>
 			</tr>
 		<?php endforeach;?>

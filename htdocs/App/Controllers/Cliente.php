@@ -15,7 +15,10 @@ class Cliente{
 		View::set("clientes",ClienteM::getAll());
 		View::render("clientes");
 	}
-
+	public function whatsapp(){
+		View::set("title", "WhatsApp");
+		View::render("whatsapp");
+	}
 	
 	public function create($id=0){
 		View::set('title',"Nuevo Cliente");

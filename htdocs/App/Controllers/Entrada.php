@@ -19,12 +19,6 @@ class Entrada extends ControllerBase{
 	public function view(){
 		View::set("title","Entradas");
 		$entradas=EntradaM::getView();
-		/*$cantidad=count($entradas);
-		for ($i=0; $i < $cantidad; $i++) { 
-			$cliente=ClienteM::getByTlf($entradas[$i]['vTelefono']);
-			if(!empty($cliente))
-				$entradas[$i]['vId']=$cliente['id'];
-		}*/
 		
 		View::set("entradas",$entradas);
 		View::render('entradas');
@@ -204,8 +198,11 @@ class Entrada extends ControllerBase{
 			$objPHPExcel->getActiveSheet()->SetCellValue('G14', $datoscompraventa['nombre']);
 			$objPHPExcel->getActiveSheet()->SetCellValue('D16', $datoscompraventa['telefono']);
 			$objPHPExcel->getActiveSheet()->SetCellValue('D18', $datoscompraventa['mail']);
+			//Gestiones Compraventas
 			if($id_tipo==2){
 				$objPHPExcel->getActiveSheet()->SetCellValue('Y18', $datoscompraventa['nv']);
+			}else if($id_tipo==4){
+				$objPHPExcel->getActiveSheet()->SetCellValue('Y18', $datoscompraventa['gestion']+$datoscompraventa['nv']);
 			}else{
 				$objPHPExcel->getActiveSheet()->SetCellValue('Y18', $datoscompraventa['gestion']);
 			}
@@ -314,50 +311,8 @@ class Entrada extends ControllerBase{
 
 	// Ajax
 	// Devuelve un array via Json
-	// Envia un correo con todos los telefonos seleccionados
-	public function enviar(){ 
-		//Devuelve los telefonos de las entradas que coincidan con las entradas en la tabla enviado.
-		$sql="SELECT c.telefono comprador, cv.telefono compraventa, v.telefono vendedor FROM Entrada left JOIN compraventa cv on cv.id = Entrada.id_compraventa JOIN enviado ON Entrada.id = enviado.id_entrada left JOIN cliente c ON c.id = Entrada.id_comprador left JOIN cliente v ON v.id = Entrada.id_vendedor";
-
-		$telefonos=Ajax::sql($sql);
-
-		
-		//Se elimina el array intermedio
-		for ($i=0; $i < count($telefonos); $i++) { 
-			//Si encuentra un telefono de comprador menor a 6 digitos, busca el del vendedor o el del compraventa
-			if(strlen($telefonos[$i]['comprador'])>6){
-				$telefonos[$i]=$telefonos[$i]['comprador'];
-			}else{
-				if($telefonos[$i]['vendedor']==null){
-					$telefonos[$i]=$telefonos[$i]['compraventa'];
-				}else{
-					$telefonos[$i]=$telefonos[$i]['vendedor'];
-				}
-			}
-		}
-		$value['error']="";
-		if(count($telefonos)==0){
-			$value['count']=count($telefonos);
-		}else{
-			//Se envia el correo
-			$ok=mail("comercial@gestoriaportol.com","Enviar sms a los ".count($telefonos)." telefonos seleccionados",implode(",", $telefonos),"From: cristiandiazportero@gmail.com");
-
-			if($ok){
-				$this->log($_SESSION['usuario']->getNombre() . " ha enviado los siguientes telefonos " . implode(", ", $telefonos));
-				$value['count']= count($telefonos);
-				$value['sms']=implode(",", $telefonos);
-			}else{
-				$value['error']= "error";
-			}
-		}
-		
-		echo json_encode($value);
-		
-	}
-
-		// Ajax
-	// Devuelve un array via Json
-	// Envia un correo con todos los telefonos seleccionados
+	// Envia un correo con todos los telefonos seleccionados o un sms
+	// Si se le pasa un $_POST['sms'] se envia una peticion de envio por sms, sino, se envia por mail.
 	public function enviar2(){
 		//Devuelve los telefonos de las entradas que coincidan con las entradas en la tabla enviado.
 		$sql="SELECT c.telefono comprador, cv.telefono compraventa, v.telefono vendedor FROM Entrada left JOIN compraventa cv on cv.id = Entrada.id_compraventa JOIN enviado ON Entrada.id = enviado.id_entrada left JOIN cliente c ON c.id = Entrada.id_comprador left JOIN cliente v ON v.id = Entrada.id_vendedor";
@@ -398,56 +353,20 @@ class Entrada extends ControllerBase{
 				$value['error']= "error";
 			}
 		}
-		
-		echo json_encode($value);
-		
-	}
-
-	// Ajax
-	// Return "ok" Todo bien
-	// Return "error" No se ha enviado
-	public function sms(){
-
-		//Devuelve los telefonos de las entradas que coincidan con las entradas en la tabla enviado.
-		$sql="SELECT c.telefono comprador, cv.telefono compraventa, v.telefono vendedor FROM Entrada left JOIN compraventa cv on cv.id = Entrada.id_compraventa JOIN enviado ON Entrada.id = enviado.id_entrada left JOIN cliente c ON c.id = Entrada.id_comprador left JOIN cliente v ON v.id = Entrada.id_vendedor";
-
-		$telefonos=Ajax::sql($sql);
-
-		//Se elimina el array intermedio
-		for ($i=0; $i < count($telefonos); $i++) { 
-
-			//Si encuentra un telefono de comprador menor a 6 digitos, busca el del vendedor o el del compraventa
-			if(strlen($telefonos[$i]['comprador'])>6){
-				$telefonos[$i]=$telefonos[$i]['comprador'];
-			}else{
-				if($telefonos[$i]['vendedor']==null){
-					$telefonos[$i]=$telefonos[$i]['compraventa'];
-				}else{
-					$telefonos[$i]=$telefonos[$i]['vendedor'];
-				}
-			}
-		}
-		$value['error']="";
-		if(count($telefonos)==0){
-			$value['count']=0;
-		}else{
-			$this->log($_SESSION['usuario']->getNombre() . " ha enviado los siguientes telefonos via SMS " . implode(", ", $telefonos));
-			$value['count']= count($telefonos);
-			$value['sms']=implode(",", $telefonos);
-		}
 		echo json_encode($value);
 	}
 
 	//Ajax
-	//Se actualiza la fecha de salida en la tabla Entrada
-	//Se elimina los registros de la tabla enviado
+	//Se actualiza la fecha de salida en la tabla Entrada.
+	//Se actualiza las anotaciones de siga de cada traspaso.
+	//Se elimina los registros de la tabla enviado.
+	//Manda un mail si el cliente lo tiene.
 	public function confirmar(){
 
 		$sql="SELECT Entrada.matricula, c.telefono comprador, c.mail cMail, cv.telefono compraventa, cv.mail cvMail, v.telefono vendedor, v.mail vMail FROM Entrada left JOIN compraventa cv on cv.id = Entrada.id_compraventa JOIN enviado ON Entrada.id = enviado.id_entrada left JOIN cliente c ON c.id = Entrada.id_comprador left JOIN cliente v ON v.id = Entrada.id_vendedor";
 
 		$salida=Ajax::sql($sql);
 
-		
 		//Se elimina el array intermedio
 		for ($i=0; $i < count($salida); $i++) {
 
@@ -470,9 +389,7 @@ class Entrada extends ControllerBase{
 				if($this->mandar_mail($mail,"Documentación de la matrícula ".$salida[$i]['matricula']." tramitada","Le informamos que la documentación referente al vehículo con matrícula ".$salida[$i]['matricula']." ya está tramitada.<br>Podrá recogerla en Gestoría Pòrtol, C/ Gran Vía Asima, 15, 1º Izquierda.<br>Para cualquier consulta estamos disponibles en el siguiente teléfono 971908095.<br>Nuestro horario de atención al público es de 8:00 a 20:00 de lunes a viernes y de 9:00 a 13:00 los sabados.<br>Para la recogida de la documentación será necesario presentar el DNI para dejar constancia de quien la recoge","comercial@gestoriaportol.com")) {
 				}
 			}
-
 		}
-
 		/*
 		// Se identifican los clientes que tengan pendiente el envio de SMS
 		$sql="SELECT cliente.telefono, cliente.mail, entrada.matricula FROM entrada JOIN cliente ON entrada.id_comprador = cliente.id JOIN enviado ON entrada.id = enviado.id_entrada";
@@ -481,14 +398,12 @@ class Entrada extends ControllerBase{
 		if(count($salida)==0){
 			exit(count($salida));
 		}
-
-
-
 		EntradaM::updateSalida();
 		EnviadoM::deleteAll();
 		echo "ok";
 	}
 
+	// Al pulsar el boton editar, se recogen los datos y se envian para mostrarlos
 	public function editar($id) {
 
 		$datos=EntradaM::getById($id);
@@ -515,28 +430,25 @@ class Entrada extends ControllerBase{
 		$this->create($datos['id'],$datos);
 	}
 
+	// Una vez editados, se tratan y se actualizan
 	public function editado(){
 		if (isset($_POST['editar'])){
 
 			extract($_POST);
 
-			$matricula=strtoupper($matricula);
-			$vendedor=strtoupper($vendedor);
-			$comprador=strtoupper($comprador);
-			//$vMail=strtolower($vMail);
-			//$cMail=strtolower($cMail);
-
 			$this->log("Editando entrada... Matricula: $matricula - Gestionado por ". $_SESSION['usuario']->getNombre());
 			
 			//Se recopilan todos los datos necesarios para almacenarlos en la base de datos
-
 			$datosVendedor=array('id'=>$id_vendedor,'nombre'=> $vendedor, 'mail'=> $vMail, 'telefono'=> $vTlf);
 			$datosComprador=array('id'=>$id_comprador,'nombre'=> $comprador, 'mail'=> $cMail, 'telefono'=> $cTlf);
+			$this->tratamiento_datos_cliente($datosVendedor);
+			$this->tratamiento_datos_cliente($datosComprador);
 
 			$datos['correo_ordinario']=isset($correo_ordinario)?$correo_ordinario:0;
-			$datos['matricula']=$matricula;
+			$datos['matricula']=strtoupper($matricula);
 			$datos['base_imponible']=$base_imponible;
 			$datos['tipo_de_gravamen']=$tipo_de_gravamen;
+			
 			if($tipo=="part"){
 				$datos['id_vendedor']=$this->actualizar_cliente($datosVendedor);
 			}else{
@@ -551,13 +463,13 @@ class Entrada extends ControllerBase{
 			$datos['id_usuario']=$_SESSION['usuario']->getId();
 			$datos['id']=$id;
 
-			$e2=EntradaM::update($datos);
+			$resultado=EntradaM::update($datos);
 
-			if($e2==1){
+			if($resultado==1){
 				$this->log("entrada OK");
 				$this->view();
 			}else{
-				$this->log("Error: ".$e2);
+				$this->log("Error: ".$resultado);
 			}
 		}
 	}
@@ -579,8 +491,16 @@ class Entrada extends ControllerBase{
 		}else{
 			$json['error']="Escribe una matricula";
 		}
-		echo json_encode($json);
+		echo $_SESSION['ultimo_resultado'] = json_encode($json);
 	}
+	public function ultimoResultado(){
+		if(isset($_SESSION['ultimo_resultado'])){
+			echo $_SESSION['ultimo_resultado'];
+		}else{
+			echo 'false';
+		}
+	}
+	// recibe una matricula por POST
 	public function jsonDatosVehiculo(){
 		extract($_POST);
 		$json=$this->datosVehiculo($matricula);

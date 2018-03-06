@@ -19,7 +19,6 @@ class Tarjeta_transporte extends ControllerBase{
 		View::set('title',"Nueva Tarjeta Transporte");
 		if($id>0){
 			view::set('editar',$editar);
-			//view::set('id',"plantilla");
 		}
 		View::render("nueva_tarjeta_transporte",false);
 	}
@@ -57,8 +56,7 @@ class Tarjeta_transporte extends ControllerBase{
 				$archivos=$_FILES;
 				$archivos=$archivos['archivos'];
 				try{
-					//throw new \Exception("error de prueba");
-					if(isset($archivos)&&!empty($archivos)){
+					if(isset($archivos)&&!empty($archivos['name'][0])){
 						$cantidad=count($archivos['name']);
 						for ($i=0; $i < $cantidad; $i++) {
 							$archivo[$i]['name']=$archivos['name'][$i];
@@ -73,12 +71,10 @@ class Tarjeta_transporte extends ControllerBase{
 				}catch(\Exception $e){
 					$con->rollBack();
 					//throw new \Exception($e->getMessage());
+					echo "controller/tarjeta_transporte";
 					throw $e;
 				}
 
-
-				//var_export($respuesta);
-				//exit();
 				/////////////////////PENDIENTE. CONTINUAR POR AQUI  ////////////////
 				ob_start();
 				print "Formulario: \n";
@@ -88,9 +84,8 @@ class Tarjeta_transporte extends ControllerBase{
 
 				if(substr($respuesta, 0, 5) == "Error"){
 					$this->log("Tarjeta transporte: $respuesta\n$error");
-
 					View::set("error","Ha ocurrido un error.$error");
-					View::set('title',"Nueva entrada");
+					View::set('title',"Ha ocurrido un error");
 					View::render("tarjeta_transporte");
 				}else{
 					$this->log("Tarjeta transporte OK");
@@ -99,7 +94,7 @@ class Tarjeta_transporte extends ControllerBase{
 				
 
 			}
-		}catch(Exception $e){
+		}catch(\Exception $e){
 			$this->log("Error:" . $e->getMessage());
 		}
 	}
@@ -122,20 +117,17 @@ class Tarjeta_transporte extends ControllerBase{
 
 			extract($_POST);
 
-			$matricula=strtoupper($matricula);
-
 			$this->log("Editando tarjeta transporte... Matricula: $matricula - Gestionado por ". $_SESSION['usuario']->getNombre());
 
 			$datos=$_POST;
 			//Se recopilan todos los datos necesarios para almacenarlos en la base de datos
 			$datosCliente=array('id'=>$id_cliente,'nombre'=> $cliente, 'mail'=> $mail, 'telefono'=> $tlf);
-			
 			$this->tratamiento_datos_cliente($datosCliente);
-			
-			$datos['matricula']=$matricula;
+
+			$datos['matricula']=strtoupper($matricula);
 			$datos['id_cliente']=$this->actualizar_cliente($datosCliente);
 			$datos['id_usuario']=$_SESSION['usuario']->getId();
-			$datos['id']=$id;
+			//$datos['id']=$id;
 			$tarjetaUpdate=Tj::update($datos);
 
 			if($tarjetaUpdate==1){
@@ -154,9 +146,9 @@ class Tarjeta_transporte extends ControllerBase{
 		//var_export($archivo);
 		//exit();
 		extract($archivo);
-		//echo '<img src="data:image/png;base64,' . base64_encode( $contenido ) . '" />';
-		header("Content-type: $tipo");
-		print $contenido;
+		echo "<img src=\"data:$tipo;base64," . base64_encode( $contenido ) . '" />';
+		//header("Content-type: $tipo");
+		//print $contenido;
 	}
 
 	public function envio_mail_renovacion(){
@@ -183,6 +175,7 @@ class Tarjeta_transporte extends ControllerBase{
 					$cliente=ClienteM::getById($tarjeta[$i]['id_cliente']);
 					//$cliente['nombre']=ucwords(strtolower($cliente['nombre'])," ");
 					$this->mandar_mail($cliente['mail'],'Gestoria Portol le informa de que a comenzado el periodo de renovacion de su tarjeta de transporte', "Buenos dias señor\a $cliente[nombre]<br><br>Le informamos que el proximo dia ". $caduca->format("d-m-Y") ." caduca su tarjeta de transporte.<br><br>Durante este mes esta disponible la renovacion de su tarjeta de transporte. Si desea realizar la renovación con nosotros puede contestar a este mismo correo.");
+					//Se van almacenando los clientes.
 					$lista[]=array("id"=>$tarjeta[$i]['id'],"cliente"=>$cliente['nombre'],"telefono"=>$cliente['telefono'],"mail"=>$cliente['mail'],"matricula"=>$tarjeta[$i]['matricula'],"fecha_vencimiento"=>$tarjeta[$i]['fecha_vencimiento']);
 				}
 			}
@@ -190,21 +183,27 @@ class Tarjeta_transporte extends ControllerBase{
 		//Si se ha encontrado algun cliente
 		if($envio){
 			$fila="";
-			for ($k=0; $k < count($lista); $k++) { 
+			for ($k=0; $k < count($lista); $k++) {
 				$fila.="<tr><td>".$lista[$k]['id']."</td><td>".$lista[$k]['matricula']."</td><td>".$lista[$k]['cliente']."</td><td>".$lista[$k]['telefono']."</td><td>".$lista[$k]['mail']."</td><td>".$lista[$k]['fecha_vencimiento']."</td></tr>";
 			}
-			$tabla="<table>
-				<thead>
-					<tr>
-						<th>id</th><th>Matricula</th><th>Cliente</th><th>Telefono</th><th>Mail</th><th>Fecha caducidad</th>
-					</tr>
-				</thead>
-				<tbody>
-					$fila
-				</tbody>
-			</table>";
+			$tabla="<table><thead><tr><th>id</th><th>Matricula</th><th>Cliente</th><th>Telefono</th><th>Mail</th><th>Fecha caducidad</th></tr></thead><tbody>$fila</tbody></table>";
 			//myrna@gestoriaportol.com
 			$this->mandar_mail('cristiansmx2a@gmail.com',"Notificación Gestoria Pórtol","Para los clientes listados ha comenzado el periodo de renovación de sus tarjetas de transporte<br><br>$tabla");
 		}
+	}
+	//Ajax
+	public function fk_imagenes(){
+		extract($_POST);
+		$archivo=ArchivoM::getByFk($id);
+
+		for ($i=0; $i < count($archivo); $i++) { 
+			$src[$i]= "data:".$archivo[$i]['tipo'].";base64,".base64_encode($archivo[$i]['contenido']);
+			//$src[$i]=$archivo[$i]['contenido'];
+		}
+		//echo $src[0];
+		if(isset($src)){
+			echo json_encode($src);
+		}
+
 	}
 }

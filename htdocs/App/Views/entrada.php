@@ -69,7 +69,6 @@
 <?php if(!isset($editar)): ?>
 	<div class="separador">
 		<h3>Cobro</h3>
-		<label style="font-size: 15px" class="pull-right label label-danger"><span id="precio" ></span>€</label>
 		<label for="provision">Provision</label>
 		<select name="provision" id="provision" tabindex="1">
 			<option value="visa">Visa</option>
@@ -79,6 +78,7 @@
 		<br>
 		<label for="pago">pagado hoy</font></label>
 		<input id="pago" type="checkbox" tabindex="1" name="pago" <?= isset($editar)?"checked":"" ?> /><br>
+		<label style="font-size: 15px" class="pull-right label label-danger"><span id="precio" ></span>€</label>
 	</div>
 <?php endif; ?>
 	<div class="separador">

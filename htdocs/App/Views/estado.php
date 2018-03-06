@@ -21,10 +21,28 @@ if(!empty($id)):
 		<label for="">Estado:</label><span><?= $id[0]['Anotaciones']==null?"El tramite esta en marcha":$id[0]['Anotaciones'] ?></span><br>
 		<label for="">Fecha estimada:</label><span><?= $fecha2->format("d/m/Y") ?></span><br>
 		<label for="">Anotaciones:</label><span><?= $id[0]['Anotaciones'] ?></span><br>
+		<button onclick="localhost()" class="btn btn-info">Nueva Consulta</button>
 	</div>
-<?php else: ?>
+<?php elseif(count($_GET)>0): ?>
 	<div id="estado">
 		<h1>No existe la matricula en la base de datos de SIGA</h1>
 		<p>Es posible que aun no se hayan introducido los datos en el programa de trafico</p>
 	</div>
+<?php else: ?>
+	<div id="estado">
+		<div id="plantilla" class="no">
+			<form action="" method="GET">
+				<div class="separador">
+					<h2>Seguimiento del estado del tramite</h2>
+					<input type="text" class="form-control" name="url" placeholder="CODIGO">
+				</div>
+				<input type="submit" class="btn" name="">
+			</form>
+		</div>
+	</div>
 <?php endif; ?>
+<script type="text/javascript">
+	function localhost(){
+		location.href="http://portol.ddns.net";
+	}
+</script>

@@ -7,7 +7,7 @@
 				<th>ID</th>
 				<th>Nombre</th>
 				<th>Gestion</th>
-				<th>Nv</th>
+				<th>Notificacion Venta</th>
 				<th>Mail</th>
 				<th>Telefono</th>
 				<th>Opciones</th>

@@ -21,13 +21,16 @@ class App{
 
 	public function __construct(){
 
-		$this->access=$_SERVER["SERVER_NAME"]=="portol2.ddns.net"?"ext":"int";
-
+		//Si se accede desde portol.ddns.net, se redirecciona a seguimiento.
+		//Si se accede desde portolestadisticas.ddns.net se redirecciona a estadisticas.
+		$this->access=$_SERVER["SERVER_NAME"]=="portol.ddns.net"?"ext":($_SERVER["SERVER_NAME"]=="portolestadisticas.ddns.net"?"estadisticas":"int");
 
 		//comprobamos que exista el archivo en el directorio controllers
 		if(file_exists(self::CONTROLLERS_PATH.ucfirst(isset($_GET['controller'])?$_GET['controller']:"Home"). ".php")){
 			//nombre del archivo a llamar
-			$this->_controller = ucfirst(isset($_GET['controller'])?$_GET['controller']:"Home");
+			//exit($_GET['controller']);
+			$this->_controller = ucfirst(isset($_GET['controller'])?$_GET['controller']:($this->access=="estadisticas"?"estadisticas":"Home"));
+			
 		}else{
 			exit(self::CONTROLLERS_PATH.ucfirst(isset($_GET['controller'])?$_GET['controller']:"Home"). ".php");
 			//Si el controlador no existe se se redir
@@ -64,10 +67,13 @@ class App{
 	 * [render  lanzamos el controlador/método que se ha llamado con los parámetros]
 	 */
 	public function render(){
-		if($this->access=="ext"){
-			$controller=self::NAMESPACE_CONTROLLERS."Tramites";
-			$controller=new $controller;
+		//Si se accede desde el exterior
+		if($this->access == "ext"){
+			// se establece tramites como el controlar 
+			$controller = self::NAMESPACE_CONTROLLERS."Tramites";
+			$controller = new $controller;
 			define("ACCESS","ext");
+			//Se comprueban
 			if(isset($_GET['url'])){
 				$url=explode(",", $_GET['url']);
 				$this->_params = array_values($url);
